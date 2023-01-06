@@ -1,0 +1,357 @@
+#appContainer {
+  height: 92%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.navbar {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  position: fixed !important;
+  width: 100%;
+  top: 0;
+  /* padding-top: 1em; */
+  height: 55px;
+  background-color: hsl(240, 11%, 15%) !important;
+  z-index: 20;
+  box-shadow: none;
+  border-bottom: 1px rgba(65, 65, 65, 0.747) solid;
+}
+
+.navbar-toggler {
+  margin-right: 2%;
+}
+
+.home-title-navbar {
+  margin-left: 8%;
+  font-weight: 400;
+}
+
+.navbar-nav.mr-auto {
+  margin-top: 0;
+  background-color: #ffffff;
+  padding: 2%;
+  padding-bottom: 0;
+  border-bottom: solid rgba(0, 0, 0, 0.302) 1px;
+  animation: fadeIn ease 0.1s;
+}
+
+#navbarDropdown {
+  color: black;
+}
+
+.LibraryContainer,
+.HomeContainer {
+  /* display: flex; */
+  width: 100%;
+  height: 100%;
+  /* align-items: center;
+  justify-content: center; */
+  padding: 2%;
+  animation: fadeIn ease 500ms;
+}
+
+.HomeContainer {
+  max-width: 800px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.libraryTitleContainer {
+  padding-top: 4em;
+  padding-bottom: 1.75em;
+  margin-top: 1.5em;
+  /* margin-top: 2%; */
+  margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10%;
+  background-color: rgb(250, 250, 250);
+  width: 100vw !important;
+  border-bottom: solid 1px rgba(58, 58, 58, 0.131);
+  z-index: 15;
+}
+
+.searchBooksForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5%;
+  width: 50vw;
+}
+
+.bookButtonsContainer {
+  display: flex;
+  flex-direction: row;
+  width: 96vw;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4.5em;
+  padding-bottom: 5em;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.bookButtonsContainer > span {
+  /* flex: 10%; */
+  /* height: 100px; */
+  /* width: 100px; */
+}
+
+.bookButton {
+  /* width: 90%;
+  max-width: 500px; */
+
+  margin: 1%;
+}
+
+.bookButton:hover {
+  cursor: pointer;
+}
+
+.bookButton3 {
+  /* width: 15vw;
+  min-width: 102px;
+  height: 20vh;
+  background-image: url('./assets/bookCovers/3.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain; */
+}
+
+.kindleEmailAddressForm {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(250, 250, 250);
+  padding-top: 3%;
+  border-top: solid 1px rgba(58, 58, 58, 0.131);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+}
+
+.kindleEmailAddressFormInner {
+  width: 96%;
+  max-width: 500px;
+}
+
+.kindleEmailFormContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookButtonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 3%;
+}
+
+.downloadedTrue {
+  color: rgb(27, 201, 4);
+  margin-left: 10%;
+  animation: fadeIn ease 0.5s;
+}
+
+.downloadedFalse1 {
+  color: rgba(0, 0, 0, 0.194);
+  margin-left: 10%;
+}
+
+.downloadedFalse2 {
+  color: rgba(181, 181, 181, 0.451);
+  margin-left: 10%;
+}
+
+.howToFindButtonContainer {
+  margin-right: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.horizontalDivider {
+  width: 100%;
+  border-bottom: 1px solid rgba(31, 31, 31, 0.222);
+  margin-bottom: 5%;
+}
+
+.requestButton {
+  position: absolute;
+  right: 2%;
+  margin-top: -4%;
+}
+
+@media screen and (min-width: 800px) {
+  .requestButton {
+    position: relative;
+    margin-left: 60%;
+    width: 15%;
+  }
+  .bookButtonDiv {
+    margin-bottom: 15px;
+  }
+  .navbar {
+    height: 100px;
+  }
+  .libraryTitleContainer {
+    padding-top: 7em;
+  }
+  .HomeContainer {
+    padding-top: 5em;
+  }
+}
+
+.requestBookButtonContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  text-align: bottom;
+}
+
+.directionNumber {
+  color: rgb(21, 180, 0);
+  font-weight: 700;
+}
+
+.smallerText {
+  font-size: small;
+}
+
+.howToGetBooksTitle {
+  margin-bottom: 5%;
+}
+
+.downloading-spinner {
+  margin-right: 5%;
+}
+
+.modalTitleDownloading {
+  width: 100%;
+}
+
+.higherFontWeight {
+  font-weight: 500;
+}
+
+.kindleEmailFormFieldGreen {
+  border: solid 1px rgba(8, 171, 8, 0.467);
+}
+
+.kindleEmailFormFieldRed {
+  border: solid 1px rgba(231, 10, 10, 0.467);
+}
+
+.kindleEmailAddressTitle {
+  width: 100% !important;
+}
+
+.fa-circle-check2 {
+  margin-left: 2%;
+  color: rgb(0, 183, 43);
+}
+
+.venmoQRCodeContainer {
+  width: 80%;
+  /* height: 100%; */
+  height: 70%;
+  background-image: url('http://s3.amazonaws.com/froobs-kindle-books/bitcoinQR.PNG');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.venMoNameDiv {
+  text-align: center;
+}
+
+.venmoModalBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.donateButton {
+  margin-bottom: 1em;
+}
+
+.requestForm {
+  margin-bottom: 5%;
+}
+
+.fa-copy {
+  color: rgb(44, 44, 44);
+  margin-left: 2%;
+}
+
+/* ======================================================= */
+
+.bookButton {
+  overflow: hidden; /* required */
+  position: relative; /* required  for demo*/
+}
+
+.ribbon {
+  margin: 0;
+  padding: 0;
+  background: rgb(10, 153, 0);
+  color: white;
+  padding: 0.25em 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(30%) translateY(0%) rotate(45deg);
+  transform-origin: top left;
+  font-size: x-small;
+}
+.ribbon:before,
+.ribbon:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(10, 153, 0);
+}
+.ribbon:before {
+  right: 100%;
+}
+
+.ribbon:after {
+  left: 100%;
+}
+.logoutButtonContainer {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.logoutButton {
+  /* width: 80vw; */
+}
+
+.bookCoverFroms3 {
+  height: 100%;
+  width: 100%;
+}

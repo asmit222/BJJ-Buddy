@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "https://main--hilarious-praline-417497.netlify.app/*"
+  to = "https://froobsbooks.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
