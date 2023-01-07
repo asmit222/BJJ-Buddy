@@ -6,35 +6,69 @@ import booksObject from '../utils/books.js'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 
+import { addDoc, collection, getDocs } from '@firebase/firestore'
+import { db } from '../utils/firebaseConfig/firebase'
+
 const Library: React.FC = () => {
   const { user } = useAuth0()
   const [userIdentifier, setUserIdentifier]: any = useState('')
+  const [data, setData] = useState([])
+  const [readBooks, setReadBooks] = useState([])
+  const [kindleEmailFromFirestore, setKindleEmailFromFirestore] = useState('')
+
+  const fetchData = async () => {
+    let newData: ((prevState: never[]) => never[]) | { id: string }[]
+
+    await getDocs(collection(db, user?.sub))
+      .then((querySnapshot) => {
+        newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id
+        }))
+        // .filter((doc) => {return doc['userID'] === user?.sub})
+      })
+      .then(() => {
+        let tempBookReadArr = []
+        setData(newData)
+        for (let data of newData) {
+          if (data.bookRead) {
+            tempBookReadArr.push(data.bookRead)
+          }
+          if (data.kindleEmail) {
+            setKindleEmailFromFirestore(data.kindleEmail)
+          }
+        }
+        setReadBooks(tempBookReadArr)
+      })
+  }
+
+  useEffect(() => {
+    if (kindleEmailFromFirestore !== '') {
+      setKindleFormFieldClassName('kindleEmailFormFieldGreen')
+      setKindleEmail(kindleEmailFromFirestore)
+    }
+  }, [kindleEmailFromFirestore])
+
   // ================ RUN ON PAGE LOAD ======================
   useEffect(() => {
-    let kindleEmailFromLS = localStorage.getItem('kindleEmail')
-    if (kindleEmailFromLS !== null) {
-      if (isNotValidEmail(kindleEmailFromLS)) {
-        if (kindleEmailFromLS === '') {
-          setKindleFormFieldClassName('')
-        } else {
-          setKindleFormFieldClassName('kindleEmailFormFieldRed')
-        }
-      } else {
-        setKindleFormFieldClassName('kindleEmailFormFieldGreen')
-      }
-      setKindleEmail(kindleEmailFromLS)
-    }
     let pw = localStorage.getItem('password')
     // if (pw === 'freebooks123') {
-      setShow2(false)
+    setShow2(false)
     // }
     sortBooksAlphabetically()
   }, [])
 
   useEffect(() => {
     setUserIdentifier(user?.sub)
-    console.log(user?.sub)
+    console.log('user: ' + user?.sub)
+    if (user?.sub !== undefined) {
+      fetchData()
+    }
   }, [user])
+
+  useEffect(() => {
+    console.log('data: ' + JSON.stringify(data))
+  }, [data])
 
   // ==================================================================
 
@@ -95,7 +129,6 @@ const Library: React.FC = () => {
     }
 
     setKindleEmail(e.target.value)
-    localStorage.setItem('kindleEmail', e.target.value)
   }
 
   const setpasswordAndSave = (e: any) => {
@@ -104,7 +137,14 @@ const Library: React.FC = () => {
   }
 
   const bookClickHandler = (bookNum: string) => {
-    if (localStorage.getItem('bookNum' + books[bookNum]['book']) !== null) {
+    let num: string
+    for (let objKey in booksObject.data) {
+      if (booksObject.data[objKey].book === books[bookNum].book) {
+        num = objKey
+      }
+    }
+
+    if (readBooks.includes(num)) {
       submitGetBook(bookNum)
     } else {
       submitGetBook2(bookNum)
@@ -132,8 +172,19 @@ const Library: React.FC = () => {
       return
     }
 
+    if (kindleEmailFromFirestore !== kindleEmail) {
+      try {
+        const docRef = addDoc(collection(db, user?.sub), {
+          kindleEmail: kindleEmail
+        })
+        fetchData()
+      } catch (e) {
+        console.error('Error adding document: ', e)
+      }
+    }
+
     // ===== get correct book num from booksObject ==========
-    let num
+    let num: string
     for (let objKey in booksObject.data) {
       if (booksObject.data[objKey].book === books[currBookNumber].book) {
         num = objKey
@@ -145,7 +196,6 @@ const Library: React.FC = () => {
     const url = process.env.REQUEST_URL || 'http://localhost:3000'
 
     axios.get(`${url}/getBook/${num}/${kindleEmail}`).then((res) => {
-      console.log(res)
       if (res.status === 200) {
         console.log('SUCCESS!', res.status, res.statusText)
         setShow6(false)
@@ -153,7 +203,17 @@ const Library: React.FC = () => {
         setTimeout(() => {
           setShow5(false)
         }, 1500)
-        localStorage.setItem('bookNum' + books[bookNum]['book'], 'true')
+
+        if (user?.sub) {
+          try {
+            const docRef = addDoc(collection(db, user?.sub), {
+              bookRead: num
+            })
+            fetchData()
+          } catch (e) {
+            console.error('Error adding document: ', e)
+          }
+        }
       } else {
         setShow6(false)
         console.log('FAILED...')
@@ -163,6 +223,11 @@ const Library: React.FC = () => {
   // =====================================================================================
 
   const handleDownloadBookOnModalClose = () => {
+    if (isNotValidEmail(kindleEmail)) {
+      alert('Please enter a valid kindle email address')
+      return
+    }
+
     addBook(currBookNumber) // <-- This one actually downloads the book
     setCurrBookNumber('')
     handleClose()
@@ -207,12 +272,9 @@ const Library: React.FC = () => {
             height: '20vh',
             maxHeight: '150px',
             minHeight: '135px',
-            backgroundImage: `url(${imageUrl})`
+            backgroundImage: `url(${imageUrl})`,
             backgroundPosition: 'center center',
-            backgroundRepeat:
-              localStorage.getItem('bookNum' + books[key]['book']) !== null
-                ? 'repeat'
-                : 'no-repeat',
+            backgroundRepeat: readBooks.includes(num) ? 'repeat' : 'no-repeat',
             backgroundSize: 'contain'
           }}
           key={key}
@@ -220,9 +282,7 @@ const Library: React.FC = () => {
           variant={Number(key) % 2 == 0 ? 'outline-dark' : 'dark'}
           onClick={() => bookClickHandler(key)}
         >
-          {localStorage.getItem('bookNum' + books[key]['book']) !== null && (
-            <h4 className='ribbon'>Downloaded</h4>
-          )}
+          {readBooks.includes(num) && <h4 className='ribbon'>Downloaded</h4>}
         </span>
       )
     )

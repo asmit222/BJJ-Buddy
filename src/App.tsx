@@ -10,10 +10,6 @@ const LazyCss = lazy(() => import('./components/LazyCss'))
 const App: React.FC = () => {
   const { user } = useAuth0()
 
-  useEffect(() => {
-    console.log(user?.sub)
-  }, [user])
-
   return (
     <React.Fragment>
       <NavBar />

@@ -324,6 +324,7 @@
   transform: translateX(30%) translateY(0%) rotate(45deg);
   transform-origin: top left;
   font-size: x-small;
+  animation: fadeIn ease 0.3s;
 }
 .ribbon:before,
 .ribbon:after {
