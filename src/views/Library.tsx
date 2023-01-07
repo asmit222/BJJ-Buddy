@@ -120,6 +120,11 @@ const Library: React.FC = () => {
   }
 
   const setKindleEmailAndSave = (e: any) => {
+    if (!user?.sub) {
+      setShow10(true)
+      return
+    }
+
     if (isNotValidEmail(e.target.value)) {
       if (e.target.value === '') {
         setKindleFormFieldClassName('')
