@@ -369,4 +369,5 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  animation: fadeIn ease 0.3s;
 }
