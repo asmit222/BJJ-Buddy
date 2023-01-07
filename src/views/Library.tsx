@@ -66,10 +66,6 @@ const Library: React.FC = () => {
     }
   }, [user])
 
-  // useEffect(() => {
-  //   console.log('data: ' + JSON.stringify(data))
-  // }, [data])
-
   // ==================================================================
 
   const sortBooksAlphabetically = () => {
@@ -98,6 +94,7 @@ const Library: React.FC = () => {
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
   const [show6, setShow6] = useState(false)
+  const [show10, setShow10] = useState(false)
   const [kindleFormFieldClassName, setKindleFormFieldClassName] = useState('')
   const [bookSearchValue, setBookSearchValue] = useState('')
 
@@ -107,8 +104,14 @@ const Library: React.FC = () => {
   const handleClose4 = () => setShow4(false)
   const handleClose5 = () => setShow5(false)
   const handleClose6 = () => setShow6(false)
+  const handleClose10 = () => setShow10(false)
   const handleShow3 = () => setShow3(true)
   // ================================================================
+  const { loginWithRedirect } = useAuth0()
+
+  const handleLogin = () => {
+    loginWithRedirect()
+  }
 
   const handleSearchBooksChange = (e: {
     target: { value: React.SetStateAction<string> }
@@ -132,7 +135,7 @@ const Library: React.FC = () => {
 
   const bookClickHandler = (bookNum: string) => {
     if (!user?.sub) {
-      alert('Please log in to start downloading books')
+      setShow10(true)
       return
     }
     if (isNotValidEmail(kindleEmail)) {
@@ -185,7 +188,8 @@ const Library: React.FC = () => {
     if (!downloadedBefore) {
       try {
         const docRef = addDoc(collection(db, user?.sub), {
-          downloadedBefore: true
+          downloadedBefore: true,
+          userInfo: user
         })
         fetchData()
       } catch (e) {
@@ -343,6 +347,21 @@ const Library: React.FC = () => {
           </Modal.Footer>
         </Modal>
         {/* ==================================================================================== */}
+
+        <Modal centered show={show10} onHide={handleClose10}>
+          <Modal.Header>
+            <Modal.Title>Log in to start downloading books</Modal.Title>
+            <Button variant='primary' onClick={handleLogin}>
+              Login
+            </Button>
+          </Modal.Header>
+
+          {/* <Modal.Footer>
+            <Button variant='primary' onClick={handleLogin}>
+              Login
+            </Button>
+          </Modal.Footer> */}
+        </Modal>
 
         {/* ============================ ALREADY DOWNLOADED MODAL ======================== */}
         <Modal centered show={show} onHide={handleClose}>

@@ -64,7 +64,7 @@ const NavBar: React.FC = () => {
               }
             }}
           >
-            {isAuthenticated ? 'Logout' : 'Login'}
+            {isAuthenticated ? 'Log out' : 'Log in'}
           </li>
         </ul>
       </div>
