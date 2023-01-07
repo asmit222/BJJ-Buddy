@@ -414,6 +414,15 @@ const Library: React.FC = () => {
         {/* ========================================================================== */}
 
         <div className='libraryTitleContainer'>
+          <div
+            className='emailPicDiv'
+            style={{
+              backgroundImage: `url(${user?.picture})`,
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain'
+            }}
+          ></div>
           <h1>Library</h1>{' '}
           <Form className='searchBooksForm'>
             <Form.Group className='mb-0'>
