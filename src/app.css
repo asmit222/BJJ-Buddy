@@ -358,8 +358,8 @@
 }
 
 .emailPicDiv {
-  height: 2.5em;
-  width: 2.5em;
+  height: 2.3em;
+  width: 2.3em;
   border-radius: 50%;
   margin-right: 2%;
   /* margin-bottom: 8px; */
@@ -370,4 +370,5 @@
   align-content: center;
   justify-content: center;
   animation: fadeIn ease 0.3s;
+  margin-bottom: 4px;
 }
