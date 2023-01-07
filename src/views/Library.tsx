@@ -15,6 +15,7 @@ const Library: React.FC = () => {
   const [data, setData] = useState([])
   const [readBooks, setReadBooks] = useState([])
   const [kindleEmailFromFirestore, setKindleEmailFromFirestore] = useState('')
+  const [downloadedBefore, setDownloadedBefore] = useState(false)
 
   const fetchData = async () => {
     let newData: ((prevState: never[]) => never[]) | { id: string }[]
@@ -37,6 +38,9 @@ const Library: React.FC = () => {
           if (data.kindleEmail) {
             setKindleEmailFromFirestore(data.kindleEmail)
           }
+          if (data.downloadedBefore) {
+            setDownloadedBefore(true)
+          }
         }
         setReadBooks(tempBookReadArr)
       })
@@ -51,10 +55,6 @@ const Library: React.FC = () => {
 
   // ================ RUN ON PAGE LOAD ======================
   useEffect(() => {
-    let pw = localStorage.getItem('password')
-    // if (pw === 'freebooks123') {
-    setShow2(false)
-    // }
     sortBooksAlphabetically()
   }, [])
 
@@ -92,7 +92,6 @@ const Library: React.FC = () => {
   const [books, setBooks] = useState(booksObject.data)
   const [currBookNumber, setCurrBookNumber] = useState('')
   const [kindleEmail, setKindleEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(true)
   const [show3, setShow3] = useState(false)
@@ -129,11 +128,6 @@ const Library: React.FC = () => {
     }
 
     setKindleEmail(e.target.value)
-  }
-
-  const setpasswordAndSave = (e: any) => {
-    setPassword(e.target.value)
-    localStorage.setItem('password', e.target.value)
   }
 
   const bookClickHandler = (bookNum: string) => {
@@ -174,13 +168,7 @@ const Library: React.FC = () => {
     return !email.includes('@kindle.com')
   }
 
-  // ====================== ACTUALLY DOWNLOAD BOOK =============================================
-  const addBook = (bookNum: string) => {
-    if (isNotValidEmail(kindleEmail)) {
-      alert('Please enter a valid kindle email address')
-      return
-    }
-
+  const updateKindleEmailForAccountIfNeed = () => {
     if (kindleEmailFromFirestore !== kindleEmail) {
       try {
         const docRef = addDoc(collection(db, user?.sub), {
@@ -191,6 +179,30 @@ const Library: React.FC = () => {
         console.error('Error adding document: ', e)
       }
     }
+  }
+
+  const setDownloadedBeforeIfNeed = () => {
+    if (!downloadedBefore) {
+      try {
+        const docRef = addDoc(collection(db, user?.sub), {
+          downloadedBefore: true
+        })
+        fetchData()
+      } catch (e) {
+        console.error('Error adding document: ', e)
+      }
+    }
+  }
+
+  // ====================== ACTUALLY DOWNLOAD BOOK =============================================
+  const addBook = (bookNum: string) => {
+    if (isNotValidEmail(kindleEmail)) {
+      alert('Please enter a valid kindle email address')
+      return
+    }
+
+    updateKindleEmailForAccountIfNeed()
+    setDownloadedBeforeIfNeed()
 
     // ===== get correct book num from booksObject ==========
     let num: string
@@ -238,18 +250,8 @@ const Library: React.FC = () => {
     handleClose3()
     setShow6(true)
 
-    if (localStorage.getItem('downloadedBefore') === null) {
+    if (!downloadedBefore) {
       setShow4(true)
-      localStorage.setItem('downloadedBefore', '1')
-    }
-  }
-
-  const handleClose2 = () => {
-    if (password === 'freebooks123') {
-      localStorage.setItem('password', password)
-      setShow2(false)
-    } else {
-      alert('Please enter the correct password.')
     }
   }
 
@@ -324,31 +326,6 @@ const Library: React.FC = () => {
           </Modal.Header>
         </Modal>
         {/* =============================================================================== */}
-
-        {/* ================================= PASSWORD MODAL ==================================== */}
-        <Modal centered show={show2} onHide={handleClose2}>
-          <Modal.Header closeButton>
-            <Modal.Title>Password?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form className='passwordForm'>
-              <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Control
-                  type='password'
-                  placeholder='Enter password'
-                  value={password}
-                  onChange={(e: any) => setpasswordAndSave(e)}
-                />
-              </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant='success' onClick={handleClose2}>
-              Enter
-            </Button>
-          </Modal.Footer>
-        </Modal>
-        {/* ========================================================================================= */}
 
         {/* =========================== FIRST DOWNLOAD MODAL ======================================= */}
         <Modal centered show={show4} onHide={handleClose4}>

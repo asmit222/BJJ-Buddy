@@ -10,16 +10,11 @@ const Home: React.FC = () => {
   const { user } = useAuth0()
   // ================ RUN ON PAGE LOAD ======================
   useEffect(() => {
-    let pw = localStorage.getItem('password')
-    // if (pw === 'freebooks123') {
-    setShow2(false)
-    // }
+    console.log('Home page loaded')
   }, [])
   // =========================================================
 
   const [bookRequestFormValue, setBookRequestFormValue] = useState('')
-  const [password, setPassword] = useState('')
-  const [show2, setShow2] = useState(true)
   const [show3, setShow3] = useState(false)
   const [show, setShow] = useState(false)
 
@@ -29,22 +24,8 @@ const Home: React.FC = () => {
     setShow3(true)
   }
 
-  const handleClose2 = () => {
-    if (password === 'freebooks123') {
-      localStorage.setItem('password', password)
-      setShow2(false)
-    } else {
-      alert('Please enter the correct password.')
-    }
-  }
-
   const handleBookRequestFormChange = (e) => {
     setBookRequestFormValue(e.target.value)
-  }
-
-  const setpasswordAndSave = (e: any) => {
-    setPassword(e.target.value)
-    localStorage.setItem('password', e.target.value)
   }
 
   // ============================ REQUEST BOOK ====================================
@@ -193,29 +174,6 @@ const Home: React.FC = () => {
           </Modal.Footer>
         </Modal>
         {/* ==================================================================================== */}
-
-        <Modal centered show={show2} onHide={handleClose2}>
-          <Modal.Header closeButton>
-            <Modal.Title>Password?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form className='passwordForm'>
-              <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Control
-                  type='password'
-                  placeholder='Enter password'
-                  value={password}
-                  onChange={(e: any) => setpasswordAndSave(e)}
-                />
-              </Form.Group>
-            </Form>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant='success' onClick={handleClose2}>
-              Enter
-            </Button>
-          </Modal.Footer>
-        </Modal>
       </div>
     </React.Fragment>
   )
