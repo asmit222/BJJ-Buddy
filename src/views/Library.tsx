@@ -66,9 +66,9 @@ const Library: React.FC = () => {
     }
   }, [user])
 
-  useEffect(() => {
-    console.log('data: ' + JSON.stringify(data))
-  }, [data])
+  // useEffect(() => {
+  //   console.log('data: ' + JSON.stringify(data))
+  // }, [data])
 
   // ==================================================================
 
@@ -137,6 +137,15 @@ const Library: React.FC = () => {
   }
 
   const bookClickHandler = (bookNum: string) => {
+    if (!user?.sub) {
+      alert('Please log in to start downloading books')
+      return
+    }
+    if (isNotValidEmail(kindleEmail)) {
+      alert('Please enter a valid kindle email address')
+      return
+    }
+
     let num: string
     for (let objKey in booksObject.data) {
       if (booksObject.data[objKey].book === books[bookNum].book) {
@@ -223,11 +232,6 @@ const Library: React.FC = () => {
   // =====================================================================================
 
   const handleDownloadBookOnModalClose = () => {
-    if (isNotValidEmail(kindleEmail)) {
-      alert('Please enter a valid kindle email address')
-      return
-    }
-
     addBook(currBookNumber) // <-- This one actually downloads the book
     setCurrBookNumber('')
     handleClose()
