@@ -13,38 +13,59 @@ const Library: React.FC = () => {
   const { user } = useAuth0()
   const [userIdentifier, setUserIdentifier]: any = useState('')
   const [data, setData] = useState([])
-  const [readBooks, setReadBooks] = useState([])
   const [kindleEmailFromFirestore, setKindleEmailFromFirestore] = useState('')
-  const [downloadedBefore, setDownloadedBefore] = useState(false)
+  const [userData, setUserData] = useState({})
 
+  // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
+  const processData = () => {
+    let tempUserData = {}
+    let tempBookReadArr = []
+
+    for (let dataItem of data) {
+      if (dataItem.bookRead) {
+        tempBookReadArr.push(dataItem.bookRead)
+      }
+      if (dataItem.kindleEmail) {
+        setKindleEmailFromFirestore(dataItem.kindleEmail)
+        tempUserData['kindleEmail'] = dataItem.kindleEmail
+      }
+      if (dataItem.downloadedBefore) {
+        tempUserData['downloadedBefore'] = true
+      }
+    }
+    tempUserData['readBooks'] = tempBookReadArr
+    setUserData(tempUserData)
+  }
+  // ============================================================================
+
+  useEffect(() => {
+    if (data.length) {
+      processData()
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (userData.length !== 0) {
+      console.log('userData: ' + JSON.stringify(userData))
+    }
+  }, [userData])
+
+  // ============ pull down latest user data ========================
   const fetchData = async () => {
     let newData: ((prevState: never[]) => never[]) | { id: string }[]
 
     await getDocs(collection(db, user?.sub))
       .then((querySnapshot) => {
         newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id
+          ...doc.data()
         }))
         // .filter((doc) => {return doc['userID'] === user?.sub})
       })
       .then(() => {
-        let tempBookReadArr = []
         setData(newData)
-        for (let data of newData) {
-          if (data.bookRead) {
-            tempBookReadArr.push(data.bookRead)
-          }
-          if (data.kindleEmail) {
-            setKindleEmailFromFirestore(data.kindleEmail)
-          }
-          if (data.downloadedBefore) {
-            setDownloadedBefore(true)
-          }
-        }
-        setReadBooks(tempBookReadArr)
       })
   }
+  // ==========================================================
 
   useEffect(() => {
     if (kindleEmailFromFirestore !== '') {
@@ -155,7 +176,7 @@ const Library: React.FC = () => {
       }
     }
 
-    if (readBooks.includes(num)) {
+    if (userData.readBooks?.includes(num)) {
       submitGetBook(bookNum)
     } else {
       submitGetBook2(bookNum)
@@ -190,7 +211,7 @@ const Library: React.FC = () => {
   }
 
   const setDownloadedBeforeIfNeed = () => {
-    if (!downloadedBefore) {
+    if (!userData.downloadedBefore) {
       try {
         const docRef = addDoc(collection(db, user?.sub), {
           downloadedBefore: true,
@@ -259,7 +280,7 @@ const Library: React.FC = () => {
     handleClose3()
     setShow6(true)
 
-    if (!downloadedBefore) {
+    if (!userData.downloadedBefore) {
       setShow4(true)
     }
   }
@@ -289,7 +310,9 @@ const Library: React.FC = () => {
             minHeight: '135px',
             backgroundImage: `url(${imageUrl})`,
             backgroundPosition: 'center center',
-            backgroundRepeat: readBooks.includes(num) ? 'repeat' : 'no-repeat',
+            backgroundRepeat: userData.readBooks?.includes(num)
+              ? 'repeat'
+              : 'no-repeat',
             backgroundSize: 'contain'
           }}
           key={key}
@@ -297,7 +320,9 @@ const Library: React.FC = () => {
           variant={Number(key) % 2 == 0 ? 'outline-dark' : 'dark'}
           onClick={() => bookClickHandler(key)}
         >
-          {readBooks.includes(num) && <h4 className='ribbon'>Downloaded</h4>}
+          {userData.readBooks?.includes(num) && (
+            <h4 className='ribbon'>Downloaded</h4>
+          )}
         </span>
       )
     )
