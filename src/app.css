@@ -108,32 +108,13 @@
   overflow-y: scroll;
 }
 
-.bookButtonsContainer > span {
-  /* flex: 10%; */
-  /* height: 100px; */
-  /* width: 100px; */
-}
-
 .bookButton {
-  /* width: 90%;
-  max-width: 500px; */
-
   margin: 1%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .bookButton:hover {
   cursor: pointer;
-}
-
-.bookButton3 {
-  /* width: 15vw;
-  min-width: 102px;
-  height: 20vh;
-  background-image: url('./assets/bookCovers/3.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: contain; */
 }
 
 .kindleEmailAddressForm {
@@ -344,15 +325,6 @@
 .ribbon:after {
   left: 100%;
 }
-.logoutButtonContainer {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
-
-.logoutButton {
-  /* width: 80vw; */
-}
 
 .bookCoverFroms3 {
   height: 100%;
@@ -364,7 +336,6 @@
   width: 2.3em;
   border-radius: 50%;
   margin-right: 2%;
-  /* margin-bottom: 8px; */
   position: relative;
   left: 0;
   margin-left: -3%;

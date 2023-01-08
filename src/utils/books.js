@@ -173,6 +173,33 @@ module.exports = {
     },
     58: {
       book: 'Tithe - Holly Black'
+    },
+    59: {
+      book: 'I Will Teach You to Be Rich - Ramit Sethi'
+    },
+    60: {
+      book: 'They Both Die at the End - Adam Silvera'
+    },
+    61: {
+      book: 'Vespertine - Margaret Rogerson'
+    },
+    62: {
+      book: 'We Were Liars - E. Lockhart'
+    },
+    63: {
+      book: 'Twilight Complete Collection - Stephenie Meyer'
+    },
+    64: {
+      book: 'Skyhunter - Marie Lu'
+    },
+    65: {
+      book: 'Roxy - Neal Shusterman'
+    },
+    66: {
+      book: 'Rich Dad Poor Dad - Robert T. Kiyosaki'
+    },
+    67: {
+      book: 'The 7 Habits of Highly Effective People - Stephen Covey'
     }
   }
 }
