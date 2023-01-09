@@ -397,7 +397,6 @@
   float: left;
   bottom: 0; /* Stay at the top */
   left: 0;
-  background-color: hsl(210, 17%, 98%);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -406,6 +405,7 @@
   z-index: 2;
 
   /* font-size: 1vw; */
+  background-color: #ffffff;
 }
 
 .sideNavClosed {
