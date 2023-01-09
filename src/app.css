@@ -190,7 +190,7 @@
 .filtersForm {
   font-size: 3.5em;
   position: absolute;
-  top: 110px;
+  top: 150px;
 }
 
 @media screen and (min-width: 800px) {
@@ -212,7 +212,7 @@
     padding-top: 5em;
   }
   .filtersForm {
-    top: 150px;
+    top: 190px;
   }
 }
 
