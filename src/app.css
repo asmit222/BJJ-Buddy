@@ -194,6 +194,10 @@
   width: 100%;
 }
 
+.sidenav {
+  width: 40%;
+}
+
 @media screen and (min-width: 800px) {
   .requestButton {
     position: relative;
@@ -214,6 +218,10 @@
   }
   .filtersForm {
     top: 190px;
+    font-size: 1.5em;
+  }
+  .sidenav {
+    width: 20%;
   }
 }
 
@@ -379,7 +387,6 @@
 /* The side navigation menu */
 .sidenav {
   height: 95vh; /* 100% Full-height */
-  width: 40%; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   float: left;
   bottom: 0; /* Stay at the top */
