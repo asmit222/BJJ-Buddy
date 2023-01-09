@@ -420,3 +420,16 @@
 .filterSelectionRadioButton {
   margin-left: 6%;
 }
+
+.filterButtonSpan {
+  height: 36px;
+  width: 36px;
+  /* background-color: red; */
+  margin-left: 3%;
+
+  background-image: url('https://cdn-icons-png.flaticon.com/512/6526/6526846.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* transform: rotate(90deg); */
+}

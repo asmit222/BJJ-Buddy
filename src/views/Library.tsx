@@ -509,7 +509,7 @@ const Library: React.FC = () => {
               />
             </Form.Group>
           </Form>
-          <i
+          {/* <i
             onClick={() => {
               setSideNavStatus(
                 sideNavStatus === 'sideNavOpen'
@@ -518,7 +518,17 @@ const Library: React.FC = () => {
               )
             }}
             className='fa-solid fa-filter fa-2x'
-          ></i>
+          ></i> */}
+          <span
+            onClick={() => {
+              setSideNavStatus(
+                sideNavStatus === 'sideNavOpen'
+                  ? 'sideNavClosed'
+                  : 'sideNavOpen'
+              )
+            }}
+            className='filterButtonSpan'
+          ></span>
         </div>
 
         <div className='kindleEmailFormContainer'>
