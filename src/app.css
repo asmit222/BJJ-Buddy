@@ -340,7 +340,7 @@
   margin-right: 2%;
   position: relative;
   left: 0;
-  margin-left: -3%;
+  /* margin-left: -3%; */
   display: flex;
   align-content: center;
   justify-content: center;
@@ -356,4 +356,49 @@
 
 .loginButtonSpan:hover {
   cursor: pointer;
+}
+
+.fa-filter {
+  margin-left: 3%;
+  /* margin-right: 3%; */
+  color: black;
+}
+
+/* ============================================================= */
+
+/* The side navigation menu */
+.sidenav {
+  height: 95vh; /* 100% Full-height */
+  width: 40%; /* 0 width - change this with JavaScript */
+  position: fixed; /* Stay in place */
+  float: left;
+  bottom: 0; /* Stay at the top */
+  left: 0;
+  background-color: hsl(210, 17%, 98%);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  /* border-right: solid rgba(0, 0, 0, 0.361) 1px; */
+  border-right: solid 1px rgba(27, 27, 27, 0.284);
+  z-index: 2;
+
+  font-size: 1vw;
+}
+
+.sideNavClosed {
+  width: 0;
+}
+
+.filterMenuItem {
+  font-size: 10em;
+  height: 10vh;
+}
+
+.filtersForm {
+  font-size: 3.5em;
+  padding-top: 6vh;
+}
+
+.filterSelectionRadioButton {
+  margin-left: 6%;
 }

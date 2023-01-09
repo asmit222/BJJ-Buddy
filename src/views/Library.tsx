@@ -8,6 +8,7 @@ import axios from 'axios'
 
 import { addDoc, collection, getDocs } from '@firebase/firestore'
 import { db } from '../utils/firebaseConfig/firebase'
+import SideNav from '../components/SideNav.tsx'
 
 const Library: React.FC = () => {
   const { user } = useAuth0()
@@ -95,14 +96,16 @@ const Library: React.FC = () => {
       let tempArr = []
       tempArr.push(books[key].template)
       tempArr.push(books[key].book)
+      tempArr.push(books[key].genres)
       bookArr.push(tempArr)
     }
     bookArr.sort((a, b) => a[1].toUpperCase().localeCompare(b[1].toUpperCase()))
     let newObj = {}
     bookArr.forEach((book, i) => {
-      newObj[i] = { template: book[0], book: book[1] }
+      newObj[i] = { template: book[0], book: book[1], genres: book[2] }
     })
     setBooks(newObj)
+    console.log(newObj)
   }
 
   // ======================== STATES ================================
@@ -118,6 +121,9 @@ const Library: React.FC = () => {
   const [show10, setShow10] = useState(false)
   const [kindleFormFieldClassName, setKindleFormFieldClassName] = useState('')
   const [bookSearchValue, setBookSearchValue] = useState('')
+  const [sideNavStatus, setSideNavStatus] = useState<string>('sideNavClosed')
+  const [switchState, setSwitchState] = useState(true)
+  const [switchState2, setSwitchState2] = useState(true)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -160,6 +166,7 @@ const Library: React.FC = () => {
   }
 
   const bookClickHandler = (bookNum: string) => {
+    setSideNavStatus('sideNavClosed')
     if (!user?.sub) {
       setShow10(true)
       return
@@ -285,53 +292,84 @@ const Library: React.FC = () => {
     }
   }
 
+  const handlePressNonFictionToggle = (switchValue) => {
+    console.log('non Fiction Switch: ' + switchValue)
+  }
+
+  const handlePressFictionToggle = (switchValue) => {
+    console.log('Fiction Switch: ' + switchValue)
+  }
+
   // ================================= BOOK BUTTONS ===================================
-  const bookButtons = Object.keys(books).map((key) => {
-    let num
-
-    for (let objKey in booksObject.data) {
-      if (booksObject.data[objKey].book === books[key].book) {
-        num = objKey
-        break
+  const bookButtons = Object.keys(books)
+    .filter((key1) => {
+      const allowedGenres = []
+      if (switchState2) allowedGenres.push('fiction')
+      if (switchState) allowedGenres.push('non-fiction')
+      if (!books[key1]['genres']) return false
+      for (let genre of books[key1]['genres']) {
+        if (allowedGenres.includes(genre)) return true
       }
-    }
+      return false
+    })
+    .map((key) => {
+      let num
+      let showFiction = switchState2
+      let showNonFiction = switchState
 
-    let imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
+      for (let objKey in booksObject.data) {
+        if (booksObject.data[objKey].book === books[key].book) {
+          num = objKey
+          break
+        }
+      }
 
-    return (
-      books[key]['book']
-        .toLowerCase()
-        .includes(bookSearchValue.toLowerCase()) && (
-        <span
-          style={{
-            minWidth: '102px',
-            height: '20vh',
-            maxHeight: '150px',
-            minHeight: '135px',
-            backgroundImage: `url(${imageUrl})`,
-            backgroundPosition: 'center center',
-            backgroundRepeat: userData.readBooks?.includes(num)
-              ? 'repeat'
-              : 'no-repeat',
-            backgroundSize: 'contain'
-          }}
-          key={key}
-          className={`bookButton bookButton${num}`}
-          variant={Number(key) % 2 == 0 ? 'outline-dark' : 'dark'}
-          onClick={() => bookClickHandler(key)}
-        >
-          {userData.readBooks?.includes(num) && (
-            <h4 className='ribbon'>Downloaded</h4>
-          )}
-        </span>
+      let imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
+
+      return (
+        books[key]['book']
+          .toLowerCase()
+          .includes(bookSearchValue.toLowerCase()) && (
+          <span
+            style={{
+              minWidth: '102px',
+              height: '20vh',
+              maxHeight: '150px',
+              minHeight: '135px',
+              backgroundImage: `url(${imageUrl})`,
+              backgroundPosition: 'center center',
+              backgroundRepeat: userData.readBooks?.includes(num)
+                ? 'repeat'
+                : 'no-repeat',
+              backgroundSize: 'contain'
+            }}
+            key={key}
+            className={`bookButton bookButton${num}`}
+            variant={Number(key) % 2 == 0 ? 'outline-dark' : 'dark'}
+            onClick={() => bookClickHandler(key)}
+          >
+            {userData.readBooks?.includes(num) && (
+              <h4 className='ribbon'>Downloaded</h4>
+            )}
+          </span>
+        )
       )
-    )
-  })
+    })
   // ===================================================================================
 
   return (
     <React.Fragment>
       <div className='LibraryContainer'>
+        <SideNav
+          handlePressNonFictionToggle={handlePressNonFictionToggle}
+          handlePressFictionToggle={handlePressFictionToggle}
+          sideNavStatus={sideNavStatus}
+          setSwitchState={setSwitchState}
+          setSwitchState2={setSwitchState2}
+          switchState={switchState}
+          switchState2={switchState2}
+        />
+
         {/* ========================== DOWNLOADING AND SUCCESS MODALS =============================== */}
         <Modal
           className=''
@@ -452,6 +490,9 @@ const Library: React.FC = () => {
           <Form className='searchBooksForm'>
             <Form.Group className='mb-0'>
               <Form.Control
+                onClick={() => {
+                  setSideNavStatus('sideNavClosed')
+                }}
                 type='text'
                 value={bookSearchValue}
                 onChange={(e: any) => handleSearchBooksChange(e)}
@@ -459,6 +500,16 @@ const Library: React.FC = () => {
               />
             </Form.Group>
           </Form>
+          <i
+            onClick={() => {
+              setSideNavStatus(
+                sideNavStatus === 'sideNavOpen'
+                  ? 'sideNavClosed'
+                  : 'sideNavOpen'
+              )
+            }}
+            className='fa-solid fa-filter fa-2x'
+          ></i>
         </div>
 
         <div className='kindleEmailFormContainer'>
@@ -476,6 +527,9 @@ const Library: React.FC = () => {
                   )}
                 </Form.Label>{' '}
                 <Form.Control
+                  onClick={() => {
+                    setSideNavStatus('sideNavClosed')
+                  }}
                   className={kindleFormFieldClassName}
                   type='email'
                   placeholder='Enter email'
@@ -487,7 +541,14 @@ const Library: React.FC = () => {
           </Form>
         </div>
 
-        <div className='bookButtonsContainer'>{bookButtons}</div>
+        <div
+          onClick={() => {
+            setSideNavStatus('sideNavClosed')
+          }}
+          className='bookButtonsContainer'
+        >
+          {bookButtons}
+        </div>
       </div>
     </React.Fragment>
   )

@@ -1,205 +1,272 @@
 module.exports = {
   data: {
     1: {
-      book: 'Verity - Colleen Hoover'
+      book: 'Verity - Colleen Hoover',
+      genres: ['fiction']
     },
     2: {
-      book: 'Red Queen - Victoria Aveyard'
+      book: 'Red Queen - Victoria Aveyard',
+      genres: ['fiction']
     },
     3: {
-      book: 'A Court of Thorns and Roses - Sarah J. Maas'
+      book: 'A Court of Thorns and Roses - Sarah J. Maas',
+      genres: ['fiction']
     },
     4: {
-      book: 'Undivided - Neal Shusterman'
+      book: 'Undivided - Neal Shusterman',
+      genres: ['fiction']
     },
     5: {
-      book: 'All the Light We Cannot See - Anthony Doerr'
+      book: 'All the Light We Cannot See - Anthony Doerr',
+      genres: ['fiction']
     },
     6: {
-      book: 'A Shadow in the Ember - Jennifer L. Armentrout'
+      book: 'A Shadow in the Ember - Jennifer L. Armentrout',
+      genres: ['fiction']
     },
     7: {
-      book: "I'm Glad My Mom Died - Jennette McCurdy"
+      book: "I'm Glad My Mom Died - Jennette McCurdy",
+      genres: ['non-fiction']
     },
     8: {
-      book: 'Six of Crows - Leigh Bardugo'
+      book: 'Six of Crows - Leigh Bardugo',
+      genres: ['fiction']
     },
     9: {
-      book: "In Order to Live: A North Korean Girl's Journey to Freedom - Yeonmi Park"
+      book: "In Order to Live: A North Korean Girl's Journey to Freedom - Yeonmi Park",
+      genres: ['non-fiction']
     },
     10: {
-      book: 'Beartown - Fredrik Backman'
+      book: 'Beartown - Fredrik Backman',
+      genres: ['fiction']
     },
     11: {
-      book: 'Book Lovers - Emily Henry'
+      book: 'Book Lovers - Emily Henry',
+      genres: ['fiction']
     },
     12: {
-      book: 'Burned - P. C. Cast'
+      book: 'Burned - P. C. Cast',
+      genres: ['fiction']
     },
     13: {
-      book: 'Daughter of the Pirate King - Tricia Levenseller'
+      book: 'Daughter of the Pirate King - Tricia Levenseller',
+      genres: ['fiction']
     },
     14: {
-      book: 'Daughter of the Siren Queen - Tricia Levenseller'
+      book: 'Daughter of the Siren Queen - Tricia Levenseller',
+      genres: ['fiction']
     },
     15: {
-      book: 'Gild - Raven Kennedy'
+      book: 'Gild - Raven Kennedy',
+      genres: ['fiction']
     },
     16: {
-      book: 'Glass Sword - Victoria Aveyard'
+      book: 'Glass Sword - Victoria Aveyard',
+      genres: ['fiction']
     },
     17: {
-      book: 'How We Became Wicked - Alexander Yates'
+      book: 'How We Became Wicked - Alexander Yates',
+      genres: ['fiction']
     },
     18: {
-      book: 'It Ends With Us - Colleen Hoover'
+      book: 'It Ends With Us - Colleen Hoover',
+      genres: ['fiction']
     },
     19: {
-      book: 'It Starts With Us - Colleen Hoover'
+      book: 'It Starts With Us - Colleen Hoover',
+      genres: ['fiction']
     },
     20: {
-      book: 'Legendborn - Tracy Deonn'
+      book: 'Legendborn - Tracy Deonn',
+      genres: ['fiction']
     },
     21: {
-      book: "King's Cage - Victoria Aveyard"
+      book: "King's Cage - Victoria Aveyard",
+      genres: ['fiction']
     },
     22: {
-      book: 'Malice - Heather Walter'
+      book: 'Malice - Heather Walter',
+      genres: ['fiction']
     },
     23: {
-      book: 'Relic and Ruin - Wendii Mclver'
+      book: 'Relic and Ruin - Wendii Mclver',
+      genres: ['fiction']
     },
     24: {
-      book: 'Reminders of Him - Colleen Hoover'
+      book: 'Reminders of Him - Colleen Hoover',
+      genres: ['fiction']
     },
     25: {
-      book: 'Scythe - Neal Shusterman'
+      book: 'Scythe - Neal Shusterman',
+      genres: ['fiction']
     },
     26: {
-      book: 'Children of Time - Adrian Tchaikovsky'
+      book: 'Children of Time - Adrian Tchaikovsky',
+      genres: ['fiction']
     },
     // 27: {
     //   book: 'The Kingkiller Chronicles - Patrick Rothfuss',
+    // genres: ['fiction']
     // },
     28: {
-      book: 'Unwind - Neal Shusterman'
+      book: 'Unwind - Neal Shusterman',
+      genres: ['fiction']
     },
     29: {
-      book: 'UnWholly - Neal Shusterman'
+      book: 'UnWholly - Neal Shusterman',
+      genres: ['fiction']
     },
     30: {
-      book: 'UnSouled - Neal Shusterman'
+      book: 'UnSouled - Neal Shusterman',
+      genres: ['fiction']
     },
     31: {
-      book: "Ender's Game - Orson Scott Card"
+      book: "Ender's Game - Orson Scott Card",
+      genres: ['fiction']
     },
     32: {
-      book: 'Kingdom of the Wicked - Kerri Maniscalco'
+      book: 'Kingdom of the Wicked - Kerri Maniscalco',
+      genres: ['fiction']
     },
     33: {
-      book: 'The Black Witch - Laurie Forest'
+      book: 'The Black Witch - Laurie Forest',
+      genres: ['fiction']
     },
     34: {
-      book: 'The Iron Flower - Laurie Forest'
+      book: 'The Iron Flower - Laurie Forest',
+      genres: ['fiction']
     },
     35: {
-      book: 'The Demon Tide - Laurie Forest'
+      book: 'The Demon Tide - Laurie Forest',
+      genres: ['fiction']
     },
     36: {
-      book: 'The Prison Healer - Lynette Noni'
+      book: 'The Prison Healer - Lynette Noni',
+      genres: ['fiction']
     },
     37: {
-      book: 'The Ballad of Songbirds and Snakes - Suzanne Collins'
+      book: 'The Ballad of Songbirds and Snakes - Suzanne Collins',
+      genres: ['fiction']
     },
     38: {
-      book: 'The Cruel Prince - Holly Black'
+      book: 'The Cruel Prince - Holly Black',
+      genres: ['fiction']
     },
     39: {
-      book: 'The Inheritance Games - Jennifer Lynn Barnes'
+      book: 'The Inheritance Games - Jennifer Lynn Barnes',
+      genres: ['fiction']
     },
     40: {
-      book: 'The Shadow Wand - Laurie Forest'
+      book: 'The Shadow Wand - Laurie Forest',
+      genres: ['fiction']
     },
     41: {
-      book: 'The Toll - Neal Shusterman'
+      book: 'The Toll - Neal Shusterman',
+      genres: ['fiction']
     },
     42: {
-      book: 'The Way of Kings - Brandon Sanderson'
+      book: 'The Way of Kings - Brandon Sanderson',
+      genres: ['fiction']
     },
     43: {
-      book: 'Thunderhead - Neal Shusterman'
+      book: 'Thunderhead - Neal Shusterman',
+      genres: ['fiction']
     },
     44: {
-      book: 'Tomorrow, and Tomorrow, and Tomorrow - Gabrielle Zevin'
+      book: 'Tomorrow, and Tomorrow, and Tomorrow - Gabrielle Zevin',
+      genres: ['fiction']
     },
     45: {
-      book: 'Wait Till Helen Comes - Mary Downing Hahn'
+      book: 'Wait Till Helen Comes - Mary Downing Hahn',
+      genres: ['fiction']
     },
     46: {
-      book: 'Wandfasted - Laurie Forest'
+      book: 'Wandfasted - Laurie Forest',
+      genres: ['fiction']
     },
     47: {
-      book: 'War Storm - Victoria Aveyard'
+      book: 'War Storm - Victoria Aveyard',
+      genres: ['fiction']
     },
     48: {
-      book: 'Warcross - Marie Lu'
+      book: 'Warcross - Marie Lu',
+      genres: ['fiction']
     },
     49: {
-      book: 'Where the Crawdads Sing - Delia Owens'
+      book: 'Where the Crawdads Sing - Delia Owens',
+      genres: ['fiction']
     },
     50: {
-      book: 'Dry - Neal Shusterman'
+      book: 'Dry - Neal Shusterman',
+      genres: ['fiction']
     },
     51: {
-      book: 'Matched - Ally Condie'
+      book: 'Matched - Ally Condie',
+      genres: ['fiction']
     },
     52: {
-      book: "I'm Thinking of Ending Things - Iain Reid"
+      book: "I'm Thinking of Ending Things - Iain Reid",
+      genres: ['fiction']
     },
     53: {
-      book: 'Broken Bonds - J. Bree'
+      book: 'Broken Bonds - J. Bree',
+      genres: ['fiction']
     },
     54: {
-      book: 'Never Finished - David Goggins'
+      book: 'Never Finished - David Goggins',
+      genres: ['non-fiction']
     },
     55: {
-      book: 'Chess Story - Stefan Zweig'
+      book: 'Chess Story - Stefan Zweig',
+      genres: ['fiction']
     },
     56: {
-      book: 'Lady Midnight - Cassandra Clare'
+      book: 'Lady Midnight - Cassandra Clare',
+      genres: ['fiction']
     },
     57: {
-      book: 'House of Earth and Blood - Sarah J. Maas'
+      book: 'House of Earth and Blood - Sarah J. Maas',
+      genres: ['fiction']
     },
     58: {
-      book: 'Tithe - Holly Black'
+      book: 'Tithe - Holly Black',
+      genres: ['fiction']
     },
     59: {
-      book: 'I Will Teach You to Be Rich - Ramit Sethi'
+      book: 'I Will Teach You to Be Rich - Ramit Sethi',
+      genres: ['non-fiction']
     },
     60: {
-      book: 'They Both Die at the End - Adam Silvera'
+      book: 'They Both Die at the End - Adam Silvera',
+      genres: ['fiction']
     },
     61: {
-      book: 'Vespertine - Margaret Rogerson'
+      book: 'Vespertine - Margaret Rogerson',
+      genres: ['fiction']
     },
     62: {
-      book: 'We Were Liars - E. Lockhart'
+      book: 'We Were Liars - E. Lockhart',
+      genres: ['fiction']
     },
     63: {
-      book: 'Twilight Complete Collection - Stephenie Meyer'
+      book: 'Twilight Complete Collection - Stephenie Meyer',
+      genres: ['fiction']
     },
     64: {
-      book: 'Skyhunter - Marie Lu'
+      book: 'Skyhunter - Marie Lu',
+      genres: ['fiction']
     },
     65: {
-      book: 'Roxy - Neal Shusterman'
+      book: 'Roxy - Neal Shusterman',
+      genres: ['fiction']
     },
     66: {
-      book: 'Rich Dad Poor Dad - Robert T. Kiyosaki'
+      book: 'Rich Dad Poor Dad - Robert T. Kiyosaki',
+      genres: ['non-fiction']
     },
     67: {
-      book: 'The 7 Habits of Highly Effective People - Stephen Covey'
+      book: 'The 7 Habits of Highly Effective People - Stephen Covey',
+      genres: ['non-fiction']
     }
   }
 }
