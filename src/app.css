@@ -364,6 +364,8 @@
   justify-content: center;
   animation: fadeIn ease 0.3s;
   margin-bottom: 4px;
+
+  display: none;
 }
 
 .loginButtonSpan {
