@@ -37,9 +37,7 @@ const SideNav: React.FC = (props) => {
         onClick={() => {
           // props.setStatus('sideNavClosed')
         }}
-      >
-        &times;
-      </a>
+      ></a>
       <Form className='filtersForm'>
         <div key={`default`} className='mb-3'>
           <Form.Check
