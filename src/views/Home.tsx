@@ -8,6 +8,8 @@ import axios from 'axios'
 
 const Home: React.FC = () => {
   const { user } = useAuth0()
+  const { loginWithRedirect } = useAuth0()
+
   // ================ RUN ON PAGE LOAD ======================
   useEffect(() => {
     console.log('Home page loaded')
@@ -70,6 +72,7 @@ const Home: React.FC = () => {
       }
     })
   }
+
   // ============================================================================
 
   return (
@@ -103,7 +106,18 @@ const Home: React.FC = () => {
           ready
         </p>
         <p>
-          <b className='directionNumber'>3)</b> Navigate to the{' '}
+          <b className='directionNumber'>3)</b>{' '}
+          <span
+            className='loginButtonSpan'
+            onClick={() => {
+              if (!user?.sub) {
+                loginWithRedirect()
+              }
+            }}
+          >
+            Login{' '}
+          </span>{' '}
+          with your email and navigate to the{' '}
           <Link to='/Library'>
             <b>Library</b>{' '}
           </Link>
