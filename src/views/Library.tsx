@@ -166,11 +166,16 @@ const Library: React.FC = () => {
   }
 
   const bookClickHandler = (bookNum: string) => {
-    setSideNavStatus('sideNavClosed')
+    if (sideNavStatus === 'sideNavOpen') {
+      setSideNavStatus('sideNavClosed')
+      return
+    }
+
     if (!user?.sub) {
       setShow10(true)
       return
     }
+
     if (isNotValidEmail(kindleEmail)) {
       alert('Please enter a valid kindle email address')
       return
@@ -344,7 +349,11 @@ const Library: React.FC = () => {
               backgroundSize: 'contain'
             }}
             key={key}
-            className={`bookButton bookButton${num}`}
+            className={`bookButton bookButton${num} ${
+              sideNavStatus === 'sideNavOpen'
+                ? 'bookButtonsLowOpacity'
+                : 'bookButtonsfullOpacity'
+            }`}
             variant={Number(key) % 2 == 0 ? 'outline-dark' : 'dark'}
             onClick={() => bookClickHandler(key)}
           >
