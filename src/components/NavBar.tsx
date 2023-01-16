@@ -14,16 +14,32 @@ const NavBar: React.FC = () => {
   return (
     <nav className='navbar navbar-dark bg-dark'>
       <Link to='/'>
-        <span
-          onClick={() => {
-            setCollapse('collapse')
-          }}
-          className='navbar-brand home-title-navbar'
-        >
-          <i className='fas fa-home fa-lg'></i>
-        </span>
+        <div className='navBarIconAndTextDiv'>
+          <span
+            onClick={() => {
+              setCollapse('collapse')
+            }}
+            className='navbar-brand home-title-navbar'
+          >
+            <i className='fas fa-home '></i>
+          </span>
+          <span className='navbarTextItem'>Home</span>
+        </div>
       </Link>
-      <button
+      <Link to='/Library'>
+        <div className='navBarIconAndTextDiv'>
+          <span
+            onClick={() => {
+              setCollapse('collapse')
+            }}
+            className='navbar-brand home-title-navbar'
+          >
+            <i className='fas fa-book fa-lg'></i>
+          </span>
+          <span className='navbarTextItem'>Library</span>
+        </div>
+      </Link>
+      {/* <button
         className='navbar-toggler'
         onClick={() => {
           setCollapse(collapse === 'collapse' ? '' : 'collapse')
@@ -36,7 +52,7 @@ const NavBar: React.FC = () => {
         aria-label='Toggle navigation'
       >
         <span className='navbar-toggler-icon'></span>
-      </button>
+      </button> */}
 
       <div
         className={`${collapse} navbar-collapse`}

@@ -9,6 +9,7 @@ import axios from 'axios'
 const Home: React.FC = () => {
   const { user } = useAuth0()
   const { loginWithRedirect } = useAuth0()
+  const { logout, isAuthenticated } = useAuth0()
 
   // ================ RUN ON PAGE LOAD ======================
   useEffect(() => {
@@ -165,6 +166,18 @@ const Home: React.FC = () => {
         >
           Donate with Bitcoin
         </Button>
+        {isAuthenticated && (
+          <Button
+            onClick={() => {
+              logout()
+            }}
+            className='logoutButtonNextToDonate'
+            variant='danger'
+            size='sm'
+          >
+            Logout
+          </Button>
+        )}
 
         <Modal fullscreen={true} centered show={show3} onHide={handleClose3}>
           <Modal.Body className='venmoModalBody'>

@@ -13,13 +13,16 @@
   padding-bottom: 2%;
   position: fixed !important;
   width: 100%;
-  top: 0;
+  bottom: 0;
   /* padding-top: 1em; */
   height: 55px;
-  background-color: hsl(240, 11%, 15%) !important;
+  /* background-color: hsl(240, 11%, 15%) !important; */
   z-index: 20;
   box-shadow: none;
-  border-bottom: 1px rgba(65, 65, 65, 0.747) solid;
+  border-top: 1px rgba(110, 110, 110, 0.195) solid;
+  background-color: rgb(250, 250, 250) !important;
+  /* box-shadow: 0px 10px 5px rgba(136, 136, 136, 0.495),
+    0px -10px 5px rgba(136, 136, 136, 0.438); */
 }
 
 .navbar-toggler {
@@ -27,7 +30,7 @@
 }
 
 .home-title-navbar {
-  margin-left: 8%;
+  /* margin-left: 8%; */
   font-weight: 400;
 }
 
@@ -69,9 +72,9 @@
 }
 
 .libraryTitleContainer {
-  padding-top: 4em;
+  padding-top: 1.75em;
   padding-bottom: 1.75em;
-  margin-top: 1.5em;
+  /* margin-top: 1.5em; */
   /* margin-top: 2%; */
   margin-bottom: 5%;
   display: flex;
@@ -102,7 +105,7 @@
   height: 90%;
   align-items: center;
   justify-content: center;
-  padding-top: 4.5em;
+  padding-top: 2em;
   padding-bottom: 5em;
   flex-wrap: wrap;
   overflow-y: scroll;
@@ -125,7 +128,7 @@
 
 .kindleEmailAddressForm {
   position: fixed;
-  bottom: 0;
+  bottom: 55px;
   width: 100%;
   background-color: rgb(250, 250, 250);
   padding-top: 3%;
@@ -302,6 +305,11 @@
   margin-bottom: 1em;
 }
 
+.logoutButtonNextToDonate {
+  margin-bottom: 1em;
+  margin-left: 2%;
+}
+
 .requestForm {
   margin-bottom: 5%;
 }
@@ -432,4 +440,34 @@
   background-repeat: no-repeat;
   background-size: contain;
   /* transform: rotate(90deg); */
+}
+
+.filterButtonSpan:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.form-check-input:hover {
+  cursor: pointer;
+}
+
+.fa-home,
+.fa-book {
+  color: rgb(19, 19, 19);
+  padding: 0;
+}
+
+.navBarIconAndTextDiv {
+  margin-top: -5%;
+  font-size: small;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbarTextItem {
+  margin-left: 3%;
+  padding-bottom: 2%;
 }

@@ -343,9 +343,7 @@ const Library: React.FC = () => {
               minHeight: '135px',
               backgroundImage: `url(${imageUrl})`,
               backgroundPosition: 'center center',
-              backgroundRepeat: userData.readBooks?.includes(num)
-                ? 'repeat'
-                : 'no-repeat',
+              backgroundRepeat: 'no-repeat',
               backgroundSize: 'contain'
             }}
             key={key}
