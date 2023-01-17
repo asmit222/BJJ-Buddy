@@ -19,11 +19,10 @@ const NavBar: React.FC = () => {
             onClick={() => {
               setCollapse('collapse')
             }}
-            className='navbar-brand home-title-navbar'
+            className='navbar-brand home-title-navbar homeIconSpan'
           >
-            <i className='fas fa-home '></i>
+            {/* <i className='fas fa-home '></i> */}
           </span>
-          <span className='navbarTextItem'>Home</span>
         </div>
       </Link>
       <Link to='/Library'>
@@ -32,11 +31,10 @@ const NavBar: React.FC = () => {
             onClick={() => {
               setCollapse('collapse')
             }}
-            className='navbar-brand home-title-navbar'
+            className='navbar-brand home-title-navbar libraryIconSpan'
           >
-            <i className='fas fa-book fa-lg'></i>
-          </span>
-          <span className='navbarTextItem'>Library</span>
+            {/* <i className='fas fa-book fa-lg'></i> */}
+            </span>
         </div>
       </Link>
       {/* <button
