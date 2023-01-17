@@ -84,8 +84,9 @@ const Home: React.FC = () => {
             <Modal.Title>Request sent!</Modal.Title>
           </Modal.Header>
         </Modal>
-
-        <h1 className='howToGetBooksTitle'>Steps:</h1>
+        <div className='HomeTitleContainer'>
+        <h1 className='stepsTitle'>Steps:</h1>{' '}
+          </div>
         <p>
           <b className='directionNumber'>1)</b> Add{' '}
           <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
