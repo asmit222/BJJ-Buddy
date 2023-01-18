@@ -23,7 +23,7 @@
   /* background-color: rgb(250, 250, 250) !important; */
   display: flex;
   justify-content: space-around;
-  background-color: rgb(16, 95, 199) !important;
+  background-color: rgb(245, 245, 245) !important;
 }
 
 .navbar-toggler {
@@ -97,8 +97,7 @@
   width: 100vw !important;
   border-bottom: solid 1px rgba(58, 58, 58, 0.131);
   z-index: 15;
-  background-color: rgb(16, 95, 199) !important;
-  color: rgb(247, 247, 247);
+  background-color: rgb(245, 245, 245) !important;
 }
 
 .HomeTitleContainer {
@@ -118,8 +117,7 @@
   width: 100vw !important;
   border-bottom: solid 1px rgba(58, 58, 58, 0.131);
   z-index: 15;
-  background-color: rgb(16, 95, 199) !important;
-  color: rgb(250, 250, 250);
+  background-color: rgb(245, 245, 245) !important;
 }
 
 .searchBooksForm {
@@ -490,7 +488,7 @@
 
 .fa-home,
 .fa-book {
-  color: rgb(243, 243, 243);
+  color: rgb(29, 29, 29);
   padding: 0;
 }
 
