@@ -143,6 +143,7 @@ const Home: React.FC = () => {
                 onClick={requestBook}
                 className='requestButton'
                 variant='primary'
+                size='sm'
               >
                 Request
               </Button>
