@@ -87,8 +87,8 @@ const Home: React.FC = () => {
         <div className='HomeTitleContainer'>
         <h1 className='stepsTitle'>Steps:</h1>{' '}
           </div>
-        <p>
-          <b className='directionNumber'>1)</b> Add{' '}
+        <p className='stepP'>
+          Add{' '}
           <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
           <a
             target='_blank'
@@ -97,8 +97,8 @@ const Home: React.FC = () => {
             Approved Personal Document E-mail List
           </a>
         </p>
-        <p>
-          <b className='directionNumber'>2)</b> Have your{' '}
+        <p className='stepP'>
+          Have your{' '}
           <a
             target='_blank'
             href='https://www.lifewire.com/find-kindle-email-address-5271915'
@@ -107,8 +107,8 @@ const Home: React.FC = () => {
           </a>{' '}
           ready
         </p>
-        <p>
-          <b className='directionNumber'>3)</b>{' '}
+        <p className='stepP'>
+         
           <span
             className='loginButtonSpan'
             onClick={() => {
@@ -126,8 +126,8 @@ const Home: React.FC = () => {
           page, enter your kindle's email address at the bottom, and download
           some books!
         </p>
-        <p>
-          <b className='directionNumber'>4)</b> Press <b>"Sync"</b> in the drop
+        <p className='stepP'>
+         Press <b>"Sync"</b> in the drop
           down menu on your kindle to get the new books to show up (takes a min
           or two)
         </p>
@@ -140,14 +140,14 @@ const Home: React.FC = () => {
               <Form.Label>
                 <span className='higherFontWeight'>Request a book</span>
               </Form.Label>{' '}
-              <Button
+              {bookRequestFormValue !== "" && <Button
                 onClick={requestBook}
                 className='requestButton'
                 variant='primary'
                 size='sm'
               >
                 Request
-              </Button>
+              </Button>}
             </div>
             <Form.Control
               value={bookRequestFormValue}
