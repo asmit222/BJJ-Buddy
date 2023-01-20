@@ -214,7 +214,7 @@
 
 .horizontalDivider {
   width: 100%;
-  border-bottom: 1px solid rgba(31, 31, 31, 0.222);
+  border-bottom: 1px solid rgba(31, 31, 31, 0.473);
   margin-bottom: 5%;
 }
 
@@ -348,6 +348,10 @@
 
 .requestForm {
   margin-bottom: 5%;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background-color: rgb(188, 255, 203);
+  padding: 3%;
 }
 
 .fa-copy {

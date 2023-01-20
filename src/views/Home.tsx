@@ -133,7 +133,7 @@ const Home: React.FC = () => {
         </p>
 
 
-        <div className='horizontalDivider'></div>
+        {/* <div className='horizontalDivider'></div> */}
         <Form className='requestForm'>
           <Form.Group className='mb-0'>
             <div className='requestBookButtonContainer'>
@@ -143,7 +143,7 @@ const Home: React.FC = () => {
               {bookRequestFormValue !== "" && <Button
                 onClick={requestBook}
                 className='requestButton'
-                variant='primary'
+                variant='success'
                 size='sm'
               >
                 Request
@@ -160,7 +160,8 @@ const Home: React.FC = () => {
             </Form.Text>
           </Form.Group>
         </Form>
-        <div className='horizontalDivider'></div>
+        {/* <div className='horizontalDivider'></div> */}
+
         <Button
           className='donateButton'
           onClick={handleShow3}
