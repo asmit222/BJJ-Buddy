@@ -19,5 +19,8 @@ const firebaseConfig = {
   measurementId: process.env.FIRESTORE_MEASUREMENT_ID
 }
 
-const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig, {
+  experimentalForceLongPolling: true, // this line
+  useFetchStreams: false, // and this line
+})
 export const db = getFirestore(app)
