@@ -37,6 +37,16 @@ const NavBar: React.FC = () => {
             </span>
         </div>
       </Link>
+        <div className='navBarIconAndTextDiv'>
+          <span
+            onClick={() => {
+              setCollapse('collapse')
+            }}
+            className='navbar-brand home-title-navbar'
+          >
+            {isAuthenticated ? <i onClick={() => logout()} className='fas fa-sign-out fa-lg'></i> : <i onClick={() => loginWithRedirect()} className='fas fa-sign-in fa-lg'></i>}
+            </span>
+        </div>
       {/* <button
         className='navbar-toggler'
         onClick={() => {

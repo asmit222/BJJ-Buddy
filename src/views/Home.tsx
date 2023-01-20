@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
+import  { Redirect } from 'react-router-dom'
 
 const Home: React.FC = () => {
   const { user } = useAuth0()
@@ -74,18 +75,25 @@ const Home: React.FC = () => {
     })
   }
 
+  const redirect = () => {
+    if (isAuthenticated) {
+      return <Redirect to='/Library'  />
+    }
+  }
+
   // ============================================================================
 
   return (
     <React.Fragment>
       <div className='HomeContainer'>
+      {redirect()}
         <Modal centered show={show} onHide={handleClose} animation={true}>
           <Modal.Header closeButton>
             <Modal.Title>Request sent!</Modal.Title>
           </Modal.Header>
         </Modal>
         <div className='HomeTitleContainer'>
-        <h1 className='stepsTitle'>Steps:</h1>{' '}
+        <h1 className='stepsTitle'>Getting started</h1>{' '}
           </div>
         <p className='stepP'>
           Add{' '}
