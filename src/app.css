@@ -548,9 +548,9 @@ left: -5vw;
 }
 
 .navbarInnerText {
-  color: rgb(48, 48, 48) !important;
+  color: rgb(29, 29, 29) !important;
   font-size: small;
-  font-weight: 500;
+  font-weight: 400;
   display: flex;
   position: relative;
   left: 32px;
@@ -607,11 +607,11 @@ left: -5vw;
   z-index: 55;
 
   /* color: rgb(240, 240, 240); */
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-weight: 400;
   font-size: small;
   /* background-color: rgb(11, 45, 194); */
-  background-color: rgb(197, 197, 197);
+  background-color: rgb(29, 157, 48);
   width: 100%;
   text-align: center;
   border-top: 1px rgba(110, 110, 110, 0.195) solid;
