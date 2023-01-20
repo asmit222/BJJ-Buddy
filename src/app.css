@@ -268,6 +268,7 @@
   }
   .stickyEmailIconSide {
     bottom: 100px !important;
+    font-size: large !important;
   }
 }
 
@@ -563,7 +564,7 @@
   color: rgb(240, 240, 240);
   font-weight: 400;
   font-size: small;
-  background-color: rgb(0, 102, 10);
+  background-color: rgb(11, 45, 194);
   width: 100%;
   text-align: center;
   border-top: 1px rgba(110, 110, 110, 0.195) solid;
