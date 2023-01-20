@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
 
   return (
     <nav className='navbar navbar-dark bg-dark'>
-      <Link to='/'>
+      <Link style={{textDecoration: 'none'}} to='/'>
         <div className='navBarIconAndTextDiv'>
           <span
             onClick={() => {
@@ -21,11 +21,12 @@ const NavBar: React.FC = () => {
             }}
             className='navbar-brand home-title-navbar'
           >
+            <span className='navbarInnerText'>Home</span>
             <i className='fas fa-home fa-lg'></i>
           </span>
         </div>
       </Link>
-      <Link to='/Library'>
+      <Link style={{textDecoration: 'none'}} to='/Library'>
         <div className='navBarIconAndTextDiv'>
           <span
             onClick={() => {
@@ -33,10 +34,12 @@ const NavBar: React.FC = () => {
             }}
             className='navbar-brand home-title-navbar'
           >
+            <span className='navbarInnerText'>Library</span>
             <i className='fas fa-book fa-lg'></i>
             </span>
         </div>
       </Link>
+      
         <div className='navBarIconAndTextDiv'>
           <span
             onClick={() => {
@@ -44,7 +47,9 @@ const NavBar: React.FC = () => {
             }}
             className='navbar-brand home-title-navbar'
           >
+             {isAuthenticated ? <span className='navbarInnerText'>Logout</span> : <span className='navbarInnerText'>Login</span> }
             {isAuthenticated ? <i onClick={() => logout()} className='fas fa-sign-out fa-lg'></i> : <i onClick={() => loginWithRedirect()} className='fas fa-sign-in fa-lg'></i>}
+
             </span>
         </div>
       {/* <button
