@@ -17,6 +17,8 @@ const Library: React.FC = () => {
   const [kindleEmailFromFirestore, setKindleEmailFromFirestore] = useState('')
   const [userData, setUserData] = useState({})
 
+  const [showKindleEmailForm, handleShowKindleEmailForm] = useState(false)
+
   // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
   const processData = () => {
     let tempUserData = {}
@@ -160,6 +162,7 @@ const Library: React.FC = () => {
       }
     } else {
       setKindleFormFieldClassName('kindleEmailFormFieldGreen')
+      handleShowKindleEmailForm(false)
     }
 
     setKindleEmail(e.target.value)
@@ -530,7 +533,9 @@ const Library: React.FC = () => {
         </div>
 
         <div className='kindleEmailFormContainer'>
-          <Form className='kindleEmailAddressForm'>
+          
+          
+          {isNotValidEmail(kindleEmail) || showKindleEmailForm ? <Form className='kindleEmailAddressForm'>
             <div className='kindleEmailAddressFormInner'>
               <Form.Group className='mb-3' controlId='formBasicEmail'>
                 <Form.Label className='kindleEmailAddressTitle'>
@@ -555,7 +560,9 @@ const Library: React.FC = () => {
                 />
               </Form.Group>
             </div>
-          </Form>
+          </Form> : <div onClick={() => handleShowKindleEmailForm(true)} className='stickyEmailIconSide'>{kindleEmail}  <i
+                      className={`fa-solid fa-check ${'fa-circle-check2'}`}
+                    ></i></div>}
         </div>
 
         <div
