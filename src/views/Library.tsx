@@ -561,7 +561,7 @@ const Library: React.FC = () => {
               </Form.Group>
             </div>
           </Form> : <div onClick={() => handleShowKindleEmailForm(true)} className='stickyEmailIconSide'>{kindleEmail}  <i
-                      className={`fa-solid fa-check ${'fa-circle-check2'}`}
+                      className={`fa-solid fa-check ${'fa-circle-check3'}`}
                     ></i></div>}
         </div>
 

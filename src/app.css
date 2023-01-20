@@ -326,6 +326,12 @@
   color: rgb(0, 183, 43);
 }
 
+.fa-circle-check3 {
+  color: rgb(255, 255, 255) !important;
+}
+
+
+
 .venmoQRCodeContainer {
   width: 80%;
   /* height: 100%; */
