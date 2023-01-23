@@ -98,7 +98,6 @@
   top: 0;
   left: 0;
   height: 10%;
-  background-color: rgb(245, 245, 245) !important;
   width: 100vw !important;
   border-bottom: solid 1px rgba(58, 58, 58, 0.131);
   z-index: 15;
@@ -468,7 +467,8 @@
   z-index: 2;
 
   /* font-size: 1vw; */
-  background-color: #ffffff;
+  background-color: rgb(245, 245, 245) !important;
+
 }
 
 .sideNavClosed {
@@ -514,7 +514,7 @@
   height: 100%;
   /* width: 100%; */
   position: relative;
-  bottom: -5px;
+  bottom: -6.5px;
 }
 
 .fa-sign-out {
@@ -524,7 +524,7 @@
   height: 100%;
   /* width: 100%; */
   position: relative;
-  bottom: -5px;
+  bottom: -6.5px;
   /* bottom: 50px; */
   /* right: 50px; */
 }
@@ -536,7 +536,7 @@
   height: 100%;
   /* width: 100%; */
   position: relative;
-  bottom: -5px;
+  bottom: -6.5px;
 }
 
 .navBarIconAndTextDiv {
@@ -560,7 +560,7 @@ left: -5vw;
   display: flex;
   position: relative;
   left: 32px;
-  bottom: -5px;
+  bottom: -6.5px;
   text-decoration: none !important;
 }
 

@@ -24,13 +24,21 @@ const Library: React.FC = () => {
     let tempUserData = {}
     let tempBookReadArr = []
 
+    let mostRecentTime = 0;
     for (let dataItem of data) {
       if (dataItem.bookRead) {
         tempBookReadArr.push(dataItem.bookRead)
       }
       if (dataItem.kindleEmail) {
         setKindleEmailFromFirestore(dataItem.kindleEmail)
-        tempUserData['kindleEmail'] = dataItem.kindleEmail
+        if (dataItem.timeAdded) {
+          console.log(dataItem.timeAdded > mostRecentTime)
+          console.log(mostRecentTime)
+          mostRecentTime = Number(dataItem.timeAdded)
+          console.log('setting kindle Email: ' + dataItem.kindleEmail)
+          console.log("time added: " + dataItem.timeAdded)
+          tempUserData['kindleEmail'] = dataItem.kindleEmail
+        }
       }
       if (dataItem.downloadedBefore) {
         tempUserData['downloadedBefore'] = true
@@ -50,6 +58,10 @@ const Library: React.FC = () => {
   useEffect(() => {
     if (userData.length !== 0) {
       console.log('userData: ' + JSON.stringify(userData))
+    }
+    if(Object.keys(userData).length !== 0) {
+console.log('test')
+      setKindleEmail(userData['kindleEmail'])
     }
   }, [userData])
 
@@ -73,7 +85,10 @@ const Library: React.FC = () => {
   useEffect(() => {
     if (kindleEmailFromFirestore !== '') {
       setKindleFormFieldClassName('kindleEmailFormFieldGreen')
-      setKindleEmail(kindleEmailFromFirestore)
+      if (!userData['kindleEmail']) {
+
+        setKindleEmail(kindleEmailFromFirestore)
+      }
     }
   }, [kindleEmailFromFirestore])
 
@@ -213,16 +228,16 @@ const Library: React.FC = () => {
   }
 
   const updateKindleEmailForAccountIfNeed = () => {
-    if (kindleEmailFromFirestore !== kindleEmail) {
+      console.log('go')
       try {
         const docRef = addDoc(collection(db, user?.sub), {
-          kindleEmail: kindleEmail
+          kindleEmail: kindleEmail,
+          timeAdded: Date.now()
         })
         fetchData()
       } catch (e) {
         console.error('Error adding document: ', e)
       }
-    }
   }
 
   const setDownloadedBeforeIfNeed = () => {
