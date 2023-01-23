@@ -29,9 +29,8 @@ const Library: React.FC = () => {
       if (dataItem.bookRead) {
         tempBookReadArr.push(dataItem.bookRead)
       }
-      if (dataItem.kindleEmail) {
-        setKindleEmailFromFirestore(dataItem.kindleEmail)
-        if (dataItem.timeAdded) {
+      if (dataItem.kindleEmail ) {
+        if (dataItem.timeAdded && (mostRecentTime === 0 || Number(dataItem.timeAdded) > mostRecentTime)) {
           console.log(dataItem.timeAdded > mostRecentTime)
           console.log(mostRecentTime)
           mostRecentTime = Number(dataItem.timeAdded)
@@ -85,6 +84,7 @@ console.log('test')
   useEffect(() => {
     if (kindleEmailFromFirestore !== '') {
       setKindleFormFieldClassName('kindleEmailFormFieldGreen')
+      setKindleEmail(kindleEmailFromFirestore)
     }
   }, [kindleEmailFromFirestore])
 
