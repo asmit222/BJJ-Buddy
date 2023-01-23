@@ -22,12 +22,10 @@ const SideNav: React.FC = (props) => {
 
   const handleChangeNonFictionSwitch = (e) => {
     props.setSwitchState(!props.switchState)
-    props.handlePressNonFictionToggle(!props.switchState)
   }
 
   const handleChangeFictionSwitch = (e) => {
     props.setSwitchState2(!props.switchState2)
-    props.handlePressFictionToggle(!props.switchState2)
   }
 
   return (

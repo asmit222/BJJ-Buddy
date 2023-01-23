@@ -31,11 +31,7 @@ const Library: React.FC = () => {
       }
       if (dataItem.kindleEmail ) {
         if (dataItem.timeAdded && (mostRecentTime === 0 || Number(dataItem.timeAdded) > mostRecentTime)) {
-          console.log(dataItem.timeAdded > mostRecentTime)
-          console.log(mostRecentTime)
           mostRecentTime = Number(dataItem.timeAdded)
-          console.log('setting kindle Email: ' + dataItem.kindleEmail)
-          console.log("time added: " + dataItem.timeAdded)
           tempUserData['kindleEmail'] = dataItem.kindleEmail
         }
       }
@@ -59,7 +55,6 @@ const Library: React.FC = () => {
       console.log('userData: ' + JSON.stringify(userData))
     }
     if(Object.keys(userData).length !== 0) {
-console.log('test')
       setKindleEmail(userData['kindleEmail'])
     }
   }, [userData])
@@ -118,7 +113,6 @@ console.log('test')
       newObj[i] = { template: book[0], book: book[1], genres: book[2] }
     })
     setBooks(newObj)
-    console.log(newObj)
   }
 
   // ======================== STATES ================================
@@ -224,7 +218,6 @@ console.log('test')
   }
 
   const updateKindleEmailForAccountIfNeed = () => {
-      console.log('go')
       try {
         const docRef = addDoc(collection(db, user?.sub), {
           kindleEmail: kindleEmail,
@@ -311,13 +304,6 @@ console.log('test')
     }
   }
 
-  const handlePressNonFictionToggle = (switchValue) => {
-    console.log('non Fiction Switch: ' + switchValue)
-  }
-
-  const handlePressFictionToggle = (switchValue) => {
-    console.log('Fiction Switch: ' + switchValue)
-  }
 
   // ================================= BOOK BUTTONS ===================================
   const bookButtons = Object.keys(books)
@@ -382,8 +368,6 @@ console.log('test')
     <React.Fragment>
       <div className='LibraryContainer'>
         <SideNav
-          handlePressNonFictionToggle={handlePressNonFictionToggle}
-          handlePressFictionToggle={handlePressFictionToggle}
           sideNavStatus={sideNavStatus}
           setSwitchState={setSwitchState}
           setSwitchState2={setSwitchState2}
