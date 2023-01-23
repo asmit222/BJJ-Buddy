@@ -85,10 +85,6 @@ console.log('test')
   useEffect(() => {
     if (kindleEmailFromFirestore !== '') {
       setKindleFormFieldClassName('kindleEmailFormFieldGreen')
-      if (!userData['kindleEmail']) {
-
-        setKindleEmail(kindleEmailFromFirestore)
-      }
     }
   }, [kindleEmailFromFirestore])
 
