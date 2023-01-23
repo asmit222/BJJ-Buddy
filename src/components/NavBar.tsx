@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
+import { prependOnceListener } from 'process'
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC = (props) => {
   const [collapse, setCollapse] = React.useState('collapse')
   const [navbarDropdownShow, setNavbarDropdownShow] = React.useState('')
   const [navbarDropdownShow2, setNavbarDropdownShow2] = React.useState('')
@@ -18,6 +19,7 @@ const NavBar: React.FC = () => {
           <span
             onClick={() => {
               setCollapse('collapse')
+              props.setClickedHomeIcon(true)
             }}
             className='navbar-brand home-title-navbar'
           >

@@ -7,7 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import  { Redirect } from 'react-router-dom'
 
-const Home: React.FC = () => {
+const Home: React.FC = (props) => {
   const { user } = useAuth0()
   const { loginWithRedirect } = useAuth0()
   const { logout, isAuthenticated } = useAuth0()
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
   }
 
   const redirect = () => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !props.clickedHomeIcon) {
       return <Redirect to='/Library'  />
     }
   }
