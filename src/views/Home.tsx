@@ -86,7 +86,7 @@ const Home: React.FC = (props) => {
   return (
     <React.Fragment>
       <div className='HomeContainer'>
-      {/* {redirect()} */}
+      {redirect()}
         <Modal centered show={show} onHide={handleClose} animation={true}>
           <Modal.Header closeButton>
             <Modal.Title>Request sent!</Modal.Title>
