@@ -5,7 +5,7 @@
     "scope": ".",
     "icons": [
         {
-            "src": "../src/assets/booksIcon.jpg",
+            "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA-nUHpmIBaAJNwY6qtNy33BQ5CXIzAQwGAQ&usqp=CAU",
             "sizes": "192x192",
             "type": "image/png"
         }
