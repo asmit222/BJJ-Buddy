@@ -19,7 +19,7 @@
   /* background-color: hsl(240, 11%, 15%) !important; */
   z-index: 20;
   box-shadow: none;
-  border-top: 1px rgba(110, 110, 110, 0.195) solid;
+  border-top: solid 1px rgba(58, 58, 58, 0.315);
   /* background-color: rgb(250, 250, 250) !important; */
   display: flex;
   justify-content: space-around;
@@ -101,7 +101,7 @@
   left: 0;
   height: 10%;
   width: 100vw !important;
-  border-bottom: solid 1px rgba(58, 58, 58, 0.131);
+  border-bottom: solid 1px rgba(58, 58, 58, 0.315);
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white;
@@ -121,7 +121,7 @@
   left: 0;
   height: 10%;
   width: 100vw !important;
-  border-bottom: solid 1px rgba(58, 58, 58, 0.131);
+  border-bottom: solid 1px rgba(58, 58, 58, 0.315);
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white !important;
