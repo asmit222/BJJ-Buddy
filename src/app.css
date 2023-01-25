@@ -368,8 +368,9 @@
   margin-bottom: 5%;
 
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  background-color: rgb(188, 255, 203);
+  background-color: rgb(176, 255, 193);
   padding: 3%;
+  border: solid 1px rgba(14, 218, 75, 0.438);
 }
 
 .fa-copy {
@@ -604,8 +605,9 @@ left: -5vw;
 
 .stepP {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  background-color: rgb(210, 219, 255);
+  background-color: rgb(250, 250, 250);
   padding: 3%;
+  border: solid 1px rgba(0, 0, 0, 0.24);
 }
 
 .stickyEmailIconSide {
