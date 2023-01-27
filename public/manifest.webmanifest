@@ -1,11 +1,11 @@
 {
-    "name": "FroobsBooks",
+    "name": "Froobs Books",
     "short_name": "FroobsBooks",
     "start_url": "/",
     "scope": ".",
     "icons": [
         {
-            "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA-nUHpmIBaAJNwY6qtNy33BQ5CXIzAQwGAQ&usqp=CAU",
+            "src": "http://s3.amazonaws.com/froobs-kindle-books/froobsbookslogo.png",
             "sizes": "192x192",
             "type": "image/png"
         }
