@@ -151,7 +151,7 @@ const Home: React.FC = (props) => {
               {bookRequestFormValue !== "" && <Button
                 onClick={requestBook}
                 className='requestButton'
-                variant='success'
+                variant='light'
                 size='sm'
               >
                 Request
@@ -163,22 +163,23 @@ const Home: React.FC = (props) => {
               type='text'
               placeholder='book title and author'
             />
-            <Form.Text className='text-muted'>
+            <Form.Text className='text-muted requestsmalltext'>
               Come back in a day or two to see if your book has been added.
             </Form.Text>
           </Form.Group>
         </Form>
         {/* <div className='horizontalDivider'></div> */}
 
-        <Button
+        {/* <Button
           className='donateButton'
           onClick={handleShow3}
           variant='warning'
           size='sm'
         >
           Donate with Bitcoin
-        </Button>
-        {isAuthenticated && (
+        </Button> */}
+
+        {/* {isAuthenticated && (
           <Button
             onClick={() => {
               logout()
@@ -189,7 +190,7 @@ const Home: React.FC = (props) => {
           >
             Logout
           </Button>
-        )}
+        )} */}
 
         <Modal fullscreen={true} centered show={show3} onHide={handleClose3}>
           <Modal.Body className='venmoModalBody'>

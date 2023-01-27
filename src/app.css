@@ -233,6 +233,8 @@
   margin-top: -4%;
   margin-left: 10%;
   animation: fadeIn ease 1s;
+  background-color: #ffde59 !important;
+  font-weight: 500;
 }
 
 .filtersForm {
@@ -329,12 +331,6 @@
   color: rgb(0, 183, 43);
 }
 
-.fa-circle-check3 {
-  color: rgb(255, 255, 255) !important;
-}
-
-
-
 .venmoQRCodeContainer {
   width: 80%;
   /* height: 100%; */
@@ -361,13 +357,13 @@
 
 .logoutButtonNextToDonate {
   margin-bottom: 1em;
-  margin-left: 2%;
+  /* margin-left: 2%; */
 }
 
 .requestForm {
   margin-bottom: 5%;
 
-  background-color: rgb(200, 255, 213);
+  background-color: #ffde59;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 3%;
   border: solid 1px rgba(14, 218, 75, 0.438);
@@ -388,8 +384,8 @@
 .ribbon {
   margin: 0;
   padding: 0;
-  background: rgb(29, 157, 48);
-  color: white;
+  background: #ffde59;
+  color: rgb(0, 0, 0);
   padding: 0.25em 0;
   position: absolute;
   top: 0;
@@ -398,7 +394,7 @@
   transform-origin: top left;
   font-size: xx-small;
   animation: fadeIn ease 0.3s;
-  font-weight: 300;
+  font-weight: 400;
 }
 .ribbon:before,
 .ribbon:after {
@@ -407,7 +403,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgb(29, 157, 48);
+  background: #ffde59;
 }
 .ribbon:before {
   right: 100%;
@@ -621,11 +617,11 @@ left: -5vw;
   z-index: 55;
 
   /* color: rgb(240, 240, 240); */
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-weight: 400;
   font-size: small;
   /* background-color: rgb(11, 45, 194); */
-  background-color: rgb(29, 157, 48);
+  background-color: #ffde59;
   width: 100%;
   text-align: center;
   border-top: 1px rgba(110, 110, 110, 0.195) solid;
@@ -635,4 +631,9 @@ left: -5vw;
 
 .stickyEmailIconSide:hover {
   cursor: pointer;
+}
+
+.requestsmalltext {
+  color: rgb(32, 32, 32) !important;
+  font-size: small;
 }
