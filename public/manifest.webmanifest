@@ -1,16 +1,16 @@
 {
-    "name": "Froobs Books",
-    "short_name": "Froobs Books",
-    "start_url": "/",
-    "scope": ".",
-    "icons": [
-        {
-            "src": "http://s3.amazonaws.com/froobs-kindle-books/froobsbookslogo2.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }
-    ],
-    "background_color": "#070b0d",
-    "display": "standalone",
-    "theme_color": "#070b0d"
+  "name": "Froobs Books",
+  "short_name": "Froobs Books",
+  "start_url": "/",
+  "scope": ".",
+  "icons": [
+    {
+      "src": "http://s3.amazonaws.com/froobs-kindle-books/froobsbookslogo2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#ffffff"
 }
