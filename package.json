@@ -22,6 +22,7 @@
     "helmet": "^4.6.0",
     "react": "^17.0.1",
     "react-bootstrap": "^2.7.0",
+    "react-cache-buster": "^0.1.7",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-use": "^17.4.0",
@@ -56,9 +57,10 @@
     "dev": "NODE_ENV=dev parcel serve public/index.html --port 3030 --no-source-maps",
     "start": "parcel public/index.html --no-source-maps --port 3030",
     "prebuild": "rimraf dist",
-    "build": "parcel build public/index.html --public-url ./ --no-source-maps",
+    "build": "npm run generate-meta-tag && parcel build public/index.html --public-url ./ --no-source-maps",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fmt": "prettier --write 'src/**/**/*.{ts,tsx}'"
+    "fmt": "prettier --write 'src/**/**/*.{ts,tsx}'",
+    "generate-meta-tag": "node ./node_modules/react-cache-buster/dist/generate-meta-tag.js"
   },
   "engines": {
     "node": "= 16.x"
