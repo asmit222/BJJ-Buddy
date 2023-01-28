@@ -57,10 +57,9 @@
     "dev": "NODE_ENV=dev parcel serve public/index.html --port 3030 --no-source-maps",
     "start": "parcel public/index.html --no-source-maps --port 3030",
     "prebuild": "rimraf dist",
-    "build": "npm run generate-meta-tag && parcel build public/index.html --public-url ./ --no-source-maps",
+    "build": "parcel build public/index.html --public-url ./ --no-source-maps",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "fmt": "prettier --write 'src/**/**/*.{ts,tsx}'",
-    "generate-meta-tag": "node ./node_modules/react-cache-buster/dist/generate-meta-tag.js"
+    "fmt": "prettier --write 'src/**/**/*.{ts,tsx}'"
   },
   "engines": {
     "node": "= 16.x"
