@@ -648,3 +648,11 @@
   background-repeat: no-repeat;
   background-size: contain; */
 }
+
+.descriptionButton {
+  margin-left: 2%;
+}
+
+.goodreadsLinkA {
+  text-decoration: none;
+}

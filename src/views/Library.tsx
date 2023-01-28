@@ -24,13 +24,16 @@ const Library: React.FC = () => {
     let tempUserData = {}
     let tempBookReadArr = []
 
-    let mostRecentTime = 0;
+    let mostRecentTime = 0
     for (let dataItem of data) {
       if (dataItem.bookRead) {
         tempBookReadArr.push(dataItem.bookRead)
       }
-      if (dataItem.kindleEmail ) {
-        if (dataItem.timeAdded && (mostRecentTime === 0 || Number(dataItem.timeAdded) > mostRecentTime)) {
+      if (dataItem.kindleEmail) {
+        if (
+          dataItem.timeAdded &&
+          (mostRecentTime === 0 || Number(dataItem.timeAdded) > mostRecentTime)
+        ) {
           mostRecentTime = Number(dataItem.timeAdded)
           tempUserData['kindleEmail'] = dataItem.kindleEmail
         }
@@ -54,7 +57,7 @@ const Library: React.FC = () => {
     if (userData.length !== 0) {
       console.log('userData: ' + JSON.stringify(userData))
     }
-    if(Object.keys(userData).length !== 0) {
+    if (Object.keys(userData).length !== 0) {
       setKindleEmail(userData['kindleEmail'])
     }
   }, [userData])
@@ -134,7 +137,9 @@ const Library: React.FC = () => {
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-  const handleClose3 = () => setShow3(false)
+  const handleClose3 = () => {
+    setShow3(false)
+  }
   const handleClose4 = () => setShow4(false)
   const handleClose5 = () => setShow5(false)
   const handleClose6 = () => setShow6(false)
@@ -218,15 +223,15 @@ const Library: React.FC = () => {
   }
 
   const updateKindleEmailForAccountIfNeed = () => {
-      try {
-        const docRef = addDoc(collection(db, user?.sub), {
-          kindleEmail: kindleEmail,
-          timeAdded: Date.now()
-        })
-        fetchData()
-      } catch (e) {
-        console.error('Error adding document: ', e)
-      }
+    try {
+      const docRef = addDoc(collection(db, user?.sub), {
+        kindleEmail: kindleEmail,
+        timeAdded: Date.now()
+      })
+      fetchData()
+    } catch (e) {
+      console.error('Error adding document: ', e)
+    }
   }
 
   const setDownloadedBeforeIfNeed = () => {
@@ -303,7 +308,6 @@ const Library: React.FC = () => {
       setShow4(true)
     }
   }
-
 
   // ================================= BOOK BUTTONS ===================================
   const bookButtons = Object.keys(books)
@@ -445,7 +449,21 @@ const Library: React.FC = () => {
             {`It looks like you already downloaded ${
               books[currBookNumber] !== undefined &&
               books[currBookNumber]['book']
-            }.`}
+            }.`}{' '}
+            <a
+              className='goodreadsLinkA'
+              href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
+              target='_blank'
+            >
+              {' '}
+              <Button
+                size='sm'
+                variant='outline-dark'
+                className='descriptionButton'
+              >
+                view on goodreads
+              </Button>
+            </a>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
@@ -461,15 +479,33 @@ const Library: React.FC = () => {
         {/* ============================ DOWNLOAD MODAL =================================== */}
         <Modal centered show={show3} onHide={handleClose3}>
           <Modal.Header>
-            <Modal.Title>{`Download ${
-              books[currBookNumber] !== undefined &&
-              books[currBookNumber]['book']
-            }?`}</Modal.Title>
+            <Modal.Title>
+              {`Download ${
+                books[currBookNumber] !== undefined &&
+                books[currBookNumber]['book']
+              }?`}
+
+              <a
+                className='goodreadsLinkA'
+                href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
+                target='_blank'
+              >
+                {' '}
+                <Button
+                  size='sm'
+                  variant='outline-dark'
+                  className='descriptionButton'
+                >
+                  view on goodreads
+                </Button>
+              </a>
+            </Modal.Title>
           </Modal.Header>
           {/* <Modal.Body className='descriptionBody'>
             {books[currBookNumber] !== undefined &&
               books[currBookNumber]['description']}
           </Modal.Body> */}
+
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
               Download book
@@ -528,34 +564,41 @@ const Library: React.FC = () => {
         </div>
 
         <div className='kindleEmailFormContainer'>
-          
-          
-          {isNotValidEmail(kindleEmail) || showKindleEmailForm ? <Form className='kindleEmailAddressForm'>
-            <div className='kindleEmailAddressFormInner'>
-              <Form.Group className='mb-3' controlId='formBasicEmail'>
-                <Form.Label className='kindleEmailAddressTitle'>
-                  <span className='higherFontWeight '>
-                    Kindle email address
-                  </span>{' '}
-                  {!isNotValidEmail(kindleEmail) && (
-                    <i
-                      className={`fa-solid fa-check ${'fa-circle-check2'}`}
-                    ></i>
-                  )}
-                </Form.Label>{' '}
-                <Form.Control
-                  onClick={() => {
-                    setSideNavStatus('sideNavClosed')
-                  }}
-                  className={kindleFormFieldClassName}
-                  type='email'
-                  placeholder='Enter email'
-                  value={kindleEmail}
-                  onChange={(e: any) => setKindleEmailAndSave(e)}
-                />
-              </Form.Group>
+          {isNotValidEmail(kindleEmail) || showKindleEmailForm ? (
+            <Form className='kindleEmailAddressForm'>
+              <div className='kindleEmailAddressFormInner'>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                  <Form.Label className='kindleEmailAddressTitle'>
+                    <span className='higherFontWeight '>
+                      Kindle email address
+                    </span>{' '}
+                    {!isNotValidEmail(kindleEmail) && (
+                      <i
+                        className={`fa-solid fa-check ${'fa-circle-check2'}`}
+                      ></i>
+                    )}
+                  </Form.Label>{' '}
+                  <Form.Control
+                    onClick={() => {
+                      setSideNavStatus('sideNavClosed')
+                    }}
+                    className={kindleFormFieldClassName}
+                    type='email'
+                    placeholder='Enter email'
+                    value={kindleEmail}
+                    onChange={(e: any) => setKindleEmailAndSave(e)}
+                  />
+                </Form.Group>
+              </div>
+            </Form>
+          ) : (
+            <div
+              onClick={() => handleShowKindleEmailForm(true)}
+              className='stickyEmailIconSide'
+            >
+              {kindleEmail}{' '}
             </div>
-          </Form> : <div onClick={() => handleShowKindleEmailForm(true)} className='stickyEmailIconSide'>{kindleEmail} </div>}
+          )}
         </div>
 
         <div
