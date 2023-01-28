@@ -20,19 +20,3 @@ ReactDOM.render(
   </Auth0Provider>,
   document.getElementById('app')
 )
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register({
-      onUpdate: (e) => {
-        const { waiting: { postMessage = null } = {} as any, update } = e || {}
-        if (postMessage) {
-          postMessage({ type: 'SKIP_WAITING' })
-        }
-        update().then(() => {
-          window.location.reload()
-        })
-      }
-    })
-  })
-}
