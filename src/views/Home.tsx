@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
-import  { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 const Home: React.FC = (props) => {
   const { user } = useAuth0()
@@ -77,7 +77,7 @@ const Home: React.FC = (props) => {
 
   const redirect = () => {
     if (isAuthenticated && !props.clickedHomeIcon) {
-      return <Redirect to='/Library'  />
+      return <Redirect to='/Library' />
     }
   }
 
@@ -86,18 +86,18 @@ const Home: React.FC = (props) => {
   return (
     <React.Fragment>
       <div className='HomeContainer'>
-       {redirect()}
+        {redirect()}
         <Modal centered show={show} onHide={handleClose} animation={true}>
           <Modal.Header closeButton>
             <Modal.Title>Request sent!</Modal.Title>
           </Modal.Header>
         </Modal>
         <div className='HomeTitleContainer'>
-        <h1 className='stepsTitle'>Getting started</h1>{' '}
-          </div>
+          <span className='froobsBooksLogo'></span>
+          <h1 className='stepsTitle'>Getting started</h1> <span></span>
+        </div>
         <p className='stepP'>
-          Add{' '}
-          <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
+          Add <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
           <a
             target='_blank'
             href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H'
@@ -116,7 +116,6 @@ const Home: React.FC = (props) => {
           ready
         </p>
         <p className='stepP'>
-         
           <span
             className='loginButtonSpan'
             onClick={() => {
@@ -135,11 +134,9 @@ const Home: React.FC = (props) => {
           some books!
         </p>
         <p className='stepP'>
-         Press <b>"Sync"</b> in the drop
-          down menu on your kindle to get the new books to show up (takes a min
-          or two)
+          Press <b>"Sync"</b> in the drop down menu on your kindle to get the
+          new books to show up (takes a min or two)
         </p>
-
 
         {/* <div className='horizontalDivider'></div> */}
         <Form className='requestForm'>
@@ -148,14 +145,16 @@ const Home: React.FC = (props) => {
               <Form.Label>
                 <span className='higherFontWeight'>Request a book</span>
               </Form.Label>{' '}
-              {bookRequestFormValue !== "" && <Button
-                onClick={requestBook}
-                className='requestButton'
-                variant='light'
-                size='sm'
-              >
-                Request
-              </Button>}
+              {bookRequestFormValue !== '' && (
+                <Button
+                  onClick={requestBook}
+                  className='requestButton'
+                  variant='light'
+                  size='sm'
+                >
+                  Request
+                </Button>
+              )}
             </div>
             <Form.Control
               value={bookRequestFormValue}

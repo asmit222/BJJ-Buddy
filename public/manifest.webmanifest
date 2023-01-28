@@ -5,7 +5,7 @@
   "scope": ".",
   "icons": [
     {
-      "src": "http://s3.amazonaws.com/froobs-kindle-books/froobsbookslogo2.png",
+      "src": "http://s3.amazonaws.com/froobs-kindle-books/Froobs-Books-logo-yellow.png",
       "sizes": "192x192",
       "type": "image/png"
     }
