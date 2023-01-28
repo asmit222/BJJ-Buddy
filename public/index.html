@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <clientCache cacheControlMode="DisableCache" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -41,11 +42,6 @@
   <body>
     <script>
       if ("serviceWorker" in navigator) {
-        caches.keys().then(function (cacheNames) {
-          cacheNames.forEach(function (cacheName) {
-            caches.delete(cacheName);
-          });
-        });
         window.addEventListener("load", function () {
           navigator.serviceWorker.register("serviceWorker.js").then(
             function (registration) {
