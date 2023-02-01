@@ -7,7 +7,12 @@ self.addEventListener('install', function (event) {
       console.log('Opened cache')
 
 // Service worker cache should be cleared with caches.delete()
-
+caches.keys().then(function(names) {
+  for (let name of names) {
+    console.log("deleting cache: " + name)
+    caches.delete(name)
+  };
+});
 
       return cache.addAll(urlsToCache)
     })
