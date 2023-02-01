@@ -527,7 +527,7 @@ const Library: React.FC = () => {
               backgroundSize: 'contain'
             }}
           ></div>
-          <h1>Librardy</h1>{' '}
+          <h1>Library</h1>{' '}
           <Form className='searchBooksForm'>
             <Form.Group className='mb-0'>
               <Form.Control
