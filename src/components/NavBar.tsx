@@ -1,103 +1,44 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
-import { prependOnceListener } from 'process'
 
-const NavBar: React.FC = (props) => {
-  const [collapse, setCollapse] = React.useState('collapse')
-  const [navbarDropdownShow, setNavbarDropdownShow] = React.useState('')
-  const [navbarDropdownShow2, setNavbarDropdownShow2] = React.useState('')
-
-  const { logout, isAuthenticated } = useAuth0()
-
-  const { loginWithRedirect } = useAuth0()
+const NavBar: React.FC = () => {
+  const { isAuthenticated, logout, loginWithRedirect } = useAuth0()
 
   return (
     <nav className='navbar navbar-dark bg-dark'>
-      <Link style={{textDecoration: 'none'}} to='/'>
+      <Link style={{ textDecoration: 'none' }} to='/'>
         <div className='navBarIconAndTextDiv'>
-          <span
-            onClick={() => {
-              setCollapse('collapse')
-              props.setClickedHomeIcon(true)
-            }}
-            className='navbar-brand home-title-navbar'
-          >
+          <span className='navbar-brand home-title-navbar'>
             <span className='navbarInnerText'>Home</span>
             <i className='fas fa-home fa-lg'></i>
           </span>
         </div>
       </Link>
-      <Link style={{textDecoration: 'none'}} to='/Library'>
+      <Link style={{ textDecoration: 'none' }} to='/Library'>
         <div className='navBarIconAndTextDiv'>
-          <span
-            onClick={() => {
-              setCollapse('collapse')
-            }}
-            className='navbar-brand home-title-navbar'
-          >
+          <span className='navbar-brand home-title-navbar'>
             <span className='navbarInnerText'>Library</span>
             <i className='fas fa-book fa-lg'></i>
-            </span>
+          </span>
         </div>
       </Link>
-      
-        <div className='navBarIconAndTextDiv'>
-          <span
-            onClick={() => {
-              setCollapse('collapse')
-            }}
-            className='navbar-brand home-title-navbar'
-          >
-             {isAuthenticated ? <span className='navbarInnerText'>Logout</span> : <span className='navbarInnerText'>Login</span> }
-            {isAuthenticated ? <i onClick={() => logout()} className='fas fa-sign-out fa-lg'></i> : <i onClick={() => loginWithRedirect()} className='fas fa-sign-in fa-lg'></i>}
-
-            </span>
-        </div>
-      {/* <button
-        className='navbar-toggler'
-        onClick={() => {
-          setCollapse(collapse === 'collapse' ? '' : 'collapse')
-        }}
-        type='button'
-        data-toggle='collapse'
-        data-target='#navbarSupportedContent'
-        aria-controls='navbarSupportedContent'
-        aria-expanded='false'
-        aria-label='Toggle navigation'
-      >
-        <span className='navbar-toggler-icon'></span>
-      </button> */}
-
-      <div
-        className={`${collapse} navbar-collapse`}
-        id='navbarSupportedContent'
-      >
-        <ul className='navbar-nav mr-auto'>
-          <Link to='/Library'>
-            <li
-              className='nav-item'
-              onClick={() => {
-                setCollapse(collapse === 'collapse' ? '' : 'collapse')
-              }}
-            >
-              Library
-            </li>
-          </Link>
-          <li
-            className='nav-item'
-            onClick={() => {
-              setCollapse(collapse === 'collapse' ? '' : 'collapse')
-              if (isAuthenticated) {
-                logout()
-              } else {
-                loginWithRedirect()
-              }
-            }}
-          >
-            {isAuthenticated ? 'Log out' : 'Log in'}
-          </li>
-        </ul>
+      <div className='navBarIconAndTextDiv'>
+        <span className='navbar-brand home-title-navbar'>
+          {isAuthenticated ? (
+            <span className='navbarInnerText'>Logout</span>
+          ) : (
+            <span className='navbarInnerText'>Login</span>
+          )}
+          {isAuthenticated ? (
+            <i onClick={() => logout()} className='fas fa-sign-out fa-lg'></i>
+          ) : (
+            <i
+              onClick={() => loginWithRedirect()}
+              className='fas fa-sign-in fa-lg'
+            ></i>
+          )}
+        </span>
       </div>
     </nav>
   )
