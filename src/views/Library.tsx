@@ -54,9 +54,6 @@ const Library: React.FC = () => {
   }, [data])
 
   useEffect(() => {
-    if (userData.length !== 0) {
-      console.log('userData: ' + JSON.stringify(userData))
-    }
     if (Object.keys(userData).length !== 0) {
       setKindleEmail(userData['kindleEmail'])
     }
@@ -64,19 +61,17 @@ const Library: React.FC = () => {
 
   // ============ pull down latest user data ========================
   const fetchData = async () => {
-    let newData: ((prevState: never[]) => never[]) | { id: string }[]
+    let newData = []
 
-    await getDocs(collection(db, user?.sub))
-      .then((querySnapshot) => {
-        newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data()
-        }))
-        // .filter((doc) => {return doc['userID'] === user?.sub})
-      })
-      .then(() => {
-        setData(newData)
-      })
+    try {
+      const querySnapshot = await getDocs(collection(db, user?.sub))
+      newData = querySnapshot.docs.map((doc) => ({ ...doc.data() }))
+      setData(newData)
+    } catch (error) {
+      console.error(error)
+    }
   }
+
   // ==========================================================
 
   useEffect(() => {
@@ -102,19 +97,15 @@ const Library: React.FC = () => {
   // ==================================================================
 
   const sortBooksAlphabetically = () => {
-    let bookArr = []
-    for (let key in books) {
-      let tempArr = []
-      tempArr.push(books[key].template)
-      tempArr.push(books[key].book)
-      tempArr.push(books[key].genres)
-      bookArr.push(tempArr)
-    }
-    bookArr.sort((a, b) => a[1].toUpperCase().localeCompare(b[1].toUpperCase()))
-    let newObj = {}
-    bookArr.forEach((book, i) => {
-      newObj[i] = { template: book[0], book: book[1], genres: book[2] }
-    })
+    const booksArray: Book[] = Object.values(books).sort((a, b) =>
+      a.book.toUpperCase().localeCompare(b.book.toUpperCase())
+    )
+
+    const newObj = booksArray.reduce((acc, book, i) => {
+      acc[i] = { template: book.template, book: book.book, genres: book.genres }
+      return acc
+    }, {} as { [key: string]: Book })
+
     setBooks(newObj)
   }
 
@@ -158,24 +149,21 @@ const Library: React.FC = () => {
     setBookSearchValue(e.target.value)
   }
 
-  const setKindleEmailAndSave = (e: any) => {
+  const setKindleEmailAndSave = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!user?.sub) {
       setShow10(true)
       return
     }
 
-    if (isNotValidEmail(e.target.value)) {
-      if (e.target.value === '') {
-        setKindleFormFieldClassName('')
-      } else {
-        setKindleFormFieldClassName('kindleEmailFormFieldRed')
-      }
+    const value = e.target.value
+    if (isNotValidEmail(value)) {
+      setKindleFormFieldClassName(value === '' ? '' : 'kindleEmailFormFieldRed')
     } else {
       setKindleFormFieldClassName('kindleEmailFormFieldGreen')
       handleShowKindleEmailForm(false)
     }
 
-    setKindleEmail(e.target.value)
+    setKindleEmail(value)
   }
 
   const bookClickHandler = (bookNum: string) => {
@@ -190,18 +178,20 @@ const Library: React.FC = () => {
     }
 
     if (isNotValidEmail(kindleEmail)) {
-      alert('Please enter a valid kindle email address')
+      alert('Please enter a valid Kindle email address.')
       return
     }
 
-    let num: string
-    for (let objKey in booksObject.data) {
-      if (booksObject.data[objKey].book === books[bookNum].book) {
-        num = objKey
-      }
+    const book = books[bookNum].book
+    const bookNumKey = Object.keys(booksObject.data).find(
+      (key) => booksObject.data[key].book === book
+    )
+
+    if (!bookNumKey) {
+      return
     }
 
-    if (userData.readBooks?.includes(num)) {
+    if (userData.readBooks?.includes(bookNumKey)) {
       submitGetBook(bookNum)
     } else {
       submitGetBook2(bookNum)
@@ -222,45 +212,45 @@ const Library: React.FC = () => {
     return !email.includes('@kindle.com')
   }
 
-  const updateKindleEmailForAccountIfNeed = () => {
+  const updateKindleEmailForAccountIfNeed = async () => {
     try {
-      const docRef = addDoc(collection(db, user?.sub), {
-        kindleEmail: kindleEmail,
+      const docRef = await addDoc(collection(db, user?.sub), {
+        kindleEmail,
         timeAdded: Date.now()
       })
-      fetchData()
+      await fetchData()
     } catch (e) {
-      console.error('Error adding document: ', e)
+      console.error('Error adding document:', e)
     }
   }
 
-  const setDownloadedBeforeIfNeed = () => {
+  const setDownloadedBeforeIfNeed = async () => {
     if (!userData.downloadedBefore) {
       try {
-        const docRef = addDoc(collection(db, user?.sub), {
+        const docRef = await addDoc(collection(db, user?.sub), {
           downloadedBefore: true,
           userInfo: user
         })
-        fetchData()
+        await fetchData()
       } catch (e) {
-        console.error('Error adding document: ', e)
+        console.error('Error adding document:', e)
       }
     }
   }
 
   // ====================== ACTUALLY DOWNLOAD BOOK =============================================
-  const addBook = (bookNum: string) => {
+  const addBook = async (bookNum: string) => {
     if (isNotValidEmail(kindleEmail)) {
-      alert('Please enter a valid kindle email address')
+      alert('Please enter a valid Kindle email address')
       return
     }
 
-    updateKindleEmailForAccountIfNeed()
-    setDownloadedBeforeIfNeed()
+    await updateKindleEmailForAccountIfNeed()
+    await setDownloadedBeforeIfNeed()
 
     // ===== get correct book num from booksObject ==========
     let num: string
-    for (let objKey in booksObject.data) {
+    for (const objKey in booksObject.data) {
       if (booksObject.data[objKey].book === books[currBookNumber].book) {
         num = objKey
         break
@@ -270,9 +260,11 @@ const Library: React.FC = () => {
 
     const url = process.env.REQUEST_URL || 'http://localhost:3000'
 
-    axios.get(`${url}/getBook/${num}/${kindleEmail}`).then((res) => {
-      if (res.status === 200) {
-        console.log('SUCCESS!', res.status, res.statusText)
+    try {
+      const response = await axios.get(`${url}/getBook/${num}/${kindleEmail}`)
+
+      if (response.status === 200) {
+        console.log('SUCCESS!', response.status, response.statusText)
         setShow6(false)
         setShow5(true)
         setTimeout(() => {
@@ -281,20 +273,23 @@ const Library: React.FC = () => {
 
         if (user?.sub) {
           try {
-            const docRef = addDoc(collection(db, user?.sub), {
+            const docRef = await addDoc(collection(db, user?.sub), {
               bookRead: num
             })
-            fetchData()
+            await fetchData()
           } catch (e) {
-            console.error('Error adding document: ', e)
+            console.error('Error adding document:', e)
           }
         }
       } else {
         setShow6(false)
         console.log('FAILED...')
       }
-    })
+    } catch (e) {
+      console.error('Error fetching book:', e)
+    }
   }
+
   // =====================================================================================
 
   const handleDownloadBookOnModalClose = () => {
@@ -311,61 +306,47 @@ const Library: React.FC = () => {
 
   // ================================= BOOK BUTTONS ===================================
   const bookButtons = Object.keys(books)
-    .filter((key1) => {
+    .filter((key) => {
       const allowedGenres = []
       if (switchState2) allowedGenres.push('fiction')
       if (switchState) allowedGenres.push('non-fiction')
-      if (!books[key1]['genres']) return false
-      for (let genre of books[key1]['genres']) {
-        if (allowedGenres.includes(genre)) return true
-      }
-      return false
-    })
-    .map((key) => {
-      let num
-      let showFiction = switchState2
-      let showNonFiction = switchState
-
-      for (let objKey in booksObject.data) {
-        if (booksObject.data[objKey].book === books[key].book) {
-          num = objKey
-          break
-        }
-      }
-
-      let imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
-
       return (
-        books[key]['book']
-          .toLowerCase()
-          .includes(bookSearchValue.toLowerCase()) && (
-          <span
-            style={{
-              minWidth: '102px',
-              height: '20vh',
-              maxHeight: '150px',
-              minHeight: '135px',
-              backgroundImage: `url(${imageUrl})`,
-              backgroundPosition: 'center center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain'
-            }}
-            key={key}
-            className={`bookButton bookButton${num} ${
-              sideNavStatus === 'sideNavOpen'
-                ? 'bookButtonsLowOpacity'
-                : 'bookButtonsfullOpacity'
-            }`}
-            variant={Number(key) % 2 == 0 ? 'outline-dark' : 'dark'}
-            onClick={() => bookClickHandler(key)}
-          >
-            {userData.readBooks?.includes(num) && (
-              <h4 className='ribbon'>Downloaded</h4>
-            )}
-          </span>
-        )
+        allowedGenres.some((genre) => books[key].genres?.includes(genre)) &&
+        books[key].book.toLowerCase().includes(bookSearchValue.toLowerCase())
       )
     })
+    .map((key) => {
+      const num = Object.keys(booksObject.data).find(
+        (objKey) => booksObject.data[objKey].book === books[key].book
+      )
+      const imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
+      return (
+        <span
+          key={key}
+          style={{
+            minWidth: '102px',
+            height: '20vh',
+            maxHeight: '150px',
+            minHeight: '135px',
+            backgroundImage: `url(${imageUrl})`,
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain'
+          }}
+          className={`bookButton bookButton${num} ${
+            sideNavStatus === 'sideNavOpen'
+              ? 'bookButtonsLowOpacity'
+              : 'bookButtonsfullOpacity'
+          }`}
+          onClick={() => bookClickHandler(key)}
+        >
+          {userData.readBooks?.includes(num) && (
+            <h4 className='ribbon'>Downloaded</h4>
+          )}
+        </span>
+      )
+    })
+
   // ===================================================================================
 
   return (
@@ -480,41 +461,36 @@ const Library: React.FC = () => {
         <Modal centered show={show3} onHide={handleClose3}>
           <Modal.Header>
             <Modal.Title>
-              {`Download ${
-                books[currBookNumber] !== undefined &&
-                books[currBookNumber]['book']
-              }?`}
-
+              {`Download "${books[currBookNumber]?.book}"`}
               <a
                 className='goodreadsLinkA'
                 href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
                 target='_blank'
               >
-                {' '}
                 <Button
                   size='sm'
                   variant='outline-dark'
                   className='descriptionButton'
                 >
-                  view on goodreads
+                  View on Goodreads
                 </Button>
               </a>
             </Modal.Title>
           </Modal.Header>
           {/* <Modal.Body className='descriptionBody'>
-            {books[currBookNumber] !== undefined &&
-              books[currBookNumber]['description']}
-          </Modal.Body> */}
-
+    {books[currBookNumber] !== undefined &&
+      books[currBookNumber]['description']}
+  </Modal.Body> */}
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
-              Download book
+              Download
             </Button>
             <Button variant='danger' onClick={handleClose3}>
               Cancel
             </Button>
           </Modal.Footer>
         </Modal>
+
         {/* ========================================================================== */}
 
         <div className='libraryTitleContainer'>
@@ -567,36 +543,32 @@ const Library: React.FC = () => {
           {isNotValidEmail(kindleEmail) || showKindleEmailForm ? (
             <Form className='kindleEmailAddressForm'>
               <div className='kindleEmailAddressFormInner'>
-                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                <Form.Group controlId='formBasicEmail' className='mb-3'>
                   <Form.Label className='kindleEmailAddressTitle'>
-                    <span className='higherFontWeight '>
+                    <span className='higherFontWeight'>
                       Kindle email address
-                    </span>{' '}
+                    </span>
                     {!isNotValidEmail(kindleEmail) && (
-                      <i
-                        className={`fa-solid fa-check ${'fa-circle-check2'}`}
-                      ></i>
+                      <i className='fa-solid fa-check fa-circle-check2'></i>
                     )}
-                  </Form.Label>{' '}
+                  </Form.Label>
                   <Form.Control
-                    onClick={() => {
-                      setSideNavStatus('sideNavClosed')
-                    }}
-                    className={kindleFormFieldClassName}
                     type='email'
                     placeholder='Enter email'
+                    className={kindleFormFieldClassName}
                     value={kindleEmail}
-                    onChange={(e: any) => setKindleEmailAndSave(e)}
+                    onClick={() => setSideNavStatus('sideNavClosed')}
+                    onChange={(e) => setKindleEmailAndSave(e)}
                   />
                 </Form.Group>
               </div>
             </Form>
           ) : (
             <div
-              onClick={() => handleShowKindleEmailForm(true)}
               className='stickyEmailIconSide'
+              onClick={() => handleShowKindleEmailForm(true)}
             >
-              {kindleEmail}{' '}
+              {kindleEmail}
             </div>
           )}
         </div>

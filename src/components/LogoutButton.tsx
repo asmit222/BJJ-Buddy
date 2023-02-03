@@ -5,26 +5,19 @@ import Button from 'react-bootstrap/Button'
 const LogoutButton: React.FC = () => {
   const { logout, isAuthenticated } = useAuth0()
 
-  const [logoutButtonClassName, setLogoutButtonClassName] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  return (
-    isAuthenticated && (
-      <React.Fragment>
-        <Button
-          className='logoutButton'
-          variant='danger'
-          size='sm'
-          onClick={() => {
-            // localStorage.clear()
-            logout()
-            // setLogoutButtonClassName('is-loading')
-          }}
-        >
-          Log Out
-        </Button>
-      </React.Fragment>
-    )
-  )
+  const handleLogout = async () => {
+    setLoading(true)
+    await logout()
+    setLoading(false)
+  }
+
+  return isAuthenticated ? (
+    <Button variant='danger' size='sm' onClick={handleLogout} loading={loading}>
+      Log Out
+    </Button>
+  ) : null
 }
 
 export default LogoutButton
