@@ -20,3 +20,11 @@ ReactDOM.render(
   </Auth0Provider>,
   document.getElementById('app')
 )
+
+// if (caches) {
+//   // Service worker cache should be cleared with caches.delete()
+//   caches.keys().then(function (names) {
+//     for (let name of names) caches.delete(name)
+//   })
+// }
+// // window.location.reload(true)
