@@ -1,5 +1,6 @@
-import React, { useEffect, useState, lazy } from 'react'
+import React, { useState, lazy } from 'react'
 import NavBar from './components/NavBar'
+
 import Library from './views/Library'
 import Home from './views/Home'
 import { Route, Switch } from 'react-router-dom'
@@ -16,13 +17,16 @@ const App: React.FC = () => {
       <NavBar setClickedHomeIcon={setClickedHomeIcon} />
       <div id='appContainer'>
         <Switch>
-          <Route path='/Library' render={(props) => <Library user={user} />} />
+          <Route path='/Library' component={() => <Library user={user} />} />
           <Route
             path='/'
-            render={(props) => <Home clickedHomeIcon={clickedHomeIcon} />}
+            component={() => <Home clickedHomeIcon={clickedHomeIcon} />}
           />
         </Switch>
       </div>
+      <React.Suspense fallback={null}>
+        <LazyCss />
+      </React.Suspense>
     </React.Fragment>
   )
 }
