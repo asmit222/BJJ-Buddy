@@ -284,6 +284,7 @@ const Library: React.FC = () => {
       } else {
         setShow6(false)
         console.log('FAILED...')
+        alert('unexpected error')
       }
     } catch (e) {
       console.error('Error fetching book:', e)

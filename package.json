@@ -16,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "concurrently": "^6.3.0",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "emailjs-com": "^3.2.0",
     "express": "^4.17.1",
     "firebase": "^9.15.0",
@@ -54,7 +55,7 @@
     "trailingComma": "none"
   },
   "scripts": {
-    "dev": "NODE_ENV=dev parcel serve public/index.html --port 3030 --no-source-maps",
+    "dev": "cross-env NODE_ENV=dev parcel serve public/index.html --port 3030 --no-source-maps",
     "start": "parcel public/index.html --no-source-maps --port 3030",
     "prebuild": "rimraf dist",
     "build": "parcel build public/index.html --public-url ./ --no-source-maps",
