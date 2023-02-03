@@ -9,6 +9,8 @@ import axios from 'axios'
 import { addDoc, collection, getDocs } from '@firebase/firestore'
 import { db } from '../utils/firebaseConfig/firebase'
 import SideNav from '../components/SideNav.tsx'
+import LibraryTitle from '../components/LibraryTitle.tsx'
+import KindleEmailForm from '../components/KindleEmailForm.tsx'
 
 const Library: React.FC = () => {
   const { user } = useAuth0()
@@ -494,85 +496,23 @@ const Library: React.FC = () => {
 
         {/* ========================================================================== */}
 
-        <div className='libraryTitleContainer'>
-          <div
-            className='emailPicDiv'
-            style={{
-              backgroundImage: `url(${user?.picture})`,
-              backgroundPosition: 'center center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'contain'
-            }}
-          ></div>
-          <h1>Library</h1>{' '}
-          <Form className='searchBooksForm'>
-            <Form.Group className='mb-0'>
-              <Form.Control
-                onClick={() => {
-                  setSideNavStatus('sideNavClosed')
-                }}
-                type='text'
-                value={bookSearchValue}
-                onChange={(e: any) => handleSearchBooksChange(e)}
-                placeholder='Search books'
-              />
-            </Form.Group>
-          </Form>
-          {/* <i
-            onClick={() => {
-              setSideNavStatus(
-                sideNavStatus === 'sideNavOpen'
-                  ? 'sideNavClosed'
-                  : 'sideNavOpen'
-              )
-            }}
-            className='fa-solid fa-filter fa-2x'
-          ></i> */}
-          <span
-            onClick={() => {
-              setSideNavStatus(
-                sideNavStatus === 'sideNavOpen'
-                  ? 'sideNavClosed'
-                  : 'sideNavOpen'
-              )
-            }}
-            className='filterButtonSpan'
-          ></span>
-        </div>
+        <LibraryTitle
+          user={user}
+          bookSearchValue={bookSearchValue}
+          handleSearchBooksChange={handleSearchBooksChange}
+          setSideNavStatus={setSideNavStatus}
+          sideNavStatus={sideNavStatus}
+        />
 
-        <div className='kindleEmailFormContainer'>
-          {isNotValidEmail(kindleEmail) || showKindleEmailForm ? (
-            <Form className='kindleEmailAddressForm'>
-              <div className='kindleEmailAddressFormInner'>
-                <Form.Group controlId='formBasicEmail' className='mb-3'>
-                  <Form.Label className='kindleEmailAddressTitle'>
-                    <span className='higherFontWeight'>
-                      Kindle email address
-                    </span>
-                    {!isNotValidEmail(kindleEmail) && (
-                      <i className='fa-solid fa-check fa-circle-check2'></i>
-                    )}
-                  </Form.Label>
-                  <Form.Control
-                    type='email'
-                    placeholder='Enter email'
-                    className={kindleFormFieldClassName}
-                    value={kindleEmail}
-                    onClick={() => setSideNavStatus('sideNavClosed')}
-                    onChange={(e) => setKindleEmailAndSave(e)}
-                  />
-                </Form.Group>
-              </div>
-            </Form>
-          ) : (
-            <div
-              className='stickyEmailIconSide'
-              onClick={() => handleShowKindleEmailForm(true)}
-            >
-              {kindleEmail}
-            </div>
-          )}
-        </div>
+        <KindleEmailForm
+          kindleEmail={kindleEmail}
+          isNotValidEmail={isNotValidEmail}
+          showKindleEmailForm={showKindleEmailForm}
+          setSideNavStatus={setSideNavStatus}
+          setKindleEmailAndSave={setKindleEmailAndSave}
+          handleShowKindleEmailForm={handleShowKindleEmailForm}
+          kindleFormFieldClassName={kindleFormFieldClassName}
+        />
 
         <div
           onClick={() => {
