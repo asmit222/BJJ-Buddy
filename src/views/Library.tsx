@@ -1,6 +1,5 @@
-import React, { useState, useEffect, Props } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import booksObject from '../utils/books.js'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -8,22 +7,22 @@ import axios from 'axios'
 
 import { addDoc, collection, getDocs } from '@firebase/firestore'
 import { db } from '../utils/firebaseConfig/firebase'
-import SideNav from '../components/SideNav.tsx'
-import LibraryTitle from '../components/LibraryTitle.tsx'
-import KindleEmailForm from '../components/KindleEmailForm.tsx'
+import SideNav from '../components/SideNav'
+import LibraryTitle from '../components/LibraryTitle'
+import KindleEmailForm from '../components/KindleEmailForm'
 
 const Library: React.FC = () => {
   const { user } = useAuth0()
   const [userIdentifier, setUserIdentifier]: any = useState('')
-  const [data, setData] = useState([])
+  const [data, setData] = useState<any[]>([])
   const [kindleEmailFromFirestore, setKindleEmailFromFirestore] = useState('')
-  const [userData, setUserData] = useState({})
+  const [userData, setUserData] = useState<{ [key: string]: any }>({})
 
   const [showKindleEmailForm, handleShowKindleEmailForm] = useState(false)
 
   // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
   const processData = () => {
-    let tempUserData = {}
+    let tempUserData: { [key: string]: any } = {}
     let tempBookReadArr = []
 
     let mostRecentTime = 0
@@ -40,8 +39,8 @@ const Library: React.FC = () => {
           tempUserData['kindleEmail'] = dataItem.kindleEmail
         }
       }
-      if (dataItem.downloadedBefore) {
-        tempUserData['downloadedBefore'] = true
+      if (dataItem.downloadedBefore !== undefined) {
+        tempUserData['downloadedBefore'] = dataItem.downloadedBefore
       }
     }
     tempUserData['readBooks'] = tempBookReadArr
