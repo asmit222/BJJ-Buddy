@@ -49,9 +49,11 @@ self.addEventListener('fetch', function (event) {
         // Clone the response to use it multiple times
         let responseToCache = response.clone()
 
-        caches.open(CACHE_NAME).then(function (cache) {
-          cache.put(event.request, responseToCache)
-        })
+        if (event.request.url.startsWith(self.location.origin)) {
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(event.request, responseToCache)
+          })
+        }
 
         return response
       })
