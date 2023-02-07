@@ -267,6 +267,10 @@ module.exports = {
     67: {
       book: 'The 7 Habits of Highly Effective People - Stephen Covey',
       genres: ['non-fiction']
+    },
+    68: {
+      book: 'Reached - Ally Condie',
+      genres: ['fiction']
     }
   }
 }
