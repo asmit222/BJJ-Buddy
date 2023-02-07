@@ -271,6 +271,10 @@ module.exports = {
     68: {
       book: 'Reached - Ally Condie',
       genres: ['fiction']
+    },
+    69: {
+      book: 'Brave New World - Aldous Huxley',
+      genres: ['fiction']
     }
   }
 }
