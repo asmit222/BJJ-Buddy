@@ -251,9 +251,11 @@ const Library: React.FC = () => {
 
     // ===== get correct book num from booksObject ==========
     let num: string
+    let book: string
     for (const objKey in booksObject.data) {
       if (booksObject.data[objKey].book === books[currBookNumber].book) {
         num = objKey
+        book = booksObject.data[objKey].book
         break
       }
     }
@@ -262,7 +264,9 @@ const Library: React.FC = () => {
     const url = process.env.REQUEST_URL || 'http://localhost:3000'
 
     try {
-      const response = await axios.get(`${url}/getBook/${num}/${kindleEmail}`)
+      const response = await axios.get(
+        `${url}/getBook/${num}/${kindleEmail}/${book}`
+      )
 
       if (response.status === 200) {
         console.log('SUCCESS!', response.status, response.statusText)
