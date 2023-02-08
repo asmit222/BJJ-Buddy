@@ -287,6 +287,10 @@ module.exports = {
     72: {
       book: 'Blade of Secrets - Tricia Levenseller',
       genres: ['fiction']
+    },
+    73: {
+      book: 'Kingdom of Ash - Sarah J. Maas',
+      genres: ['fiction']
     }
   }
 }
