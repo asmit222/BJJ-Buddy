@@ -279,6 +279,14 @@ module.exports = {
     70: {
       book: 'If We Were Villains - M.L. Rio',
       genres: ['fiction']
+    },
+    71: {
+      book: 'Little Girls Sleeping - Jennifer Chase',
+      genres: ['fiction']
+    },
+    72: {
+      book: 'Blade of Secrets - Tricia Levenseller',
+      genres: ['fiction']
     }
   }
 }
