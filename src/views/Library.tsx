@@ -252,10 +252,12 @@ const Library: React.FC = () => {
     // ===== get correct book num from booksObject ==========
     let num: string
     let book: string
+    let filetype: string
     for (const objKey in booksObject.data) {
       if (booksObject.data[objKey].book === books[currBookNumber].book) {
         num = objKey
         book = booksObject.data[objKey].book
+        filetype = booksObject.data[objKey].filetype || 'epub'
         break
       }
     }
@@ -265,7 +267,7 @@ const Library: React.FC = () => {
 
     try {
       const response = await axios.get(
-        `${url}/getBook/${num}/${kindleEmail}/${book}`
+        `${url}/getBook/${num}/${kindleEmail}/${book}/${filetype}`
       )
 
       if (response.status === 200) {
