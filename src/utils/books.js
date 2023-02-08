@@ -275,6 +275,10 @@ module.exports = {
     69: {
       book: 'Brave New World - Aldous Huxley',
       genres: ['fiction']
+    },
+    70: {
+      book: 'If We Were Villains - M.L. Rio',
+      genres: ['fiction']
     }
   }
 }
