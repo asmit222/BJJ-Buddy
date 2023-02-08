@@ -290,7 +290,8 @@ module.exports = {
     },
     73: {
       book: 'Kingdom of Ash - Sarah J. Maas',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     }
   }
 }
