@@ -480,7 +480,7 @@ const Library: React.FC = () => {
                   variant='outline-dark'
                   className='descriptionButton'
                 >
-                  View on Goodreads
+                  view on goodreads
                 </Button>
               </a>
             </Modal.Title>
