@@ -122,7 +122,8 @@ module.exports = {
     },
     31: {
       book: "Ender's Game - Orson Scott Card",
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     32: {
       book: 'Kingdom of the Wicked - Kerri Maniscalco',
@@ -187,7 +188,8 @@ module.exports = {
     },
     47: {
       book: 'War Storm - Victoria Aveyard',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     48: {
       book: 'Warcross - Marie Lu',
@@ -199,7 +201,8 @@ module.exports = {
     },
     50: {
       book: 'Dry - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     51: {
       book: 'Matched - Ally Condie',
@@ -207,7 +210,8 @@ module.exports = {
     },
     52: {
       book: "I'm Thinking of Ending Things - Iain Reid",
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     53: {
       book: 'Broken Bonds - J. Bree',
@@ -251,15 +255,18 @@ module.exports = {
     },
     63: {
       book: 'Twilight Complete Collection - Stephenie Meyer',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     64: {
       book: 'Skyhunter - Marie Lu',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     65: {
       book: 'Roxy - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     66: {
       book: 'Rich Dad Poor Dad - Robert T. Kiyosaki',
@@ -279,7 +286,8 @@ module.exports = {
     },
     70: {
       book: 'If We Were Villains - M.L. Rio',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     71: {
       book: 'Little Girls Sleeping - Jennifer Chase',
