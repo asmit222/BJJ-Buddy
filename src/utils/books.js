@@ -174,7 +174,8 @@ module.exports = {
     },
     44: {
       book: 'Tomorrow, and Tomorrow, and Tomorrow - Gabrielle Zevin',
-      genres: ['fiction']
+      genres: ['fiction'],
+      filetype: 'pdf'
     },
     45: {
       book: 'Wait Till Helen Comes - Mary Downing Hahn',
@@ -290,11 +291,6 @@ module.exports = {
     },
     73: {
       book: 'Kingdom of Ash - Sarah J. Maas',
-      genres: ['fiction'],
-      filetype: 'pdf'
-    },
-    74: {
-      book: 'Tomorrow, and Tomorrow, and Tomorrow2 - Gabrielle Zevin',
       genres: ['fiction'],
       filetype: 'pdf'
     }
