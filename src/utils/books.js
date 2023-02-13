@@ -292,6 +292,11 @@ module.exports = {
       book: 'Kingdom of Ash - Sarah J. Maas',
       genres: ['fiction'],
       filetype: 'pdf'
+    },
+    74: {
+      book: 'Tomorrow, and Tomorrow, and Tomorrow2 - Gabrielle Zevin',
+      genres: ['fiction'],
+      filetype: 'pdf'
     }
   }
 }
