@@ -301,6 +301,21 @@ module.exports = {
       book: 'Kingdom of Ash - Sarah J. Maas',
       genres: ['fiction'],
       filetype: 'pdf'
+    },
+    74: {
+      book: 'The Almanack of Naval Ravikant: A Guide to Wealth and Happiness - Eric Jorgenson',
+      genres: ['non-fiction'],
+      filetype: 'pdf'
+    },
+    75: {
+      book: "Factfulness: Ten Reasons We're Wrong About the World - and Why Things Are Better Than You Think - Hans Rosling",
+      genres: ['non-fiction'],
+      filetype: 'pdf'
+    },
+    76: {
+      book: '$100M Offers: How To Make Offers So Good People Feel Stupid Saying No - Alex Hormozi',
+      genres: ['non-fiction'],
+      filetype: 'pdf'
     }
   }
 }
