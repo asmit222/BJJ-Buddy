@@ -292,6 +292,21 @@ module.exports = {
       book: 'Kingdom of Ash - Sarah J. Maas',
       genres: ['fiction'],
       filetype: 'pdf'
+    },
+    74: {
+      book: 'The Book on Rental Property Investing: How to Create Wealth With Intelligent Buy and Hold Real Estate Investing - Brandon Turner',
+      genres: ['non-fiction'],
+      filetype: 'pdf'
+    },
+    75: {
+      book: 'The Book on Managing Rental Properties: Find, Screen, and Manage Tenants With Fewer Headaches and Maximum Profits - Brandon Turner and Heather Turner',
+      genres: ['non-fiction'],
+      filetype: 'pdf'
+    },
+    76: {
+      book: 'Long-Distance Real Estate Investing: How to Buy, Rehab, and Manage Out-of-State Rental Properties - David Greene',
+      genres: ['non-fiction'],
+      filetype: 'pdf'
     }
   }
 }
