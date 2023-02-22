@@ -327,6 +327,7 @@ const Library: React.FC = () => {
       const num = Object.keys(booksObject.data).find(
         (objKey) => booksObject.data[objKey].book === books[key].book
       )
+
       const imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
       return (
         <span
