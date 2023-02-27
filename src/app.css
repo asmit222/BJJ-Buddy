@@ -665,12 +665,12 @@ body {
 }
 
 .descriptionBody {
-  max-height: 50vh;
+  max-height: 40vh;
   overflow-y: scroll;
 }
 
 .descriptionBody2 {
-  max-height: 45vh;
+  max-height: 35vh;
   overflow-y: scroll;
 }
 
