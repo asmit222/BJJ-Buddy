@@ -542,7 +542,7 @@ const Library: React.FC = () => {
         >
           <Modal.Header>
             <Modal.Title>
-              {`Download "${books[currBookNumber]?.book}"`}
+              {`${books[currBookNumber]?.book}`}
               <a
                 className='goodreadsLinkA'
                 href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
