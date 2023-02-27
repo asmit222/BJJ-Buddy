@@ -19,6 +19,8 @@ const Library: React.FC = () => {
   const [userData, setUserData] = useState<{ [key: string]: any }>({})
 
   const [showKindleEmailForm, handleShowKindleEmailForm] = useState(false)
+  const [currDescription, setCurrDescription] = useState('')
+  const [currRating, setCurrRating] = useState('')
 
   // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
   const processData = () => {
@@ -130,6 +132,9 @@ const Library: React.FC = () => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const handleClose3 = () => {
+    setCurrBookNumber('')
+    setCurrDescription('')
+    setCurrRating('')
     setShow3(false)
   }
   const handleClose4 = () => setShow4(false)
@@ -198,6 +203,40 @@ const Library: React.FC = () => {
       submitGetBook2(bookNum)
     }
   }
+
+  const setGoogleBooksApiInfo = () => {
+    console.log('book Num: ' + currBookNumber)
+    console.log(
+      'fetching with url: ' +
+        `https://www.googleapis.com/books/v1/volumes?q=${
+          books[currBookNumber]?.book.split('-')[0]
+        }}`
+    )
+    fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${
+        books[currBookNumber]?.book.split('-')[0]
+      }}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('book api: ' + data.items[0].volumeInfo.description)
+        if (data.items[0].volumeInfo.description) {
+          setCurrDescription(data.items[0].volumeInfo.description)
+        }
+        if (data.items[0].volumeInfo.averageRating) {
+          setCurrRating(data.items[0].volumeInfo.averageRating)
+        }
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
+  useEffect(() => {
+    if (currBookNumber) {
+      setGoogleBooksApiInfo()
+    }
+  }, [currBookNumber])
 
   const submitGetBook = (bookNum: string) => {
     setCurrBookNumber(bookNum)
@@ -303,6 +342,8 @@ const Library: React.FC = () => {
   const handleDownloadBookOnModalClose = () => {
     addBook(currBookNumber) // <-- This one actually downloads the book
     setCurrBookNumber('')
+    setCurrDescription('')
+    setCurrRating('')
     handleClose()
     handleClose3()
     setShow6(true)
@@ -467,7 +508,12 @@ const Library: React.FC = () => {
         {/* ================================================================================ */}
 
         {/* ============================ DOWNLOAD MODAL =================================== */}
-        <Modal centered show={show3} onHide={handleClose3}>
+        <Modal
+          centered
+          show={show3}
+          onHide={handleClose3}
+          className='my-modal123'
+        >
           <Modal.Header>
             <Modal.Title>
               {`Download "${books[currBookNumber]?.book}"`}
@@ -476,20 +522,37 @@ const Library: React.FC = () => {
                 href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
                 target='_blank'
               >
+                {currRating !== '' && (
+                  <span className='star-icons'>
+                    {currRating}
+                    <i className='fas fa-star fa-star10'></i>
+                  </span>
+                )}
                 <Button
                   size='sm'
                   variant='outline-dark'
                   className='descriptionButton'
                 >
-                  view on goodreads
+                  view on goodreads{' '}
                 </Button>
               </a>
             </Modal.Title>
           </Modal.Header>
-          {/* <Modal.Body className='descriptionBody'>
-    {books[currBookNumber] !== undefined &&
-      books[currBookNumber]['description']}
-  </Modal.Body> */}
+          {currDescription !== '' && (
+            <Modal.Body
+              className={`descriptionBody ${
+                currDescription !== '' ? 'show' : ''
+              }`}
+            >
+              <div className='my-modal-content123'>{currDescription}</div>
+            </Modal.Body>
+          )}{' '}
+          {currDescription === '' && (
+            <Modal.Body>
+              <i className='fas fa-spinner fa-spin fa-lg'></i>
+              <div className='my-modal-content123'>{currDescription}</div>
+            </Modal.Body>
+          )}
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
               Download

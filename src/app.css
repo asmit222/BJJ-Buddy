@@ -403,6 +403,7 @@ body {
   font-size: xx-small;
   animation: fadeIn ease 0.3s;
   font-weight: 400;
+  z-index: 5;
 }
 .ribbon:before,
 .ribbon:after {
@@ -645,7 +646,7 @@ body {
   font-size: small;
 }
 
-.froobsBooksLogo {
+.froobsBtooksLogo {
   /* height: 67px;
   width: 67px;
   margin-left: 2%;
@@ -661,4 +662,33 @@ body {
 
 .goodreadsLinkA {
   text-decoration: none;
+}
+
+.descriptionBody {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.star-icons {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 2%;
+  height: 100%;
+  color: rgb(216, 202, 13);
+}
+
+.fa-star10 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+
+  font-family: FontAwesome;
+  content: '\f005';
+  left: 0;
+  top: -10px;
+  width: 100%;
+  overflow: hidden;
+  color: rgb(226, 204, 9);
+  z-index: 5000;
+  font-size: smaller;
 }
