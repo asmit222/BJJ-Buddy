@@ -665,13 +665,52 @@ body {
 }
 
 .descriptionBody {
-  max-height: 40vh;
+  height: 0;
+  overflow: hidden;
+  animation-name: expand;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
   overflow-y: scroll;
 }
 
 .descriptionBody2 {
-  max-height: 35vh;
   overflow-y: scroll;
+
+  height: 0;
+  overflow: hidden;
+  animation-name: expand3;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  overflow-y: scroll;
+}
+
+@keyframes expand {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 40vh;
+  }
+}
+
+@keyframes expand2 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes expand3 {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 35vh;
+  }
 }
 
 .star-icons {
@@ -680,6 +719,14 @@ body {
   padding-bottom: 2%;
   height: 100%;
   color: rgb(216, 202, 13);
+
+  height: 0;
+  overflow: hidden;
+  animation-name: expand2;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  overflow-y: scroll;
 }
 
 .fa-star10 {
