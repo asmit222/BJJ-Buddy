@@ -668,7 +668,7 @@ body {
   height: 0;
   overflow: hidden;
   animation-name: expand;
-  animation-duration: 0.2s;
+  animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   overflow-y: scroll;
@@ -680,7 +680,7 @@ body {
   height: 0;
   overflow: hidden;
   animation-name: expand3;
-  animation-duration: 0.2s;
+  animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   overflow-y: scroll;
@@ -743,4 +743,8 @@ body {
   color: rgb(226, 204, 9);
   z-index: 5000;
   font-size: smaller;
+}
+
+.areYouSureModalBody {
+  border-bottom: solid 1px rgba(41, 41, 41, 0.178);
 }

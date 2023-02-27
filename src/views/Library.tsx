@@ -481,11 +481,10 @@ const Library: React.FC = () => {
           <Modal.Header closeButton>
             <Modal.Title>Are you sure?</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className='areYouSureModalBody'>
             {`It looks like you already downloaded ${
-              books[currBookNumber] !== undefined &&
-              books[currBookNumber]['book']
-            }.`}{' '}
+              books[currBookNumber]?.book ?? ''
+            }. `}
             <a
               className='goodreadsLinkA'
               href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
@@ -506,22 +505,17 @@ const Library: React.FC = () => {
               </Button>
             </a>
           </Modal.Body>
-          <div className='horizontalDivider'></div>
-          {currDescription !== '' && (
-            <Modal.Body
-              className={`descriptionBody2 ${
-                currDescription !== '' ? 'show' : ''
-              }`}
-            >
-              <div className='my-modal-content123'>{currDescription}</div>
-            </Modal.Body>
-          )}{' '}
-          {currDescription === '' && (
-            <Modal.Body>
+          <Modal.Body
+            className={`descriptionBody2 ${
+              currDescription !== '' ? 'show' : ''
+            }`}
+          >
+            {currDescription === '' ? (
               <i className='fas fa-spinner fa-spin fa-lg'></i>
+            ) : (
               <div className='my-modal-content123'>{currDescription}</div>
-            </Modal.Body>
-          )}
+            )}
+          </Modal.Body>
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
               Download again
@@ -531,6 +525,7 @@ const Library: React.FC = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+
         {/* ================================================================================ */}
 
         {/* ============================ DOWNLOAD MODAL =================================== */}
@@ -559,26 +554,22 @@ const Library: React.FC = () => {
                   variant='outline-dark'
                   className='descriptionButton'
                 >
-                  view on goodreads{' '}
+                  view on goodreads
                 </Button>
               </a>
             </Modal.Title>
           </Modal.Header>
-          {currDescription !== '' && (
-            <Modal.Body
-              className={`descriptionBody ${
-                currDescription !== '' ? 'show' : ''
-              }`}
-            >
-              <div className='my-modal-content123'>{currDescription}</div>
-            </Modal.Body>
-          )}{' '}
-          {currDescription === '' && (
-            <Modal.Body>
+          <Modal.Body
+            className={`descriptionBody ${
+              currDescription !== '' ? 'show' : ''
+            }`}
+          >
+            {currDescription === '' ? (
               <i className='fas fa-spinner fa-spin fa-lg'></i>
+            ) : (
               <div className='my-modal-content123'>{currDescription}</div>
-            </Modal.Body>
-          )}
+            )}
+          </Modal.Body>
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
               Download
