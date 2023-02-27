@@ -129,7 +129,12 @@ const Library: React.FC = () => {
   const [switchState, setSwitchState] = useState(true)
   const [switchState2, setSwitchState2] = useState(true)
 
-  const handleClose = () => setShow(false)
+  const handleClose = () => {
+    setShow(false)
+    setCurrBookNumber('')
+    setCurrDescription('')
+    setCurrRating('')
+  }
   const handleShow = () => setShow(true)
   const handleClose3 = () => {
     setCurrBookNumber('')
@@ -486,7 +491,12 @@ const Library: React.FC = () => {
               href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
               target='_blank'
             >
-              {' '}
+              {currRating !== '' && (
+                <span className='star-icons'>
+                  {currRating}
+                  <i className='fas fa-star fa-star10'></i>
+                </span>
+              )}{' '}
               <Button
                 size='sm'
                 variant='outline-dark'
@@ -496,6 +506,22 @@ const Library: React.FC = () => {
               </Button>
             </a>
           </Modal.Body>
+          <div className='horizontalDivider'></div>
+          {currDescription !== '' && (
+            <Modal.Body
+              className={`descriptionBody ${
+                currDescription !== '' ? 'show' : ''
+              }`}
+            >
+              <div className='my-modal-content123'>{currDescription}</div>
+            </Modal.Body>
+          )}{' '}
+          {currDescription === '' && (
+            <Modal.Body>
+              <i className='fas fa-spinner fa-spin fa-lg'></i>
+              <div className='my-modal-content123'>{currDescription}</div>
+            </Modal.Body>
+          )}
           <Modal.Footer>
             <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
               Download again
