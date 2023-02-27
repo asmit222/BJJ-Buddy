@@ -669,6 +669,11 @@ body {
   overflow-y: scroll;
 }
 
+.descriptionBody2 {
+  max-height: 45vh;
+  overflow-y: scroll;
+}
+
 .star-icons {
   display: flex;
   align-items: flex-end;

@@ -509,7 +509,7 @@ const Library: React.FC = () => {
           <div className='horizontalDivider'></div>
           {currDescription !== '' && (
             <Modal.Body
-              className={`descriptionBody ${
+              className={`descriptionBody2 ${
                 currDescription !== '' ? 'show' : ''
               }`}
             >
