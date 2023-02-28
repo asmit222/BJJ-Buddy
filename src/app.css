@@ -737,8 +737,8 @@ body {
   font-family: FontAwesome;
   content: '\f005';
   left: 0;
-  top: -10px;
-  width: 100%;
+  /* top: -10px; */
+  /* width: 100%; */
   overflow: hidden;
   color: rgb(226, 204, 9);
   z-index: 5000;

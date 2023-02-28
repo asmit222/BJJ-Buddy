@@ -10,6 +10,8 @@ import { db } from '../utils/firebaseConfig/firebase'
 import SideNav from '../components/SideNav'
 import LibraryTitle from '../components/LibraryTitle'
 import KindleEmailForm from '../components/KindleEmailForm'
+import AreYouSureModal from '../components/AreYouSureModal'
+import DownloadModal from '../components/DownloadModal'
 
 const Library: React.FC = () => {
   const { user } = useAuth0()
@@ -24,30 +26,31 @@ const Library: React.FC = () => {
 
   // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
   const processData = () => {
-    let tempUserData: { [key: string]: any } = {}
-    let tempBookReadArr = []
+    const tempUserData = {}
+    const tempBookReadArr = []
 
     let mostRecentTime = 0
-    for (let dataItem of data) {
+    for (const dataItem of data) {
       if (dataItem.bookRead) {
         tempBookReadArr.push(dataItem.bookRead)
       }
-      if (dataItem.kindleEmail) {
-        if (
-          dataItem.timeAdded &&
-          (mostRecentTime === 0 || Number(dataItem.timeAdded) > mostRecentTime)
-        ) {
-          mostRecentTime = Number(dataItem.timeAdded)
-          tempUserData['kindleEmail'] = dataItem.kindleEmail
-        }
+      if (
+        dataItem.kindleEmail &&
+        dataItem.timeAdded &&
+        Number(dataItem.timeAdded) > mostRecentTime
+      ) {
+        mostRecentTime = Number(dataItem.timeAdded)
+        tempUserData.kindleEmail = dataItem.kindleEmail
       }
       if (dataItem.downloadedBefore !== undefined) {
-        tempUserData['downloadedBefore'] = dataItem.downloadedBefore
+        tempUserData.downloadedBefore = dataItem.downloadedBefore
       }
     }
-    tempUserData['readBooks'] = tempBookReadArr
+
+    tempUserData.readBooks = tempBookReadArr
     setUserData(tempUserData)
   }
+
   // ============================================================================
 
   useEffect(() => {
@@ -100,14 +103,14 @@ const Library: React.FC = () => {
   // ==================================================================
 
   const sortBooksAlphabetically = () => {
-    const booksArray: Book[] = Object.values(books).sort((a, b) =>
+    const booksArray: any[] = Object.values(books).sort((a: any, b: any) =>
       a.book.toUpperCase().localeCompare(b.book.toUpperCase())
     )
 
     const newObj = booksArray.reduce((acc, book, i) => {
       acc[i] = { template: book.template, book: book.book, genres: book.genres }
       return acc
-    }, {} as { [key: string]: Book })
+    }, {} as { [key: string]: any })
 
     setBooks(newObj)
   }
@@ -117,7 +120,6 @@ const Library: React.FC = () => {
   const [currBookNumber, setCurrBookNumber] = useState('')
   const [kindleEmail, setKindleEmail] = useState('')
   const [show, setShow] = useState(false)
-  const [show2, setShow2] = useState(true)
   const [show3, setShow3] = useState(false)
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
@@ -209,32 +211,22 @@ const Library: React.FC = () => {
     }
   }
 
-  const setGoogleBooksApiInfo = () => {
-    console.log('book Num: ' + currBookNumber)
-    console.log(
-      'fetching with url: ' +
+  const setGoogleBooksApiInfo = async () => {
+    try {
+      const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${
           books[currBookNumber]?.book.split('-')[0]
-        }}`
-    )
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${
-        books[currBookNumber]?.book.split('-')[0]
-      }}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('book api: ' + data.items[0].volumeInfo.description)
-        if (data.items[0].volumeInfo.description) {
-          setCurrDescription(data.items[0].volumeInfo.description)
-        }
-        if (data.items[0].volumeInfo.averageRating) {
-          setCurrRating(data.items[0].volumeInfo.averageRating)
-        }
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+        }`
+      )
+      const data = await response.json()
+      if (data.items[0]?.volumeInfo) {
+        const { description, averageRating } = data.items[0].volumeInfo
+        if (description) setCurrDescription(description)
+        if (averageRating) setCurrRating(averageRating)
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -468,118 +460,30 @@ const Library: React.FC = () => {
               Login
             </Button>
           </Modal.Header>
-
-          {/* <Modal.Footer>
-            <Button variant='primary' onClick={handleLogin}>
-              Login
-            </Button>
-          </Modal.Footer> */}
         </Modal>
 
         {/* ============================ ALREADY DOWNLOADED MODAL ======================== */}
-        <Modal centered show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Are you sure?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className='areYouSureModalBody'>
-            {`It looks like you already downloaded ${
-              books[currBookNumber]?.book ?? ''
-            }. `}
-            <a
-              className='goodreadsLinkA'
-              href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
-              target='_blank'
-            >
-              {currRating !== '' && (
-                <span className='star-icons'>
-                  {currRating}
-                  <i className='fas fa-star fa-star10'></i>
-                </span>
-              )}{' '}
-              <Button
-                size='sm'
-                variant='outline-dark'
-                className='descriptionButton'
-              >
-                view on goodreads
-              </Button>
-            </a>
-          </Modal.Body>
-          <Modal.Body
-            className={`descriptionBody2 ${
-              currDescription !== '' ? 'show' : ''
-            }`}
-          >
-            {currDescription === '' ? (
-              <i className='fas fa-spinner fa-spin fa-lg'></i>
-            ) : (
-              <div className='my-modal-content123'>{currDescription}</div>
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
-              Download again
-            </Button>
-            <Button variant='danger' onClick={handleClose}>
-              Cancel
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
+        <AreYouSureModal
+          show={show}
+          handleClose={handleClose}
+          handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}
+          books={books}
+          currBookNumber={currBookNumber}
+          currRating={currRating}
+          currDescription={currDescription}
+        />
         {/* ================================================================================ */}
 
         {/* ============================ DOWNLOAD MODAL =================================== */}
-        <Modal
-          centered
+        <DownloadModal
           show={show3}
-          onHide={handleClose3}
-          className='my-modal123'
-        >
-          <Modal.Header>
-            <Modal.Title>
-              {`${books[currBookNumber]?.book}`}
-              <a
-                className='goodreadsLinkA'
-                href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
-                target='_blank'
-              >
-                {currRating !== '' && (
-                  <span className='star-icons'>
-                    {currRating}
-                    <i className='fas fa-star fa-star10'></i>
-                  </span>
-                )}
-                <Button
-                  size='sm'
-                  variant='outline-dark'
-                  className='descriptionButton'
-                >
-                  view on goodreads
-                </Button>
-              </a>
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body
-            className={`descriptionBody ${
-              currDescription !== '' ? 'show' : ''
-            }`}
-          >
-            {currDescription === '' ? (
-              <i className='fas fa-spinner fa-spin fa-lg'></i>
-            ) : (
-              <div className='my-modal-content123'>{currDescription}</div>
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
-              Download
-            </Button>
-            <Button variant='danger' onClick={handleClose3}>
-              Cancel
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
+          handleClose={handleClose3}
+          books={books}
+          currBookNumber={currBookNumber}
+          currRating={currRating}
+          currDescription={currDescription}
+          handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}
+        />
         {/* ========================================================================== */}
 
         <LibraryTitle
