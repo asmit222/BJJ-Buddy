@@ -31,14 +31,12 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
             href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
             target='_blank'
           >
+            <div>
+              <Button variant='warning' size='sm' className='descriptionButton'>
+                {/* view on goodreads */}
+              </Button>
+            </div>
             {currRating !== '' && <Ratings rating={Number(currRating)} />}
-            <Button
-              size='sm'
-              variant='outline-dark'
-              className='descriptionButton'
-            >
-              view on goodreads
-            </Button>
           </a>
         </Modal.Title>
       </Modal.Header>
@@ -51,11 +49,11 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
           <div className='my-modal-content123'>{currDescription}</div>
         )}
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
+      <Modal.Footer className='downloadBookModalFooter'>
+        <Button variant='success' onClick={handleDownloadBookOnModalClose}>
           Download
         </Button>
-        <Button variant='danger' onClick={handleClose}>
+        <Button variant='dark' onClick={handleClose}>
           Cancel
         </Button>
       </Modal.Footer>

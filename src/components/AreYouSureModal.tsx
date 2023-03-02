@@ -36,14 +36,12 @@ const AreYouSureModal: React.FC<Props> = ({
           target='_blank'
           rel='noopener noreferrer'
         >
+          <div>
+            <Button variant='warning' size='sm' className='descriptionButton'>
+              {/* view on goodreads */}
+            </Button>
+          </div>
           {currRating !== '' && <Ratings rating={Number(currRating)} />}
-          <Button
-            size='sm'
-            variant='outline-dark'
-            className='descriptionButton'
-          >
-            view on goodreads
-          </Button>
         </a>
       </Modal.Body>
       <Modal.Body
@@ -55,11 +53,11 @@ const AreYouSureModal: React.FC<Props> = ({
           <div className='my-modal-content123'>{currDescription}</div>
         )}
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant='dark' onClick={handleDownloadBookOnModalClose}>
+      <Modal.Footer className='downloadBookModalFooter'>
+        <Button variant='success' onClick={handleDownloadBookOnModalClose}>
           Download again
         </Button>
-        <Button variant='danger' onClick={handleClose}>
+        <Button variant='dark' onClick={handleClose}>
           Cancel
         </Button>
       </Modal.Footer>
