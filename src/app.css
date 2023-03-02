@@ -538,6 +538,11 @@ body {
   /* right: 50px; */
 }
 
+.fa-sign-in:hover,
+.fa-sign-out:hover {
+  cursor: pointer;
+}
+
 .fa-sign-in {
   color: rgb(69, 211, 69);
   padding: 0;
@@ -706,29 +711,42 @@ body {
   overflow-y: scroll;
 }
 
+.my-modal-content123 {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
 @keyframes expand {
   0% {
+    opacity: 0;
     height: 0;
   }
   100% {
+    opacity: 1;
     height: 40vh;
   }
 }
 
 @keyframes expand2 {
   0% {
+    opacity: 0;
     height: 0;
   }
   100% {
+    opacity: 1;
     height: 100%;
   }
 }
 
 @keyframes expand3 {
   0% {
+    opacity: 0;
     height: 0;
   }
   100% {
+    opacity: 1;
     height: 35vh;
   }
 }
@@ -742,7 +760,8 @@ body {
 
   height: 0;
   overflow: hidden;
-  animation-name: expand2;
+  animation-name: fadeIn;
+  height: 100%;
   animation-duration: 0.2s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
