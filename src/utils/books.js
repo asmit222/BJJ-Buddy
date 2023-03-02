@@ -104,10 +104,6 @@ module.exports = {
       book: 'Children of Time - Adrian Tchaikovsky',
       genres: ['fiction']
     },
-    // 27: {
-    //   book: 'The Kingkiller Chronicles - Patrick Rothfuss',
-    // genres: ['fiction']
-    // },
     28: {
       book: 'Unwind - Neal Shusterman',
       genres: ['fiction']

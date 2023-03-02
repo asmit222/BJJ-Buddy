@@ -7,7 +7,7 @@ interface Props {
   handleClose: () => void
   handleDownloadBookOnModalClose: () => void
   books: any[]
-  currBookNumber: number | string
+  currBookNumber: number
   currRating: string
   currDescription: string
 }
@@ -48,7 +48,7 @@ const AreYouSureModal: React.FC<Props> = ({
         className={`descriptionBody2 ${currDescription !== '' ? 'show' : ''}`}
       >
         {currDescription === '' ? (
-          <i className='fas fa-spinner fa-spin fa-lg'></i>
+          <i className='fas fa-spinner fa-spin fa-2x '></i>
         ) : (
           <div className='my-modal-content123'>{currDescription}</div>
         )}

@@ -468,7 +468,7 @@ const Library: React.FC = () => {
           handleClose={handleClose}
           handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}
           books={books}
-          currBookNumber={currBookNumber}
+          currBookNumber={Number(currBookNumber)}
           currRating={currRating}
           currDescription={currDescription}
         />
@@ -479,7 +479,7 @@ const Library: React.FC = () => {
           show={show3}
           handleClose={handleClose3}
           books={books}
-          currBookNumber={currBookNumber}
+          currBookNumber={Number(currBookNumber)}
           currRating={currRating}
           currDescription={currDescription}
           handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}

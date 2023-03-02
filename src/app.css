@@ -70,6 +70,7 @@ body {
   padding: 2%;
   animation: fadeIn ease 500ms;
   background-color: rgb(245, 245, 245) !important;
+  background-color: #f4f1ea !important;
 }
 
 .HomeContainer {
@@ -162,6 +163,7 @@ body {
   margin: 1%;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transition: 0.2s;
+  background-color: white;
 }
 
 .bookButton:hover {
@@ -477,7 +479,7 @@ body {
   z-index: 2;
 
   /* font-size: 1vw; */
-  background-color: rgb(245, 245, 245) !important;
+  background-color: white !important;
 }
 
 .sideNavClosed {
