@@ -325,8 +325,42 @@ module.exports = {
     },
     79: {
       book: 'Long-Distance Real Estate Investing: How to Buy, Rehab, and Manage Out-of-State Rental Properties - David Greene',
-      genres: ['non-fiction'],
+      genres: ['fiction'],
       filetype: 'pdf'
+    },
+    80: {
+      book: 'Whisper Series - Lynette Noni',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    81: {
+      book: 'Iron Widow - Xiran Jay Zhao',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    82: {
+      book: 'The Amulet of Samarkand - Jonathan Stroud',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    83: {
+      book: 'The House of the Scorpion - Nancy Farmer',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    84: {
+      book: 'Daughter of Smoke & Bone - Laini Taylor',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    85: {
+      book: 'A Little Life - Hanya Yanagihara',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    86: {
+      book: 'The Red Sea, The Silver Thief, The Wound of The World (Cycle of Galand books 1-3 - Edward W. Robertson)',
+      genres: ['fiction']
     }
   }
 }
