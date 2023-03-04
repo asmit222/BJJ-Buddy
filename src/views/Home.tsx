@@ -97,7 +97,7 @@ const Home: React.FC = (props) => {
           <h1 className='stepsTitle'>Getting started</h1> <span></span>
         </div>
         <p className='stepP'>
-          Add <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
+          1. Add <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
           <a
             target='_blank'
             href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H'
@@ -106,7 +106,7 @@ const Home: React.FC = (props) => {
           </a>
         </p>
         <p className='stepP'>
-          Have your{' '}
+          2. Have your{' '}
           <a
             target='_blank'
             href='https://www.lifewire.com/find-kindle-email-address-5271915'
@@ -116,6 +116,7 @@ const Home: React.FC = (props) => {
           ready
         </p>
         <p className='stepP'>
+          <span>3. </span>
           <span
             className='loginButtonSpan'
             onClick={() => {
@@ -134,7 +135,7 @@ const Home: React.FC = (props) => {
           some books!
         </p>
         <p className='stepP'>
-          Press <b>"Sync"</b> in the drop down menu on your kindle to get the
+          4. Press <b>"Sync"</b> in the drop down menu on your kindle to get the
           new books to show up (takes a min or two)
         </p>
 

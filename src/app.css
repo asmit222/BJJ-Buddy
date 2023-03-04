@@ -25,12 +25,13 @@ body {
   /* background-color: hsl(240, 11%, 15%) !important; */
   z-index: 20;
   box-shadow: none;
-  border-top: solid 1px rgba(58, 58, 58, 0.315);
+  border-top: solid 1px rgba(58, 58, 58, 0.185);
   /* background-color: rgb(250, 250, 250) !important; */
   display: flex;
   justify-content: space-around;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white !important;
+  background-color: #f4f1ea !important;
 }
 
 .navbar-toggler {
@@ -108,10 +109,11 @@ body {
   left: 0;
   height: 10%;
   width: 100vw !important;
-  border-bottom: solid 1px rgba(58, 58, 58, 0.315);
+  border-bottom: solid 1px rgba(58, 58, 58, 0.116);
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white;
+  background-color: #f4f1ea;
 }
 
 .HomeTitleContainer {
@@ -128,10 +130,11 @@ body {
   left: 0;
   height: 10%;
   width: 100vw !important;
-  border-bottom: solid 1px rgba(58, 58, 58, 0.315);
+  border-bottom: solid 1px rgba(58, 58, 58, 0.212);
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white !important;
+  background-color: #f4f1ea !important;
 }
 
 .searchBooksForm {
@@ -484,6 +487,7 @@ body {
 
   /* font-size: 1vw; */
   background-color: white !important;
+  background-color: #f4f1ea !important;
 }
 
 .sideNavClosed {
@@ -618,13 +622,13 @@ body {
 }
 
 .stepP {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-  background-color: white;
+  background-color: white; */
   border-radius: 10px;
   padding: 3%;
-  border: solid 1px rgba(0, 0, 0, 0.147);
+  /* border: solid 1px #000000; */
 }
 
 .stickyEmailIconSide {

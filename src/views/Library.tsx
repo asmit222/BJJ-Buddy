@@ -156,6 +156,10 @@ const Library: React.FC = () => {
     loginWithRedirect()
   }
 
+  const clearSearchBox = () => {
+    setBookSearchValue('')
+  }
+
   const handleSearchBooksChange = (e: {
     target: { value: React.SetStateAction<string> }
   }) => {
@@ -487,6 +491,7 @@ const Library: React.FC = () => {
         {/* ========================================================================== */}
 
         <LibraryTitle
+          clearSearchBox={clearSearchBox}
           user={user}
           bookSearchValue={bookSearchValue}
           handleSearchBooksChange={handleSearchBooksChange}

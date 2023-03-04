@@ -7,6 +7,7 @@ interface Props {
   handleSearchBooksChange: (event: FormEvent<HTMLInputElement>) => void
   setSideNavStatus: (status: string) => void
   sideNavStatus: string
+  clearSearchBox: any
 }
 
 const LibraryTitle: React.FC<Props> = ({
@@ -14,7 +15,8 @@ const LibraryTitle: React.FC<Props> = ({
   bookSearchValue,
   handleSearchBooksChange,
   setSideNavStatus,
-  sideNavStatus
+  sideNavStatus,
+  clearSearchBox
 }) => (
   <div className='libraryTitleContainer'>
     <div
@@ -26,7 +28,7 @@ const LibraryTitle: React.FC<Props> = ({
         backgroundSize: 'contain'
       }}
     ></div>
-    <h1>Library</h1>
+    <h1 onClick={clearSearchBox}>Library</h1>
     <Form className='searchBooksForm'>
       <Form.Group className='mb-0'>
         <Form.Control
