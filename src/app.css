@@ -257,6 +257,10 @@ body {
 }
 
 @media screen and (min-width: 800px) {
+  .descriptionButton {
+    max-width: 40%;
+  }
+
   .kindleEmailAddressForm {
     bottom: 100px;
   }
@@ -675,6 +679,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   width: 25vw;
+  min-height: 30px;
   /* height: 5vh; */
 }
 /* 
@@ -789,4 +794,13 @@ body {
 
 .areYouSureModalBody {
   border-bottom: solid 1px rgba(41, 41, 41, 0.178);
+}
+
+.authorText {
+  font-size: small;
+  color: #825445;
+}
+
+.bookTitleText {
+  font-weight: 600;
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import Ratings from './Ratings'
 
@@ -25,7 +25,14 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
     <Modal centered show={show} onHide={handleClose} className='my-modal123'>
       <Modal.Header>
         <Modal.Title>
-          {`${books[currBookNumber]?.book}`}
+          <div className='bookTitleText'>{`${books[currBookNumber]?.book
+            .split('-')
+            .slice(0, -1)
+            .join('-')}`}</div>
+          <div className='authorText'>{`${books[currBookNumber]?.book
+            .split('-')
+            .pop()
+            .replace(')', '')}`}</div>
           <a
             className='goodreadsLinkA'
             href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
