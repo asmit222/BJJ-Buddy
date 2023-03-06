@@ -23,6 +23,7 @@ const Library: React.FC = () => {
   const [showKindleEmailForm, handleShowKindleEmailForm] = useState(false)
   const [currDescription, setCurrDescription] = useState('')
   const [currRating, setCurrRating] = useState('')
+  const [currBookNumberActual, setCurrBookNumberActual] = useState('')
 
   // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
   const processData = () => {
@@ -207,6 +208,8 @@ const Library: React.FC = () => {
     if (!bookNumKey) {
       return
     }
+
+    setCurrBookNumberActual(bookNumKey)
 
     if (userData.readBooks?.includes(bookNumKey)) {
       submitGetBook(bookNum)
@@ -473,6 +476,7 @@ const Library: React.FC = () => {
           handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}
           books={books}
           currBookNumber={Number(currBookNumber)}
+          currBookNumberActual={Number(currBookNumberActual)}
           currRating={currRating}
           currDescription={currDescription}
         />
@@ -484,6 +488,7 @@ const Library: React.FC = () => {
           handleClose={handleClose3}
           books={books}
           currBookNumber={Number(currBookNumber)}
+          currBookNumberActual={Number(currBookNumberActual)}
           currRating={currRating}
           currDescription={currDescription}
           handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}

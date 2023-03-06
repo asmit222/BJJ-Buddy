@@ -10,6 +10,7 @@ interface DownloadModalProps {
   currBookNumber: number
   currRating: string
   currDescription: string
+  currBookNumberActual: number
 }
 
 const DownloadModal: React.FC<DownloadModalProps> = ({
@@ -18,13 +19,14 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
   handleDownloadBookOnModalClose,
   books,
   currBookNumber,
+  currBookNumberActual,
   currRating,
   currDescription
 }) => {
   return (
     <Modal centered show={show} onHide={handleClose} className='my-modal123'>
       <Modal.Header>
-        <Modal.Title>
+        <Modal.Title className='downloadModalTitle'>
           <div className='bookTitleText'>{`${books[currBookNumber]?.book
             .split('-')
             .slice(0, -1)
@@ -46,12 +48,18 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
             {currRating !== '' && <Ratings rating={Number(currRating)} />}
           </a>
         </Modal.Title>
+        <div
+          style={{
+            backgroundImage: `url(${`http://s3.amazonaws.com/froobs-kindle-books/${currBookNumberActual}.jpg`})`
+          }}
+          className='modalHeaderRightSide'
+        ></div>
       </Modal.Header>
       <Modal.Body
         className={`descriptionBody ${currDescription !== '' ? 'show' : ''}`}
       >
         {currDescription === '' ? (
-          <i className='fas fa-spinner fa-spin fa-2x '></i>
+          <i className=''></i>
         ) : (
           <div className='my-modal-content123'>{currDescription}</div>
         )}

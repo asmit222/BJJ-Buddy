@@ -10,6 +10,7 @@ interface Props {
   currBookNumber: number
   currRating: string
   currDescription: string
+  currBookNumberActual: number
 }
 
 const AreYouSureModal: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const AreYouSureModal: React.FC<Props> = ({
   handleDownloadBookOnModalClose,
   books,
   currBookNumber,
+  currBookNumberActual,
   currRating,
   currDescription
 }) => {
@@ -27,9 +29,15 @@ const AreYouSureModal: React.FC<Props> = ({
         <Modal.Title>Are you sure?</Modal.Title>
       </Modal.Header>
       <Modal.Body className='areYouSureModalBody'>
-        {`It looks like you already downloaded ${
-          books[currBookNumber]?.book ?? ''
-        }. `}
+        {`It looks like you already downloaded ${books[currBookNumber]?.book
+          .split('-')
+          .slice(0, -1)
+          .join('-')}
+        by `}{' '}
+        <span className='authorText'>{`${books[currBookNumber]?.book
+          .split('-')
+          .pop()
+          .replace(')', '')}`}</span>
         <a
           className='goodreadsLinkA'
           href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
@@ -47,8 +55,14 @@ const AreYouSureModal: React.FC<Props> = ({
       <Modal.Body
         className={`descriptionBody2 ${currDescription !== '' ? 'show' : ''}`}
       >
+        <div
+          style={{
+            backgroundImage: `url(${`http://s3.amazonaws.com/froobs-kindle-books/${currBookNumberActual}.jpg`})`
+          }}
+          className='modalHeaderRightSide areYouSureBookIcon'
+        ></div>
         {currDescription === '' ? (
-          <i className='fas fa-spinner fa-spin fa-2x '></i>
+          <i className=''></i>
         ) : (
           <div className='my-modal-content123'>{currDescription}</div>
         )}

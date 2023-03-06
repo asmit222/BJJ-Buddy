@@ -685,6 +685,7 @@ body {
   width: 25vw;
   min-height: 30px;
   /* height: 5vh; */
+  margin-top: 2%;
 }
 /* 
 .descriptionButton:hover {
@@ -766,6 +767,7 @@ body {
   display: flex;
   align-items: flex-end;
   padding-bottom: 2%;
+  padding-top: 3%;
   height: 100%;
   color: rgb(216, 202, 13);
 
@@ -777,7 +779,7 @@ body {
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
   /* overflow-y: scroll; */
-  margin-top: 2%;
+  /* margin-top: 2%; */
 }
 
 .fa-star10 {
@@ -807,4 +809,33 @@ body {
 
 .bookTitleText {
   font-weight: 600;
+}
+
+.modalHeaderRightSide {
+  width: 50%;
+  max-width: 102px !important;
+  height: 100% !important;
+
+  min-width: 102px;
+  height: 20vh;
+  max-height: 150px;
+  min-height: 135px;
+  /* background-Image: `url(${imageUrl})`; */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal-header {
+  height: 100%;
+}
+
+.areYouSureBookIcon {
+  height: 80px !important;
+  width: 40px !important;
+  margin-bottom: 3%;
+}
+
+.downloadModalTitle {
+  width: 75%;
 }
