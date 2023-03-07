@@ -59,7 +59,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
         className={`descriptionBody ${currDescription !== '' ? 'show' : ''}`}
       >
         {currDescription === '' ? (
-          <i className=''></i>
+          <i className='fa-solid fa-rotate fa-3x fa-spin'></i>
         ) : (
           <div className='my-modal-content123'>{currDescription}</div>
         )}

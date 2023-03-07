@@ -94,7 +94,7 @@ const Home: React.FC = (props) => {
         </Modal>
         <div className='HomeTitleContainer'>
           <span className='froobsBooksLogo'></span>
-          <h1 className='stepsTitle'>Getting started</h1> <span></span>
+          <h1 className='stepsTitle'>Getting started</h1>
         </div>
         <p className='stepP'>
           1. Add <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}

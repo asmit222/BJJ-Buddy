@@ -28,7 +28,9 @@ const LibraryTitle: React.FC<Props> = ({
         backgroundSize: 'contain'
       }}
     ></div>
-    <h1 onClick={clearSearchBox}>Library</h1>
+    <h1 className='LibraryTitle' onClick={clearSearchBox}>
+      Library
+    </h1>
     <Form className='searchBooksForm'>
       <Form.Group className='mb-0'>
         <Form.Control
