@@ -507,11 +507,10 @@ body {
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   /* border-right: solid rgba(0, 0, 0, 0.361) 1px; */
-  border-right: solid 1px rgba(27, 27, 27, 0.284);
+  /* border-right: solid 1px rgba(27, 27, 27, 0.284); */
   z-index: 2;
 
   /* font-size: 1vw; */
-  background-color: white !important;
   background-color: #f4f1ea !important;
 }
 
