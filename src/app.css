@@ -6,6 +6,7 @@
   align-items: center;
   position: absolute;
   bottom: 0;
+  background-color: #f4f1ea;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
