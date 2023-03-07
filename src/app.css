@@ -865,8 +865,9 @@ body {
 }
 
 .LibraryTitle {
-  font-family: 'Charm-Regular', sans-serif !important;
+  font-family: 'Quicksand-VariableFont_wght', sans-serif !important;
   /* font-size: 24px; */
+  margin-bottom: 0;
 }
 
 .searchBooksForm {
