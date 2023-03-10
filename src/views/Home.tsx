@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import NotificationButton from '../components/NotificationButton.tsx'
 
 const Home: React.FC = (props) => {
   const { user } = useAuth0()
@@ -168,6 +169,7 @@ const Home: React.FC = (props) => {
             </Form.Text>
           </Form.Group>
         </Form>
+        <NotificationButton />
         {/* <div className='horizontalDivider'></div> */}
 
         {/* <Button
