@@ -3,6 +3,9 @@ import { Button, Modal } from 'react-bootstrap'
 import Ratings from './Ratings'
 
 interface Props {
+  user: any
+  fetchData: any
+  userData: any
   show: boolean
   handleClose: () => void
   handleDownloadBookOnModalClose: () => void
@@ -14,6 +17,9 @@ interface Props {
 }
 
 const AreYouSureModal: React.FC<Props> = ({
+  user,
+  fetchData,
+  userData,
   show,
   handleClose,
   handleDownloadBookOnModalClose,
@@ -45,7 +51,7 @@ const AreYouSureModal: React.FC<Props> = ({
           rel='noopener noreferrer'
         >
           <div>
-            <Button variant='warning' size='sm' className='descriptionButton'>
+            <Button variant='light' size='sm' className='descriptionButton'>
               {/* view on goodreads */}
             </Button>
           </div>

@@ -1,10 +1,10 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
 import { Form } from 'react-bootstrap'
 
 interface Props {
   user: any
   bookSearchValue: string
-  handleSearchBooksChange: (event: FormEvent<HTMLInputElement>) => void
+  handleSearchBooksChange: React.ChangeEventHandler<HTMLInputElement>
   setSideNavStatus: (status: string) => void
   sideNavStatus: string
   clearSearchBox: any
@@ -52,4 +52,5 @@ const LibraryTitle: React.FC<Props> = ({
     ></span>
   </div>
 )
+
 export default LibraryTitle

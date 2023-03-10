@@ -88,7 +88,8 @@ body {
 }
 
 .LibraryContainer,
-.HomeContainer {
+.HomeContainer,
+.AccountContainer {
   /* display: flex; */
   width: 100%;
   height: 100%;
@@ -161,6 +162,27 @@ body {
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white !important;
   background-color: #f4f1ea !important;
+}
+
+.AccountTitleContainer {
+  padding-top: 1.75em;
+  padding-bottom: 1.75em;
+  /* margin-top: 1.5em; */
+  /* margin-top: 2%; */
+  margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10%;
+  width: 100vw !important;
+  /* border-bottom: solid 1px rgba(58, 58, 58, 0.116); */
+  z-index: 15;
+  /* background-color: rgb(245, 245, 245) !important; */
+  background-color: white;
+  background-color: #f4f1ea;
 }
 
 .searchBooksForm {
@@ -289,7 +311,8 @@ body {
   .fa-home,
   .fa-book,
   .fa-sign-in,
-  .fa-sign-out {
+  .fa-sign-out,
+  .fa-user {
     font-size: 2em;
   }
   .navbarInnerText {
@@ -298,6 +321,12 @@ body {
 
   .descriptionButton {
     max-width: 40%;
+    max-height: 50px;
+  }
+
+  .goodreadsLinkA {
+    height: 50px !important;
+    z-index: -1;
   }
 
   .kindleEmailAddressForm {
@@ -420,8 +449,6 @@ body {
   margin-bottom: 5%;
 
   background-color: #ffde59;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 3%;
   /* border: solid 1px rgba(0, 0, 0, 0.438); */
   border-radius: 10px;
@@ -470,6 +497,40 @@ body {
 }
 
 .ribbon:after {
+  left: 100%;
+}
+
+.ribbon2 {
+  margin: 0;
+  padding: 0;
+  background: #0bd30b;
+  color: rgb(0, 0, 0);
+  padding: 0.25em 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(30%) translateY(0%) rotate(45deg);
+  transform-origin: top left;
+  font-size: xx-small;
+  animation: fadeIn ease 0.3s;
+  font-weight: 500;
+  z-index: 5;
+  color: white;
+}
+.ribbon2:before,
+.ribbon2:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #0bd30b;
+}
+.ribbon2:before {
+  right: 100%;
+}
+
+.ribbon2:after {
   left: 100%;
 }
 
@@ -567,7 +628,8 @@ body {
 }
 
 .fa-home,
-.fa-book {
+.fa-book,
+.fa-user {
   color: rgb(29, 29, 29);
   padding: 0;
   display: flex;
@@ -733,6 +795,9 @@ body {
   background-color: white;
 } */
 
+.descriptionButton:active {
+  background-color: #f4f1ea !important;
+}
 .downloadBookModalFooter {
   background-color: #f4f1ea;
   border-top: solid 1px #5353532a;
@@ -890,4 +955,35 @@ body {
 .searchBooksForm {
   font-family: 'Charm-Regular', sans-serif !important;
   /* font-size: 24px; */
+}
+
+.somethingWentWrongModal {
+  background-color: rgba(255, 0, 0, 0.158);
+}
+
+.infoAsterik {
+  font-size: 1.5em;
+  color: rgb(231, 154, 12);
+}
+
+.to-read-check {
+  margin-right: 9%;
+}
+
+.to-read-button {
+  width: 50%;
+  opacity: 0.4 !important;
+  animation: fadeIn forwards 0.5s;
+}
+
+.to-read-button-yes {
+  width: 50%;
+  animation: fadeIn forwards 0.5s;
+}
+
+.userIcon {
+  height: 60px !important;
+  width: 60px !important;
+  z-index: 1;
+  border-radius: 50%;
 }

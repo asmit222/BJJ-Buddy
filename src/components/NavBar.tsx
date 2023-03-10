@@ -2,7 +2,11 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 
-const NavBar: React.FC = (props) => {
+interface NavBarProps {
+  setClickedHomeIcon: (value: boolean) => void
+}
+
+const NavBar: React.FC<NavBarProps> = ({ setClickedHomeIcon }) => {
   const { isAuthenticated, logout, loginWithRedirect } = useAuth0()
 
   return (
@@ -10,7 +14,7 @@ const NavBar: React.FC = (props) => {
       <Link style={{ textDecoration: 'none' }} to='/'>
         <div
           onClick={() => {
-            props.setClickedHomeIcon(true)
+            setClickedHomeIcon(true)
           }}
           className='navBarIconAndTextDiv'
         >
@@ -45,6 +49,14 @@ const NavBar: React.FC = (props) => {
           )}
         </span>
       </div>
+      <Link style={{ textDecoration: 'none' }} to='/Account'>
+        <div className='navBarIconAndTextDiv'>
+          <span className='navbar-brand home-title-navbar'>
+            <span className='navbarInnerText'>Account</span>
+            <i className='fa-solid fa-user fa-lg'></i>
+          </span>
+        </div>
+      </Link>
     </nav>
   )
 }

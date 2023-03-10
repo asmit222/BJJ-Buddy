@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import Ratings from './Ratings'
+import { addDoc, collection, getDocs } from '@firebase/firestore'
+import { db } from '../utils/firebaseConfig/firebase'
+import { query, where, deleteDoc, doc } from 'firebase/firestore'
 
 interface DownloadModalProps {
+  user: any
+  fetchData: any
   show: boolean
   handleClose: () => void
   handleDownloadBookOnModalClose: () => void
@@ -11,9 +16,13 @@ interface DownloadModalProps {
   currRating: string
   currDescription: string
   currBookNumberActual: number
+  userData: any
 }
 
 const DownloadModal: React.FC<DownloadModalProps> = ({
+  user,
+  fetchData,
+  userData,
   show,
   handleClose,
   handleDownloadBookOnModalClose,
@@ -23,6 +32,34 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
   currRating,
   currDescription
 }) => {
+  const handleClickToRead = async (bookNum) => {
+    try {
+      const docRef = await addDoc(collection(db, user?.sub), {
+        readingListBook: bookNum
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
+  const handleDeleteToRead = async (bookNum) => {
+    try {
+      const q = query(
+        collection(db, user?.sub),
+        where('readingListBook', '==', bookNum)
+      )
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((docSnapshot) => {
+        console.log('deleting: ' + docSnapshot.id)
+        deleteDoc(doc(db, user?.sub, docSnapshot.id))
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
   return (
     <Modal centered show={show} onHide={handleClose} className='my-modal123'>
       <Modal.Header>
@@ -41,12 +78,36 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
             target='_blank'
           >
             <div>
-              <Button variant='warning' size='sm' className='descriptionButton'>
+              <Button variant='light' size='sm' className='descriptionButton'>
                 {/* view on goodreads */}
               </Button>
             </div>
-            {currRating !== '' && <Ratings rating={Number(currRating)} />}
           </a>
+
+          {currRating !== '' && <Ratings rating={Number(currRating)} />}
+          {!userData.readingListBooks?.includes(currBookNumberActual) ? (
+            <Button
+              onClick={() => {
+                handleClickToRead(currBookNumberActual)
+              }}
+              size='sm'
+              className='to-read-button'
+              variant='dark'
+            >
+              to-read
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                handleDeleteToRead(currBookNumberActual)
+              }}
+              size='sm'
+              className='to-read-button-yes'
+              variant='success'
+            >
+              <i className='to-read-check fa-solid fa-check'></i>to-read
+            </Button>
+          )}
         </Modal.Title>
         <div
           style={{

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Home: React.FC = (props) => {
   const { user } = useAuth0()
@@ -24,9 +25,6 @@ const Home: React.FC = (props) => {
 
   const handleClose = () => setShow(false)
   const handleClose3 = () => setShow3(false)
-  const handleShow3 = () => {
-    setShow3(true)
-  }
 
   const handleBookRequestFormChange = (e) => {
     setBookRequestFormValue(e.target.value)
@@ -96,8 +94,9 @@ const Home: React.FC = (props) => {
           <span className='froobsBooksLogo'></span>
           <h1 className='stepsTitle'>Getting started</h1>
         </div>
+
         <p className='stepP'>
-          1. Add <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
+          • Add <b>froobskindlebooks@gmail.com</b> to your kindle's{' '}
           <a
             target='_blank'
             href='https://www.amazon.com/gp/help/customer/display.html?nodeId=GX9XLEVV8G4DB28H'
@@ -106,7 +105,7 @@ const Home: React.FC = (props) => {
           </a>
         </p>
         <p className='stepP'>
-          2. Have your{' '}
+          • Have your{' '}
           <a
             target='_blank'
             href='https://www.lifewire.com/find-kindle-email-address-5271915'
@@ -116,7 +115,7 @@ const Home: React.FC = (props) => {
           ready
         </p>
         <p className='stepP'>
-          <span>3. </span>
+          <span>• </span>
           <span
             className='loginButtonSpan'
             onClick={() => {
@@ -135,11 +134,11 @@ const Home: React.FC = (props) => {
           some books!
         </p>
         <p className='stepP'>
-          4. Press <b>"Sync"</b> in the drop down menu on your kindle to get the
-          new books to show up (takes a min or two)
+          <span className='infoAsterik'>*</span> Press <b>"Sync"</b> in the drop
+          down menu on your kindle to get the new books to show up (takes a min
+          or two)
         </p>
 
-        {/* <div className='horizontalDivider'></div> */}
         <Form className='requestForm'>
           <Form.Group className='mb-0'>
             <div className='requestBookButtonContainer'>
@@ -190,7 +189,6 @@ const Home: React.FC = (props) => {
             </Button>
           </Modal.Footer>
         </Modal>
-        {/* ==================================================================================== */}
       </div>
     </React.Fragment>
   )

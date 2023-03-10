@@ -29,11 +29,15 @@ const Library: React.FC = () => {
   const processData = () => {
     const tempUserData = {}
     const tempBookReadArr = []
+    const tempReadingListArr = []
 
     let mostRecentTime = 0
     for (const dataItem of data) {
       if (dataItem.bookRead) {
         tempBookReadArr.push(dataItem.bookRead)
+      }
+      if (dataItem.readingListBook) {
+        tempReadingListArr.push(dataItem.readingListBook)
       }
       if (
         dataItem.kindleEmail &&
@@ -49,6 +53,7 @@ const Library: React.FC = () => {
     }
 
     tempUserData.readBooks = tempBookReadArr
+    tempUserData.readingListBooks = tempReadingListArr
     setUserData(tempUserData)
   }
 
@@ -62,6 +67,7 @@ const Library: React.FC = () => {
 
   useEffect(() => {
     if (Object.keys(userData).length !== 0) {
+      console.log('userData: ' + JSON.stringify(userData))
       setKindleEmail(userData['kindleEmail'])
     }
   }, [userData])
@@ -125,6 +131,7 @@ const Library: React.FC = () => {
   const [show3, setShow3] = useState(false)
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
+  const [show7, setShow7] = useState(false)
   const [show6, setShow6] = useState(false)
   const [show10, setShow10] = useState(false)
   const [kindleFormFieldClassName, setKindleFormFieldClassName] = useState('')
@@ -149,6 +156,7 @@ const Library: React.FC = () => {
   const handleClose4 = () => setShow4(false)
   const handleClose5 = () => setShow5(false)
   const handleClose6 = () => setShow6(false)
+  const handleClose7 = () => setShow7(false)
   const handleClose10 = () => setShow10(false)
   const handleShow3 = () => setShow3(true)
   // ================================================================
@@ -333,11 +341,21 @@ const Library: React.FC = () => {
           }
         }
       } else {
-        setShow6(false)
-        console.log('FAILED...')
-        alert('unexpected error')
+        handleSomethingWentWrongDownloading()
       }
     } catch (e) {
+      handleSomethingWentWrongDownloading()
+    }
+  }
+
+  const handleSomethingWentWrongDownloading = (e = null) => {
+    setShow6(false)
+    setShow7(true)
+    setTimeout(() => {
+      setShow7(false)
+    }, 1500)
+    // alert('unexpected error')
+    if (e) {
       console.error('Error fetching book:', e)
     }
   }
@@ -395,6 +413,10 @@ const Library: React.FC = () => {
           }`}
           onClick={() => bookClickHandler(key)}
         >
+          {userData.readingListBooks?.includes(Number(num)) &&
+            !userData.readBooks?.includes(num) && (
+              <h4 className='ribbon2'>to-read</h4>
+            )}
           {userData.readBooks?.includes(num) && (
             <h4 className='ribbon'>Downloaded</h4>
           )}
@@ -442,6 +464,20 @@ const Library: React.FC = () => {
             <Modal.Title>Success!</Modal.Title>
           </Modal.Header>
         </Modal>
+
+        <Modal
+          className='somethingWentWrongModal'
+          centered
+          show={show7}
+          onHide={handleClose7}
+          animation={true}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>
+              Something went wrong <i className='fa-regular fa-face-frown'></i>
+            </Modal.Title>
+          </Modal.Header>
+        </Modal>
         {/* =============================================================================== */}
 
         {/* =========================== FIRST DOWNLOAD MODAL ======================================= */}
@@ -472,6 +508,9 @@ const Library: React.FC = () => {
 
         {/* ============================ ALREADY DOWNLOADED MODAL ======================== */}
         <AreYouSureModal
+          user={user}
+          fetchData={fetchData}
+          userData={userData}
           show={show}
           handleClose={handleClose}
           handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}
@@ -485,6 +524,9 @@ const Library: React.FC = () => {
 
         {/* ============================ DOWNLOAD MODAL =================================== */}
         <DownloadModal
+          user={user}
+          fetchData={fetchData}
+          userData={userData}
           show={show3}
           handleClose={handleClose3}
           books={books}
