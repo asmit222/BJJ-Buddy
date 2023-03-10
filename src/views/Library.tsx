@@ -96,6 +96,7 @@ const Library: React.FC = () => {
   useEffect(() => {
     setUserIdentifier(user?.sub)
     console.log('user: ' + user?.sub)
+    console.log(user?.name)
     if (user?.sub !== undefined) {
       fetchData()
     }
@@ -310,7 +311,7 @@ const Library: React.FC = () => {
 
     try {
       const response = await axios.get(
-        `${url}/getBook/${num}/${kindleEmail}/${book}/${filetype}`
+        `${url}/getBook/${num}/${kindleEmail}/${book}/${filetype}/${user?.name}`
       )
 
       if (response.status === 200) {
