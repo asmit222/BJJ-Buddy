@@ -101,7 +101,7 @@ body {
 }
 
 .HomeContainer {
-  max-width: 800px;
+  max-width: 1100px;
   padding-bottom: 7em;
   padding-top: 2em;
   flex-wrap: wrap;
@@ -286,6 +286,16 @@ body {
 }
 
 @media screen and (min-width: 800px) {
+  .fa-home,
+  .fa-book,
+  .fa-sign-in,
+  .fa-sign-out {
+    font-size: 2em;
+  }
+  .navbarInnerText {
+    display: none !important;
+  }
+
   .descriptionButton {
     max-width: 40%;
   }
@@ -415,6 +425,7 @@ body {
   padding: 3%;
   /* border: solid 1px rgba(0, 0, 0, 0.438); */
   border-radius: 10px;
+  max-width: 500px;
 }
 
 .fa-copy {
@@ -708,7 +719,7 @@ body {
   border: solid #927f64 1px;
   padding: 5%;
 
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Goodreads_logo.svg/2560px-Goodreads_logo.svg.png');
+  background-image: url('https://static.wixstatic.com/media/a9ea62_4e606cabbcdb41b1925988412f4b74aa~mv2.png/v1/crop/x_0,y_63,w_481,h_118/fill/w_420,h_102,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/goodreads-logo-png-3_edited.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
