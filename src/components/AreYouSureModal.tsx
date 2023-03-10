@@ -1,6 +1,9 @@
 import React from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import Ratings from './Ratings'
+import { addDoc, collection, getDocs } from '@firebase/firestore'
+import { db } from '../utils/firebaseConfig/firebase'
+import { query, where, deleteDoc, doc } from 'firebase/firestore'
 
 interface Props {
   user: any
@@ -29,6 +32,34 @@ const AreYouSureModal: React.FC<Props> = ({
   currRating,
   currDescription
 }) => {
+  const handleClickToRead = async (bookNum) => {
+    try {
+      const docRef = await addDoc(collection(db, user?.sub), {
+        readingListBook: bookNum
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
+  const handleDeleteToRead = async (bookNum) => {
+    try {
+      const q = query(
+        collection(db, user?.sub),
+        where('readingListBook', '==', bookNum)
+      )
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((docSnapshot) => {
+        console.log('deleting: ' + docSnapshot.id)
+        deleteDoc(doc(db, user?.sub, docSnapshot.id))
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
   return (
     <Modal centered show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -55,8 +86,31 @@ const AreYouSureModal: React.FC<Props> = ({
               {/* view on goodreads */}
             </Button>
           </div>
-          {currRating !== '' && <Ratings rating={Number(currRating)} />}
         </a>
+        {currRating !== '' && <Ratings rating={Number(currRating)} />}
+        {!userData.readingListBooks?.includes(currBookNumberActual) ? (
+          <Button
+            onClick={() => {
+              handleClickToRead(currBookNumberActual)
+            }}
+            size='sm'
+            className='to-read-button'
+            variant='dark'
+          >
+            to-read
+          </Button>
+        ) : (
+          <Button
+            onClick={() => {
+              handleDeleteToRead(currBookNumberActual)
+            }}
+            size='sm'
+            className='to-read-button-yes'
+            variant='success'
+          >
+            <i className='to-read-check fa-solid fa-check'></i>to-read
+          </Button>
+        )}
       </Modal.Body>
       <Modal.Body
         className={`descriptionBody2 ${currDescription !== '' ? 'show' : ''}`}

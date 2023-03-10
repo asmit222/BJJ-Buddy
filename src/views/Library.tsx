@@ -415,7 +415,7 @@ const Library: React.FC = () => {
         >
           {userData.readingListBooks?.includes(Number(num)) &&
             !userData.readBooks?.includes(num) && (
-              <h4 className='ribbon2'>to-read</h4>
+              <h4 className='ribbon2'>To-Read</h4>
             )}
           {userData.readBooks?.includes(num) && (
             <h4 className='ribbon'>Downloaded</h4>

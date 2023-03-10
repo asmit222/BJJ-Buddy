@@ -32,6 +32,14 @@ const NavBar: React.FC<NavBarProps> = ({ setClickedHomeIcon }) => {
           </span>
         </div>
       </Link>
+      <Link style={{ textDecoration: 'none' }} to='/Account'>
+        <div className='navBarIconAndTextDiv'>
+          <span className='navbar-brand home-title-navbar'>
+            <span className='navbarInnerText'>Account</span>
+            <i className='fa-solid fa-user fa-lg'></i>
+          </span>
+        </div>
+      </Link>
       <div className='navBarIconAndTextDiv'>
         <span className='navbar-brand home-title-navbar'>
           {isAuthenticated ? (
@@ -49,14 +57,6 @@ const NavBar: React.FC<NavBarProps> = ({ setClickedHomeIcon }) => {
           )}
         </span>
       </div>
-      <Link style={{ textDecoration: 'none' }} to='/Account'>
-        <div className='navBarIconAndTextDiv'>
-          <span className='navbar-brand home-title-navbar'>
-            <span className='navbarInnerText'>Account</span>
-            <i className='fa-solid fa-user fa-lg'></i>
-          </span>
-        </div>
-      </Link>
     </nav>
   )
 }
