@@ -321,6 +321,11 @@ body {
     bottom: 100px !important;
     font-size: large !important;
   }
+
+  .bookButton {
+    width: 165px;
+    height: 250px !important;
+  }
 }
 
 .requestBookButtonContainer {

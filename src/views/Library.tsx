@@ -380,7 +380,7 @@ const Library: React.FC = () => {
           style={{
             minWidth: '102px',
             height: '20vh',
-            maxHeight: '150px',
+            maxHeight: '300px',
             minHeight: '135px',
             backgroundImage: `url(${imageUrl})`,
             backgroundPosition: 'center center',

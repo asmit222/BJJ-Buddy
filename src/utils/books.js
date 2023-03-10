@@ -361,6 +361,44 @@ module.exports = {
     86: {
       book: 'The Red Sea, The Silver Thief, The Wound of The World (Cycle of Galand books 1-3 - Edward W. Robertson)',
       genres: ['fiction']
+    },
+    87: {
+      book: "Can't Hurt Me: Master Your Mind and Defy the Odds - David Goggins",
+      genres: ['non-fiction'],
+      filetype: 'pdf'
+    },
+    88: {
+      book: "The Cuckoo's Calling - Robert Galbraith",
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    89: {
+      book: 'Skyward - Brandon Sanderson',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    90: {
+      book: 'The Name of the Wind - Patrick Rothfuss',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    91: {
+      book: 'A Darker Shade of Magic - V.E. Schwab',
+      genres: ['fiction']
+    },
+    92: {
+      book: 'The Charm Offensive - Alison Cochrun',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    93: {
+      book: 'A Man Called Ove - Fredrik Backman',
+      genres: ['fiction']
+    },
+    94: {
+      book: 'King of Scars - Leigh Bardugo',
+      genres: ['fiction'],
+      filetype: 'pdf'
     }
   }
 }
