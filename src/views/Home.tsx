@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-import NotificationButton from '../components/NotificationButton.tsx'
 
 const Home: React.FC = (props) => {
   const { user } = useAuth0()
@@ -169,30 +168,6 @@ const Home: React.FC = (props) => {
             </Form.Text>
           </Form.Group>
         </Form>
-        <NotificationButton />
-        {/* <div className='horizontalDivider'></div> */}
-
-        {/* <Button
-          className='donateButton'
-          onClick={handleShow3}
-          variant='warning'
-          size='sm'
-        >
-          Donate with Bitcoin
-        </Button> */}
-
-        {/* {isAuthenticated && (
-          <Button
-            onClick={() => {
-              logout()
-            }}
-            className='logoutButtonNextToDonate'
-            variant='danger'
-            size='sm'
-          >
-            Logout
-          </Button>
-        )} */}
 
         <Modal fullscreen={true} centered show={show3} onHide={handleClose3}>
           <Modal.Body className='venmoModalBody'>
