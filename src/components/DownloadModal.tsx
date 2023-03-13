@@ -4,6 +4,7 @@ import Ratings from './Ratings'
 import { addDoc, collection, getDocs } from '@firebase/firestore'
 import { db } from '../utils/firebaseConfig/firebase'
 import { query, where, deleteDoc, doc } from 'firebase/firestore'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 interface DownloadModalProps {
   user: any
@@ -43,11 +44,39 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
     }
   }
 
+  const handleClickRead = async (bookNum) => {
+    try {
+      const docRef = await addDoc(collection(db, user?.sub), {
+        readBook: bookNum
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
   const handleDeleteToRead = async (bookNum) => {
     try {
       const q = query(
         collection(db, user?.sub),
         where('readingListBook', '==', bookNum)
+      )
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((docSnapshot) => {
+        console.log('deleting: ' + docSnapshot.id)
+        deleteDoc(doc(db, user?.sub, docSnapshot.id))
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
+  const handleDeleteRead = async (bookNum) => {
+    try {
+      const q = query(
+        collection(db, user?.sub),
+        where('readBook', '==', bookNum)
       )
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((docSnapshot) => {
@@ -85,7 +114,64 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
           </a>
 
           {currRating !== '' && <Ratings rating={Number(currRating)} />}
-          {!userData.readingListBooks?.includes(currBookNumberActual) ? (
+
+          <Dropdown className='shelvesDropDown'>
+            <Dropdown.Toggle variant='success' id='dropdown-basic'>
+              Add to Shelf
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {!userData.readingListBooks?.includes(currBookNumberActual) ? (
+                <Dropdown.Item
+                  onClick={() => {
+                    handleClickToRead(currBookNumberActual)
+                  }}
+                  size='sm'
+                  // className='to-read-button'
+                  variant='dark'
+                >
+                  To-Read
+                </Dropdown.Item>
+              ) : (
+                <Dropdown.Item
+                  onClick={() => {
+                    handleDeleteToRead(currBookNumberActual)
+                  }}
+                  size='sm'
+                  // className='to-read-button-yes'
+                  variant='success'
+                >
+                  <i className='to-read-check fa-solid fa-check'></i>To-Read
+                </Dropdown.Item>
+              )}
+
+              {!userData.shelfReadBooks?.includes(currBookNumberActual) ? (
+                <Dropdown.Item
+                  onClick={() => {
+                    handleClickRead(currBookNumberActual)
+                  }}
+                  size='sm'
+                  // className='to-read-button'
+                  variant='dark'
+                >
+                  Read
+                </Dropdown.Item>
+              ) : (
+                <Dropdown.Item
+                  onClick={() => {
+                    handleDeleteRead(currBookNumberActual)
+                  }}
+                  size='sm'
+                  // className='to-read-button-yes'
+                  variant='success'
+                >
+                  <i className='to-read-check fa-solid fa-check'></i>Read
+                </Dropdown.Item>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+
+          {/* {!userData.readingListBooks?.includes(currBookNumberActual) ? (
             <Button
               onClick={() => {
                 handleClickToRead(currBookNumberActual)
@@ -107,7 +193,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
             >
               <i className='to-read-check fa-solid fa-check'></i>to-read
             </Button>
-          )}
+          )} */}
         </Modal.Title>
         <div
           style={{

@@ -45,7 +45,7 @@ body {
   /* padding-top: 1em; */
   height: 55px;
   /* background-color: hsl(240, 11%, 15%) !important; */
-  z-index: 20;
+  z-index: 99999;
   box-shadow: none;
   /* border-top: solid 1px rgba(58, 58, 58, 0.185); */
   /* background-color: rgb(250, 250, 250) !important; */
@@ -538,6 +538,40 @@ body {
   left: 100%;
 }
 
+.ribbon3 {
+  margin: 0;
+  padding: 0;
+  background: #bd0ad4;
+  color: rgb(0, 0, 0);
+  padding: 0.25em 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(30%) translateY(0%) rotate(45deg);
+  transform-origin: top left;
+  font-size: xx-small;
+  animation: fadeIn ease 0.3s;
+  font-weight: 500;
+  z-index: 5;
+  color: white;
+}
+.ribbon3:before,
+.ribbon3:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #bd0ad4;
+}
+.ribbon3:before {
+  right: 100%;
+}
+
+.ribbon3:after {
+  left: 100%;
+}
+
 .bookCoverFroms3 {
   height: 100%;
   width: 100%;
@@ -972,6 +1006,8 @@ body {
 
 .to-read-check {
   margin-right: 9%;
+  margin-left: 0;
+  color: green;
 }
 
 .to-read-button {
@@ -990,6 +1026,7 @@ body {
   width: 60px !important;
   z-index: 1;
   border-radius: 50%;
+  border: solid 1px rgba(0, 0, 0, 0.151);
 }
 
 .toReadContainer {
@@ -1028,4 +1065,8 @@ body {
   margin: 10px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.shelvesDropDown {
+  margin-top: 2%;
 }

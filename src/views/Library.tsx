@@ -30,6 +30,7 @@ const Library: React.FC = () => {
     const tempUserData = {}
     const tempBookReadArr = []
     const tempReadingListArr = []
+    const tempReadArr = []
 
     let mostRecentTime = 0
     for (const dataItem of data) {
@@ -38,6 +39,9 @@ const Library: React.FC = () => {
       }
       if (dataItem.readingListBook) {
         tempReadingListArr.push(dataItem.readingListBook)
+      }
+      if (dataItem.readBook) {
+        tempReadArr.push(dataItem.readBook)
       }
       if (
         dataItem.kindleEmail &&
@@ -54,6 +58,7 @@ const Library: React.FC = () => {
 
     tempUserData.readBooks = tempBookReadArr
     tempUserData.readingListBooks = tempReadingListArr
+    tempUserData.shelfReadBooks = tempReadArr
     setUserData(tempUserData)
   }
 
@@ -414,11 +419,16 @@ const Library: React.FC = () => {
           onClick={() => bookClickHandler(key)}
         >
           {userData.readingListBooks?.includes(Number(num)) &&
-            !userData.readBooks?.includes(num) && (
+            !userData.readBooks?.includes(num) &&
+            !userData.shelfReadBooks?.includes(Number(num)) && (
               <h4 className='ribbon2'>To-Read</h4>
             )}
-          {userData.readBooks?.includes(num) && (
-            <h4 className='ribbon'>Downloaded</h4>
+          {userData.readBooks?.includes(num) &&
+            !userData.shelfReadBooks?.includes(Number(num)) && (
+              <h4 className='ribbon'>Downloaded</h4>
+            )}
+          {userData.shelfReadBooks?.includes(Number(num)) && (
+            <h4 className='ribbon3'>Read</h4>
           )}
         </span>
       )

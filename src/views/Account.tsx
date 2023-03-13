@@ -18,6 +18,7 @@ const Account: React.FC = (props) => {
     const tempUserData = {}
     const tempBookReadArr = []
     const tempReadingListArr = []
+    const tempReadArr = []
 
     let mostRecentTime = 0
     for (const dataItem of data) {
@@ -26,6 +27,9 @@ const Account: React.FC = (props) => {
       }
       if (dataItem.readingListBook) {
         tempReadingListArr.push(dataItem.readingListBook)
+      }
+      if (dataItem.readBook) {
+        tempReadArr.push(dataItem.readBook)
       }
       if (
         dataItem.kindleEmail &&
@@ -42,8 +46,8 @@ const Account: React.FC = (props) => {
 
     tempUserData.readBooks = tempBookReadArr
     tempUserData.readingListBooks = tempReadingListArr
+    tempUserData.shelfReadBooks = tempReadArr
     setUserData(tempUserData)
-    console.log(userData)
   }
 
   const fetchData = async () => {
@@ -154,15 +158,67 @@ const Account: React.FC = (props) => {
       )
     })
 
+  const readBookButtons = Object.keys(books)
+    .filter((key) => {
+      const num = Object.keys(booksObject.data).find(
+        (objKey) => booksObject.data[objKey].book === books[key].book
+      )
+      if (userData.shelfReadBooks?.includes(num)) {
+        console.log(userData.shelfReadBooks, num)
+      }
+      return userData.shelfReadBooks?.includes(Number(num))
+    })
+    .map((key) => {
+      const num = Object.keys(booksObject.data).find(
+        (objKey) => booksObject.data[objKey].book === books[key].book
+      )
+
+      const imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
+      return (
+        <div
+          key={key}
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
+            minHeight: '150px',
+            minWidth: '100px'
+          }}
+          className={`bookButtonAccountPage`}
+          // onClick={() => bookClickHandler(key)}
+        >
+          {/* {userData.readingListBooks?.includes(Number(num)) &&
+        !userData.readBooks?.includes(num) && (
+          <h4 className='ribbon2'>to-read</h4>
+        )}
+      {userData.readBooks?.includes(num) && (
+        <h4 className='ribbon'>Downloaded</h4>
+      )} */}
+        </div>
+      )
+    })
+
   return (
     <React.Fragment>
       <div className='AccountTitleContainer'>
-        <img src={props.user?.picture} className='userIcon'></img>
+        <img
+          src={
+            props.user?.picture ||
+            'https://i.pinimg.com/originals/71/f3/51/71f3519243d136361d81df71724c60a0.png'
+          }
+          className='userIcon'
+        ></img>
       </div>
       <div className='AccountContainer'>
         <h1>To-Read:</h1>
         <div className='toReadContainer'>
           {toReadBookButtons}
+          <div className='bookButtonAccountPage'></div>
+        </div>
+        <h1>Read:</h1>
+        <div className='readContainer'>
+          {readBookButtons}
           <div className='bookButtonAccountPage'></div>
         </div>
         <h1 className='readH1'>Downloaded:</h1>
