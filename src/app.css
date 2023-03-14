@@ -1105,6 +1105,11 @@ body {
   /* text-align: center; */
 }
 
+.toReadOuterContainer:hover,
+.toReadOuterContainer2:hover {
+  cursor: pointer;
+}
+
 .fontSizeTransition {
   font-size: 3em;
   transition: font-size 2s;
@@ -1160,4 +1165,16 @@ body {
 
 .shelvesDropDown {
   margin-top: 2%;
+}
+
+.logoutButtonAccPage {
+  margin-top: 5%;
+  width: 100%;
+  max-width: 350px;
+}
+
+.logoutButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }

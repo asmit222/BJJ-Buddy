@@ -55,11 +55,41 @@ const AreYouSureModal: React.FC<Props> = ({
     }
   }
 
+  const handleClickDownloaded = async (bookNum) => {
+    let bookString = bookNum.toString()
+    try {
+      const docRef = await addDoc(collection(db, user?.sub), {
+        bookRead: bookString
+      })
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
   const handleDeleteToRead = async (bookNum) => {
     try {
       const q = query(
         collection(db, user?.sub),
         where('readingListBook', '==', bookNum)
+      )
+      const querySnapshot = await getDocs(q)
+      for (const docSnapshot of querySnapshot.docs) {
+        console.log('deleting: ' + docSnapshot.id)
+        await deleteDoc(doc(db, user?.sub, docSnapshot.id))
+      }
+      await fetchData()
+    } catch (e) {
+      console.error('Error adding document:', e)
+    }
+  }
+
+  const handleDeleteDownloaded = async (bookNum) => {
+    let bookString = bookNum.toString()
+    try {
+      const q = query(
+        collection(db, user?.sub),
+        where('bookRead', '==', bookString)
       )
       const querySnapshot = await getDocs(q)
       for (const docSnapshot of querySnapshot.docs) {
@@ -171,6 +201,30 @@ const AreYouSureModal: React.FC<Props> = ({
                 variant='success'
               >
                 <i className='to-read-check fa-solid fa-check'></i>Read
+              </Dropdown.Item>
+            )}
+
+            {!userData.readBooks?.includes(currBookNumberActual.toString()) ? (
+              <Dropdown.Item
+                onClick={() => {
+                  handleClickDownloaded(currBookNumberActual.toString())
+                }}
+                size='sm'
+                // className='to-read-button'
+                variant='dark'
+              >
+                Downloaded
+              </Dropdown.Item>
+            ) : (
+              <Dropdown.Item
+                onClick={() => {
+                  handleDeleteDownloaded(currBookNumberActual.toString())
+                }}
+                size='sm'
+                // className='to-read-button-yes'
+                variant='success'
+              >
+                <i className='to-read-check fa-solid fa-check'></i>Downloaded
               </Dropdown.Item>
             )}
           </Dropdown.Menu>

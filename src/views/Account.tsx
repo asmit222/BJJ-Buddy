@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import booksObject from '../utils/books.js'
 import { addDoc, collection, getDocs } from '@firebase/firestore'
 import { db } from '../utils/firebaseConfig/firebase'
+import LogoutButton from '../components/LogoutButton'
 
 const Account: React.FC = (props) => {
   useEffect(() => {
@@ -321,6 +322,9 @@ const Account: React.FC = (props) => {
             </div>
           </div>
         )}
+        <div className='logoutButtonContainer'>
+          <LogoutButton />
+        </div>
       </div>
     </React.Fragment>
   )

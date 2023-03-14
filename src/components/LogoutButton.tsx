@@ -14,7 +14,13 @@ const LogoutButton: React.FC = () => {
   }
 
   return isAuthenticated ? (
-    <Button variant='danger' size='sm' onClick={handleLogout} loading={loading}>
+    <Button
+      className='logoutButtonAccPage'
+      variant='danger'
+      size='sm'
+      onClick={handleLogout}
+      loading={loading}
+    >
       Log Out
     </Button>
   ) : null
