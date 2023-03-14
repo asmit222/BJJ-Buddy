@@ -156,30 +156,6 @@ const AreYouSureModal: React.FC<Props> = ({
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            {!userData.readingListBooks?.includes(currBookNumberActual) ? (
-              <Dropdown.Item
-                onClick={() => {
-                  handleClickToRead(currBookNumberActual)
-                }}
-                size='sm'
-                // className='to-read-button'
-                variant='dark'
-              >
-                To-Read
-              </Dropdown.Item>
-            ) : (
-              <Dropdown.Item
-                onClick={() => {
-                  handleDeleteToRead(currBookNumberActual)
-                }}
-                size='sm'
-                // className='to-read-button-yes'
-                variant='success'
-              >
-                <i className='to-read-check fa-solid fa-check'></i>To-Read
-              </Dropdown.Item>
-            )}
-
             {!userData.shelfReadBooks?.includes(currBookNumberActual) ? (
               <Dropdown.Item
                 onClick={() => {
@@ -201,6 +177,30 @@ const AreYouSureModal: React.FC<Props> = ({
                 variant='success'
               >
                 <i className='to-read-check fa-solid fa-check'></i>Read
+              </Dropdown.Item>
+            )}
+
+            {!userData.readingListBooks?.includes(currBookNumberActual) ? (
+              <Dropdown.Item
+                onClick={() => {
+                  handleClickToRead(currBookNumberActual)
+                }}
+                size='sm'
+                // className='to-read-button'
+                variant='dark'
+              >
+                To-Read
+              </Dropdown.Item>
+            ) : (
+              <Dropdown.Item
+                onClick={() => {
+                  handleDeleteToRead(currBookNumberActual)
+                }}
+                size='sm'
+                // className='to-read-button-yes'
+                variant='success'
+              >
+                <i className='to-read-check fa-solid fa-check'></i>To-Read
               </Dropdown.Item>
             )}
 
