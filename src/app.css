@@ -1178,3 +1178,8 @@ body {
   justify-content: center;
   width: 100%;
 }
+
+.modal-content {
+  max-height: 80vh !important;
+  margin-top: -10vh;
+}
