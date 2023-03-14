@@ -62,10 +62,10 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
         where('readingListBook', '==', bookNum)
       )
       const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((docSnapshot) => {
+      for (const docSnapshot of querySnapshot.docs) {
         console.log('deleting: ' + docSnapshot.id)
-        deleteDoc(doc(db, user?.sub, docSnapshot.id))
-      })
+        await deleteDoc(doc(db, user?.sub, docSnapshot.id))
+      }
       await fetchData()
     } catch (e) {
       console.error('Error adding document:', e)
@@ -79,10 +79,13 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
         where('readBook', '==', bookNum)
       )
       const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((docSnapshot) => {
+
+      const deletePromises = querySnapshot.docs.map((docSnapshot) => {
         console.log('deleting: ' + docSnapshot.id)
-        deleteDoc(doc(db, user?.sub, docSnapshot.id))
+        return deleteDoc(doc(db, user?.sub, docSnapshot.id))
       })
+
+      await Promise.all(deletePromises)
       await fetchData()
     } catch (e) {
       console.error('Error adding document:', e)

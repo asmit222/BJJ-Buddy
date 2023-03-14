@@ -14,6 +14,10 @@ const Account: React.FC = (props) => {
   const [userData, setUserData] = useState<{ [key: string]: any }>({})
   const [user, setUser] = useState(props.user)
 
+  const [toReadOpen, setToReadOpen] = useState(false)
+  const [downloadedOpen, setDownloadedOpen] = useState(false)
+  const [readOpen, setReadOpen] = useState(false)
+
   const processData = () => {
     const tempUserData = {}
     const tempBookReadArr = []
@@ -211,18 +215,112 @@ const Account: React.FC = (props) => {
         ></img>
       </div>
       <div className='AccountContainer'>
-        <h1>To-Read:</h1>
-        <div className='toReadContainer'>
-          {toReadBookButtons}
-          <div className='bookButtonAccountPage'></div>
+        <div className='shelvesTitleContainer'>
+          <h1>Bookshelves</h1>
         </div>
-        <h1>Read:</h1>
-        <div className='readContainer'>
-          {readBookButtons}
-          <div className='bookButtonAccountPage'></div>
-        </div>
-        <h1 className='readH1'>Downloaded:</h1>
-        <div className='readContainer'>{readBooksBookButtons}</div>
+        {readOpen && (
+          <div
+            onClick={() => {
+              setReadOpen(!readOpen)
+            }}
+            className='toReadOuterContainer'
+          >
+            <h5 className='to-read-h5'>Read</h5>
+            <i className='fa-solid fa-chevron-up'></i>
+            <div className='toReadContainer'>
+              {userData.shelfReadBooks?.length > 0 ? (
+                readBookButtons
+              ) : (
+                <span>Your Read book shelf is empty.</span>
+              )}
+              <div className='bookButtonAccountPage'></div>
+            </div>
+          </div>
+        )}
+        {!readOpen && (
+          <div
+            onClick={() => {
+              setReadOpen(!readOpen)
+            }}
+            className='toReadOuterContainer2'
+          >
+            <h5 className='to-read-h5'>Read</h5>{' '}
+            <i className='fa-solid fa-chevron-down'></i>
+            <div className='toReadContainer2'>
+              {readBookButtons}
+              <div className='bookButtonAccountPage'></div>
+            </div>
+          </div>
+        )}
+        {toReadOpen && (
+          <div
+            onClick={() => {
+              setToReadOpen(!toReadOpen)
+            }}
+            className='toReadOuterContainer'
+          >
+            <h5 className='to-read-h5'>To-Read</h5>
+            <i className='fa-solid fa-chevron-up'></i>
+            <div className='toReadContainer'>
+              {userData.readingListBooks?.length > 0 ? (
+                toReadBookButtons
+              ) : (
+                <span>Your To-Read book shelf is empty.</span>
+              )}
+              <div className='bookButtonAccountPage'></div>
+            </div>
+          </div>
+        )}
+        {!toReadOpen && (
+          <div
+            onClick={() => {
+              setToReadOpen(!toReadOpen)
+            }}
+            className='toReadOuterContainer2'
+          >
+            <h5 className='to-read-h5'>To-Read</h5>
+            <i className='fa-solid fa-chevron-down'></i>
+            <div className='toReadContainer2'>
+              {toReadBookButtons}
+              <div className='bookButtonAccountPage'></div>
+            </div>
+          </div>
+        )}
+
+        {downloadedOpen && (
+          <div
+            onClick={() => {
+              setDownloadedOpen(!downloadedOpen)
+            }}
+            className='toReadOuterContainer'
+          >
+            <h5 className='to-read-h5'>Downloaded</h5>
+            <i className='fa-solid fa-chevron-up'></i>
+            <div className='toReadContainer'>
+              {userData.readBooks?.length > 0 ? (
+                readBooksBookButtons
+              ) : (
+                <span>Your Downloaded book shelf is empty.</span>
+              )}
+              <div className='bookButtonAccountPage'></div>
+            </div>
+          </div>
+        )}
+        {!downloadedOpen && (
+          <div
+            onClick={() => {
+              setDownloadedOpen(!downloadedOpen)
+            }}
+            className='toReadOuterContainer2'
+          >
+            <h5 className='to-read-h5'>Downloaded</h5>{' '}
+            <i className='fa-solid fa-chevron-down'></i>
+            <div className='toReadContainer2'>
+              {readBooksBookButtons}
+              <div className='bookButtonAccountPage'></div>
+            </div>
+          </div>
+        )}
       </div>
     </React.Fragment>
   )

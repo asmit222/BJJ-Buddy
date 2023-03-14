@@ -438,7 +438,11 @@ const Library: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className='LibraryContainer'>
+      <div
+        className={
+          showKindleEmailForm ? 'LibraryContainer2' : 'LibraryContainer'
+        }
+      >
         <SideNav
           sideNavStatus={sideNavStatus}
           setSwitchState={setSwitchState}
