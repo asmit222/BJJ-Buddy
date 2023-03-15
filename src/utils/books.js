@@ -399,6 +399,10 @@ module.exports = {
       book: 'King of Scars - Leigh Bardugo',
       genres: ['fiction'],
       filetype: 'pdf'
+    },
+    95: {
+      book: 'Wildcard - Marie Lu',
+      genres: ['fiction']
     }
   }
 }

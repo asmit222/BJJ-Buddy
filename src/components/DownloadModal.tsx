@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import Ratings from './Ratings'
 import { addDoc, collection, getDocs } from '@firebase/firestore'
 import { db } from '../utils/firebaseConfig/firebase'
 import { query, where, deleteDoc, doc } from 'firebase/firestore'
-import Dropdown from 'react-bootstrap/Dropdown'
+import { Dropdown, Spinner } from 'react-bootstrap'
 
 interface DownloadModalProps {
   user: any
@@ -33,81 +33,50 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
   currRating,
   currDescription
 }) => {
-  const handleClickToRead = async (bookNum) => {
+  const [show9, setShow9] = useState(false)
+  const handleClose9 = () => setShow9(false)
+  const [currShelf, setCurrShelf] = useState('')
+  const [added, setAdded] = useState(true)
+  const [isDropdownLoading, setIsDropdownLoading] = useState(false)
+
+  const handleClick = async (
+    bookNum: number,
+    shelf: string,
+    field: 'bookRead' | 'bookToRead'
+  ) => {
+    setIsDropdownLoading(true)
+    setCurrShelf(shelf)
+
     try {
       const docRef = await addDoc(collection(db, user?.sub), {
-        readingListBook: bookNum
+        [field]: field === 'bookRead' ? bookNum.toString() : bookNum
       })
-      await fetchData()
+
+      await fetchData(true)
+      handleAddedToShelfModalOpenAndClose()
     } catch (e) {
       console.error('Error adding document:', e)
+    } finally {
+      setIsDropdownLoading(false)
+      setAdded(true)
     }
   }
 
-  const handleClickRead = async (bookNum) => {
-    try {
-      const docRef = await addDoc(collection(db, user?.sub), {
-        readBook: bookNum
-      })
-      await fetchData()
-    } catch (e) {
-      console.error('Error adding document:', e)
-    }
-  }
+  const handleDelete = async (
+    bookNum: number,
+    shelf: string,
+    field: 'bookRead' | 'bookToRead'
+  ) => {
+    setIsDropdownLoading(true)
+    setAdded(false)
+    setCurrShelf(shelf)
 
-  const handleClickDownloaded = async (bookNum) => {
-    let bookString = bookNum.toString()
-    try {
-      const docRef = await addDoc(collection(db, user?.sub), {
-        bookRead: bookString
-      })
-      await fetchData()
-    } catch (e) {
-      console.error('Error adding document:', e)
-    }
-  }
-
-  const handleDeleteToRead = async (bookNum) => {
     try {
       const q = query(
         collection(db, user?.sub),
-        where('readingListBook', '==', bookNum)
+        where(field, '==', field === 'bookRead' ? bookNum.toString() : bookNum)
       )
-      const querySnapshot = await getDocs(q)
-      for (const docSnapshot of querySnapshot.docs) {
-        console.log('deleting: ' + docSnapshot.id)
-        await deleteDoc(doc(db, user?.sub, docSnapshot.id))
-      }
-      await fetchData()
-    } catch (e) {
-      console.error('Error adding document:', e)
-    }
-  }
 
-  const handleDeleteDownloaded = async (bookNum) => {
-    let bookString = bookNum.toString()
-    try {
-      const q = query(
-        collection(db, user?.sub),
-        where('bookRead', '==', bookString)
-      )
-      const querySnapshot = await getDocs(q)
-      for (const docSnapshot of querySnapshot.docs) {
-        console.log('deleting: ' + docSnapshot.id)
-        await deleteDoc(doc(db, user?.sub, docSnapshot.id))
-      }
-      await fetchData()
-    } catch (e) {
-      console.error('Error adding document:', e)
-    }
-  }
-
-  const handleDeleteRead = async (bookNum) => {
-    try {
-      const q = query(
-        collection(db, user?.sub),
-        where('readBook', '==', bookNum)
-      )
       const querySnapshot = await getDocs(q)
 
       const deletePromises = querySnapshot.docs.map((docSnapshot) => {
@@ -116,169 +85,176 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
       })
 
       await Promise.all(deletePromises)
-      await fetchData()
+      await fetchData(true)
+      handleAddedToShelfModalOpenAndClose()
     } catch (e) {
-      console.error('Error adding document:', e)
+      console.error('Error deleting document:', e)
+    } finally {
+      setIsDropdownLoading(false)
     }
   }
 
+  const handleAddedToShelfModalOpenAndClose = () => {
+    setShow9(true)
+    setIsDropdownLoading(false)
+
+    setTimeout(() => {
+      setShow9(false)
+      setCurrShelf('')
+      setAdded(true)
+    }, 1500)
+  }
+
+  const renderShelfDropdownItem = (
+    shelfArray: string[] | undefined,
+    bookNum: number | string,
+    shelfName: string,
+    fieldName: string,
+    handleClick: Function,
+    handleDelete: Function,
+    buttonLabel: string,
+    checkIconClass: string
+  ) => {
+    const includesBook = shelfArray?.includes(bookNum)
+    const onClick = includesBook
+      ? () => handleDelete(bookNum, shelfName, fieldName)
+      : () => handleClick(bookNum, shelfName, fieldName)
+    const variant = includesBook ? 'success' : 'dark'
+
+    return (
+      <Dropdown.Item
+        className={shelfName !== 'Downloaded' ? 'shelfDropdownItem' : ''}
+        onClick={onClick}
+        size='sm'
+        variant={variant}
+      >
+        {includesBook && <i className={checkIconClass}></i>}
+        {buttonLabel}
+      </Dropdown.Item>
+    )
+  }
+
   return (
-    <Modal centered show={show} onHide={handleClose} className='my-modal123'>
-      <Modal.Header>
-        <Modal.Title className='downloadModalTitle'>
-          <div className='bookTitleText'>{`${books[currBookNumber]?.book
+    <React.Fragment>
+      <Modal
+        className='bookRequestModal'
+        centered
+        show={show9}
+        onHide={handleClose9}
+        animation
+      >
+        <Modal.Header>
+          <Modal.Title>{`${added ? 'Added' : 'Removed'} ${books[
+            currBookNumber
+          ]?.book
             .split('-')
             .slice(0, -1)
-            .join('-')}`}</div>
-          <div className='authorText'>{`${books[currBookNumber]?.book
-            .split('-')
-            .pop()
-            .replace(')', '')}`}</div>
-          <a
-            className='goodreadsLinkA'
-            href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
-            target='_blank'
-          >
-            <div>
-              <Button variant='light' size='sm' className='descriptionButton'>
-                {/* view on goodreads */}
-              </Button>
-            </div>
-          </a>
-
-          {currRating !== '' && <Ratings rating={Number(currRating)} />}
-
-          <Dropdown className='shelvesDropDown'>
-            <Dropdown.Toggle variant='success' id='dropdown-basic'>
-              Add to Shelf
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {!userData.shelfReadBooks?.includes(currBookNumberActual) ? (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleClickRead(currBookNumberActual)
-                  }}
-                  size='sm'
-                  // className='to-read-button'
-                  variant='dark'
-                >
-                  Read
-                </Dropdown.Item>
-              ) : (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleDeleteRead(currBookNumberActual)
-                  }}
-                  size='sm'
-                  // className='to-read-button-yes'
-                  variant='success'
-                >
-                  <i className='to-read-check fa-solid fa-check'></i>Read
-                </Dropdown.Item>
-              )}
-
-              {!userData.readingListBooks?.includes(currBookNumberActual) ? (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleClickToRead(currBookNumberActual)
-                  }}
-                  size='sm'
-                  // className='to-read-button'
-                  variant='dark'
-                >
-                  To-Read
-                </Dropdown.Item>
-              ) : (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleDeleteToRead(currBookNumberActual)
-                  }}
-                  size='sm'
-                  // className='to-read-button-yes'
-                  variant='success'
-                >
-                  <i className='to-read-check fa-solid fa-check'></i>To-Read
-                </Dropdown.Item>
-              )}
-
-              {!userData.readBooks?.includes(
-                currBookNumberActual.toString()
-              ) ? (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleClickDownloaded(currBookNumberActual.toString())
-                  }}
-                  size='sm'
-                  // className='to-read-button'
-                  variant='dark'
-                >
-                  Downloaded
-                </Dropdown.Item>
-              ) : (
-                <Dropdown.Item
-                  onClick={() => {
-                    handleDeleteDownloaded(currBookNumberActual.toString())
-                  }}
-                  size='sm'
-                  // className='to-read-button-yes'
-                  variant='success'
-                >
-                  <i className='to-read-check fa-solid fa-check'></i>Downloaded
-                </Dropdown.Item>
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-
-          {/* {!userData.readingListBooks?.includes(currBookNumberActual) ? (
-            <Button
-              onClick={() => {
-                handleClickToRead(currBookNumberActual)
-              }}
-              size='sm'
-              className='to-read-button'
-              variant='dark'
+            .join('-')} ${added ? 'to' : 'from'} ${currShelf}`}</Modal.Title>
+        </Modal.Header>
+      </Modal>
+      <Modal centered show={show} onHide={handleClose} className='my-modal123'>
+        <Modal.Header>
+          <Modal.Title className='downloadModalTitle'>
+            <div className='bookTitleText'>{`${books[currBookNumber]?.book
+              .split('-')
+              .slice(0, -1)
+              .join('-')}`}</div>
+            <div className='authorText'>{`${books[currBookNumber]?.book
+              .split('-')
+              .pop()
+              .replace(')', '')}`}</div>
+            <a
+              className='goodreadsLinkA'
+              href={`http://www.google.com/search?q=goodreads ${books[currBookNumber]?.book}`}
+              target='_blank'
             >
-              to-read
-            </Button>
+              <div>
+                <Button variant='light' size='sm' className='descriptionButton'>
+                  {/* view on goodreads */}
+                </Button>
+              </div>
+            </a>
+            {currRating !== '' && <Ratings rating={Number(currRating)} />}
+            <Dropdown className='shelvesDropDown'>
+              <Dropdown.Toggle
+                variant='success'
+                id='dropdown-basic'
+                disabled={isDropdownLoading}
+              >
+                {isDropdownLoading ? (
+                  <>
+                    <Spinner
+                      animation='border'
+                      size='sm'
+                      role='status'
+                      aria-hidden='true'
+                    />{' '}
+                    Loading
+                  </>
+                ) : (
+                  'Add to Shelf'
+                )}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {renderShelfDropdownItem(
+                  userData.shelfReadBooks,
+                  currBookNumberActual,
+                  'Read',
+                  'readBook',
+                  handleClick,
+                  handleDelete,
+                  'Read',
+                  'to-read-check fa-solid fa-check'
+                )}
+                {renderShelfDropdownItem(
+                  userData.readingListBooks,
+                  currBookNumberActual,
+                  'To-Read',
+                  'readingListBook',
+                  handleClick,
+                  handleDelete,
+                  'To-Read',
+                  'to-read-check fa-solid fa-check'
+                )}
+                {renderShelfDropdownItem(
+                  userData.readBooks,
+                  currBookNumberActual.toString(),
+                  'Downloaded',
+                  'bookRead',
+                  handleClick,
+                  handleDelete,
+                  'Downloaded',
+                  'to-read-check fa-solid fa-check'
+                )}
+              </Dropdown.Menu>
+            </Dropdown>
+          </Modal.Title>
+          <div
+            style={{
+              backgroundImage: `url(${`http://s3.amazonaws.com/froobs-kindle-books/${currBookNumberActual}.jpg`})`
+            }}
+            className='modalHeaderRightSide'
+          ></div>
+        </Modal.Header>
+        <Modal.Body
+          className={`descriptionBody ${currDescription !== '' ? 'show' : ''}`}
+        >
+          {currDescription === '' ? (
+            <i className='fa-solid fa-rotate fa-3x fa-spin'></i>
           ) : (
-            <Button
-              onClick={() => {
-                handleDeleteToRead(currBookNumberActual)
-              }}
-              size='sm'
-              className='to-read-button-yes'
-              variant='success'
-            >
-              <i className='to-read-check fa-solid fa-check'></i>to-read
-            </Button>
-          )} */}
-        </Modal.Title>
-        <div
-          style={{
-            backgroundImage: `url(${`http://s3.amazonaws.com/froobs-kindle-books/${currBookNumberActual}.jpg`})`
-          }}
-          className='modalHeaderRightSide'
-        ></div>
-      </Modal.Header>
-      <Modal.Body
-        className={`descriptionBody ${currDescription !== '' ? 'show' : ''}`}
-      >
-        {currDescription === '' ? (
-          <i className='fa-solid fa-rotate fa-3x fa-spin'></i>
-        ) : (
-          <div className='my-modal-content123'>{currDescription}</div>
-        )}
-      </Modal.Body>
-      <Modal.Footer className='downloadBookModalFooter'>
-        <Button variant='success' onClick={handleDownloadBookOnModalClose}>
-          Download
-        </Button>
-        <Button variant='dark' onClick={handleClose}>
-          Cancel
-        </Button>
-      </Modal.Footer>
-    </Modal>
+            <div className='my-modal-content123'>{currDescription}</div>
+          )}
+        </Modal.Body>
+        <Modal.Footer className='downloadBookModalFooter'>
+          <Button variant='success' onClick={handleDownloadBookOnModalClose}>
+            Download
+          </Button>
+          <Button variant='dark' onClick={handleClose}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </React.Fragment>
   )
 }
 

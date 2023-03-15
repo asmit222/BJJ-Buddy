@@ -27,38 +27,38 @@ const Library: React.FC = () => {
 
   // ================= PROCESS DATA TO ORGANIZE INTO ONE OBJ ====================
   const processData = () => {
-    const tempUserData = {}
-    const tempBookReadArr = []
-    const tempReadingListArr = []
-    const tempReadArr = []
+    const tempUserData = data.reduce(
+      (acc, dataItem) => {
+        if (dataItem.bookRead) {
+          acc.readBooks.push(dataItem.bookRead)
+        }
+        if (dataItem.readingListBook) {
+          acc.readingListBooks.push(dataItem.readingListBook)
+        }
+        if (dataItem.readBook) {
+          acc.shelfReadBooks.push(dataItem.readBook)
+        }
+        if (
+          dataItem.kindleEmail &&
+          dataItem.timeAdded &&
+          Number(dataItem.timeAdded) > acc.mostRecentTime
+        ) {
+          acc.mostRecentTime = Number(dataItem.timeAdded)
+          acc.kindleEmail = dataItem.kindleEmail
+        }
+        if (dataItem.downloadedBefore !== undefined) {
+          acc.downloadedBefore = dataItem.downloadedBefore
+        }
+        return acc
+      },
+      {
+        readBooks: [],
+        readingListBooks: [],
+        shelfReadBooks: [],
+        mostRecentTime: 0
+      }
+    )
 
-    let mostRecentTime = 0
-    for (const dataItem of data) {
-      if (dataItem.bookRead) {
-        tempBookReadArr.push(dataItem.bookRead)
-      }
-      if (dataItem.readingListBook) {
-        tempReadingListArr.push(dataItem.readingListBook)
-      }
-      if (dataItem.readBook) {
-        tempReadArr.push(dataItem.readBook)
-      }
-      if (
-        dataItem.kindleEmail &&
-        dataItem.timeAdded &&
-        Number(dataItem.timeAdded) > mostRecentTime
-      ) {
-        mostRecentTime = Number(dataItem.timeAdded)
-        tempUserData.kindleEmail = dataItem.kindleEmail
-      }
-      if (dataItem.downloadedBefore !== undefined) {
-        tempUserData.downloadedBefore = dataItem.downloadedBefore
-      }
-    }
-
-    tempUserData.readBooks = tempBookReadArr
-    tempUserData.readingListBooks = tempReadingListArr
-    tempUserData.shelfReadBooks = tempReadArr
     setUserData(tempUserData)
   }
 
@@ -78,13 +78,28 @@ const Library: React.FC = () => {
   }, [userData])
 
   // ============ pull down latest user data ========================
-  const fetchData = async () => {
+  const fetchData = async (forceUpdate = false) => {
     let newData = []
+    const cacheKey = `userData_${user?.sub}`
+
+    // Check if data is in cache
+    const cachedData = window.sessionStorage.getItem(cacheKey)
+    if (cachedData && !forceUpdate) {
+      console.log('Using Cached data')
+      newData = JSON.parse(cachedData)
+      setData(newData)
+      return
+    }
+
+    console.log('Not Using Cached data')
 
     try {
       const querySnapshot = await getDocs(collection(db, user?.sub))
       newData = querySnapshot.docs.map((doc) => ({ ...doc.data() }))
       setData(newData)
+
+      // Store data in cache
+      window.sessionStorage.setItem(cacheKey, JSON.stringify(newData))
     } catch (error) {
       console.error(error)
     }
@@ -144,6 +159,9 @@ const Library: React.FC = () => {
   const [sideNavStatus, setSideNavStatus] = useState<string>('sideNavClosed')
   const [switchState, setSwitchState] = useState(true)
   const [switchState2, setSwitchState2] = useState(true)
+  const [switchState3, setSwitchState3] = useState(true)
+  const [switchState4, setSwitchState4] = useState(true)
+  const [switchState5, setSwitchState5] = useState(true)
 
   const handleClose = () => {
     setShow(false)
@@ -276,7 +294,7 @@ const Library: React.FC = () => {
         kindleEmail,
         timeAdded: Date.now()
       })
-      await fetchData()
+      await fetchData(true)
     } catch (e) {
       console.error('Error adding document:', e)
     }
@@ -289,7 +307,7 @@ const Library: React.FC = () => {
           downloadedBefore: true,
           userInfo: user
         })
-        await fetchData()
+        await fetchData(true)
       } catch (e) {
         console.error('Error adding document:', e)
       }
@@ -340,7 +358,7 @@ const Library: React.FC = () => {
             const docRef = await addDoc(collection(db, user?.sub), {
               bookRead: num
             })
-            await fetchData()
+            await fetchData(true)
           } catch (e) {
             console.error('Error adding document:', e)
           }
@@ -399,38 +417,63 @@ const Library: React.FC = () => {
 
       const imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
       return (
-        <span
-          key={key}
-          style={{
-            minWidth: '102px',
-            height: '20vh',
-            maxHeight: '300px',
-            minHeight: '135px',
-            backgroundImage: `url(${imageUrl})`,
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain'
-          }}
-          className={`bookButton bookButton${num} ${
-            sideNavStatus === 'sideNavOpen'
-              ? 'bookButtonsLowOpacity'
-              : 'bookButtonsfullOpacity'
-          }`}
-          onClick={() => bookClickHandler(key)}
-        >
-          {userData.readingListBooks?.includes(Number(num)) &&
-            !userData.readBooks?.includes(num) &&
-            !userData.shelfReadBooks?.includes(Number(num)) && (
-              <h4 className='ribbon2'>To-Read</h4>
-            )}
-          {userData.readBooks?.includes(num) &&
-            !userData.shelfReadBooks?.includes(Number(num)) && (
-              <h4 className='ribbon'>Downloaded</h4>
-            )}
-          {userData.shelfReadBooks?.includes(Number(num)) && (
-            <h4 className='ribbon3'>Read</h4>
+        <React.Fragment>
+          {/* {(userData.readingListBooks?.includes(Number(num)) && switchState4) ||
+            (userData.shelfReadBooks?.includes(Number(num)) && switchState3) ||
+            (userData.readBooks?.includes(num) && switchState5) ||
+            (switchState3 && switchState4 && switchState5 && ( */}
+          {(userData.readingListBooks?.includes(Number(num)) &&
+            !switchState4 &&
+            (!userData.shelfReadBooks?.includes(Number(num)) ||
+              !switchState3) &&
+            (!userData.readBooks?.includes(num) || !switchState5)) ||
+          (userData.shelfReadBooks?.includes(Number(num)) &&
+            !switchState3 &&
+            (!userData.readingListBooks?.includes(Number(num)) ||
+              !switchState4) &&
+            (!userData.readBooks?.includes(num) || !switchState5)) ||
+          (userData.readBooks?.includes(num) &&
+            !switchState5 &&
+            (!userData.shelfReadBooks?.includes(Number(num)) ||
+              !switchState3) &&
+            (!userData.readingListBooks?.includes(Number(num)) ||
+              !switchState4)) ? (
+            <></>
+          ) : (
+            <span
+              key={key}
+              style={{
+                minWidth: '102px',
+                height: '20vh',
+                maxHeight: '300px',
+                minHeight: '135px',
+                backgroundImage: `url(${imageUrl})`,
+                backgroundPosition: 'center center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'contain'
+              }}
+              className={`bookButton bookButton${num} ${
+                sideNavStatus === 'sideNavOpen'
+                  ? 'bookButtonsLowOpacity'
+                  : 'bookButtonsfullOpacity'
+              }`}
+              onClick={() => bookClickHandler(key)}
+            >
+              {userData.readingListBooks?.includes(Number(num)) &&
+                !userData.readBooks?.includes(num) &&
+                !userData.shelfReadBooks?.includes(Number(num)) && (
+                  <h4 className='ribbon2'>To-Read</h4>
+                )}
+              {userData.readBooks?.includes(num) &&
+                !userData.shelfReadBooks?.includes(Number(num)) && (
+                  <h4 className='ribbon'>Downloaded</h4>
+                )}
+              {userData.shelfReadBooks?.includes(Number(num)) && (
+                <h4 className='ribbon3'>Read</h4>
+              )}
+            </span>
           )}
-        </span>
+        </React.Fragment>
       )
     })
 
@@ -445,10 +488,16 @@ const Library: React.FC = () => {
       >
         <SideNav
           sideNavStatus={sideNavStatus}
-          setSwitchState={setSwitchState}
-          setSwitchState2={setSwitchState2}
           switchState={switchState}
+          setSwitchState={setSwitchState}
           switchState2={switchState2}
+          setSwitchState2={setSwitchState2}
+          switchState3={switchState3}
+          setSwitchState3={setSwitchState3}
+          switchState4={switchState4}
+          setSwitchState4={setSwitchState4}
+          switchState5={switchState5}
+          setSwitchState5={setSwitchState5}
         />
 
         {/* ========================== DOWNLOADING AND SUCCESS MODALS =============================== */}
