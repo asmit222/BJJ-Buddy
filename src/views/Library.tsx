@@ -418,10 +418,6 @@ const Library: React.FC = () => {
       const imageUrl = `http://s3.amazonaws.com/froobs-kindle-books/${num}.jpg`
       return (
         <React.Fragment>
-          {/* {(userData.readingListBooks?.includes(Number(num)) && switchState4) ||
-            (userData.shelfReadBooks?.includes(Number(num)) && switchState3) ||
-            (userData.readBooks?.includes(num) && switchState5) ||
-            (switchState3 && switchState4 && switchState5 && ( */}
           {(userData.readingListBooks?.includes(Number(num)) &&
             !switchState4 &&
             (!userData.shelfReadBooks?.includes(Number(num)) ||

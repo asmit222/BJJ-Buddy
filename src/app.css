@@ -335,6 +335,18 @@ body {
   width: 40%;
 }
 
+@media screen and (max-width: 370px) {
+  .sidenav {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .sidenav {
+    width: 65%;
+  }
+}
+
 @media screen and (min-width: 800px) {
   .fa-home,
   .fa-book,
