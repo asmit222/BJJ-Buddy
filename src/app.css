@@ -1219,4 +1219,6 @@ body {
 
 .bookRequestModal .modal-content {
   background-color: #f4f1ea;
+  width: 95%;
+  margin-left: 2.5%;
 }
