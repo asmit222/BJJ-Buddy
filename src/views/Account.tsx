@@ -193,7 +193,7 @@ const Account: React.FC = (props) => {
             className='toReadOuterContainer'
           >
             <h5 className='to-read-h5'>{`${shelfTitle} (${
-              books?.length || 0
+              [...new Set(books)].length || 0
             })`}</h5>
             <i className='fa-solid fa-chevron-up'></i>
             <div className='toReadContainer'>
@@ -211,7 +211,7 @@ const Account: React.FC = (props) => {
             className='toReadOuterContainer2'
           >
             <h5 className='to-read-h5'>{`${shelfTitle} (${
-              books?.length || 0
+              [...new Set(books)].length || 0
             })`}</h5>
             <i className='fa-solid fa-chevron-down'></i>
             <div className='toReadContainer2'>

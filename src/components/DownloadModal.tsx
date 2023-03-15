@@ -247,7 +247,9 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
         </Modal.Body>
         <Modal.Footer className='downloadBookModalFooter'>
           <Button variant='success' onClick={handleDownloadBookOnModalClose}>
-            Download
+            {userData?.readBooks?.includes(currBookNumberActual.toString())
+              ? 'Download Again'
+              : 'Download'}
           </Button>
           <Button variant='dark' onClick={handleClose}>
             Cancel

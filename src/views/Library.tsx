@@ -10,7 +10,6 @@ import { db } from '../utils/firebaseConfig/firebase'
 import SideNav from '../components/SideNav'
 import LibraryTitle from '../components/LibraryTitle'
 import KindleEmailForm from '../components/KindleEmailForm'
-import AreYouSureModal from '../components/AreYouSureModal'
 import DownloadModal from '../components/DownloadModal'
 
 const Library: React.FC = () => {
@@ -147,7 +146,6 @@ const Library: React.FC = () => {
   const [books, setBooks] = useState(booksObject.data)
   const [currBookNumber, setCurrBookNumber] = useState('')
   const [kindleEmail, setKindleEmail] = useState('')
-  const [show, setShow] = useState(false)
   const [show3, setShow3] = useState(false)
   const [show4, setShow4] = useState(false)
   const [show5, setShow5] = useState(false)
@@ -169,7 +167,6 @@ const Library: React.FC = () => {
     setCurrDescription('')
     setCurrRating('')
   }
-  const handleShow = () => setShow(true)
   const handleClose3 = () => {
     setCurrBookNumber('')
     setCurrDescription('')
@@ -242,12 +239,7 @@ const Library: React.FC = () => {
     }
 
     setCurrBookNumberActual(bookNumKey)
-
-    if (userData.readBooks?.includes(bookNumKey)) {
-      submitGetBook(bookNum)
-    } else {
-      submitGetBook2(bookNum)
-    }
+    submitGetBook2(bookNum)
   }
 
   const setGoogleBooksApiInfo = async () => {
@@ -273,11 +265,6 @@ const Library: React.FC = () => {
       setGoogleBooksApiInfo()
     }
   }, [currBookNumber])
-
-  const submitGetBook = (bookNum: string) => {
-    setCurrBookNumber(bookNum)
-    handleShow()
-  }
 
   const submitGetBook2 = (bookNum: string) => {
     setCurrBookNumber(bookNum)
@@ -564,22 +551,6 @@ const Library: React.FC = () => {
             </Button>
           </Modal.Header>
         </Modal>
-
-        {/* ============================ ALREADY DOWNLOADED MODAL ======================== */}
-        <AreYouSureModal
-          user={user}
-          fetchData={fetchData}
-          userData={userData}
-          show={show}
-          handleClose={handleClose}
-          handleDownloadBookOnModalClose={handleDownloadBookOnModalClose}
-          books={books}
-          currBookNumber={Number(currBookNumber)}
-          currBookNumberActual={Number(currBookNumberActual)}
-          currRating={currRating}
-          currDescription={currDescription}
-        />
-        {/* ================================================================================ */}
 
         {/* ============================ DOWNLOAD MODAL =================================== */}
         <DownloadModal
