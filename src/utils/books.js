@@ -403,6 +403,10 @@ module.exports = {
     95: {
       book: 'Wildcard - Marie Lu',
       genres: ['fiction']
+    },
+    96: {
+      book: 'The Legend Trilogy - Marie Lu',
+      genres: ['fiction']
     }
   }
 }
