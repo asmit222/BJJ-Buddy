@@ -2,19 +2,23 @@ module.exports = {
   data: {
     1: {
       book: 'Verity - Colleen Hoover',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: ''
     },
     2: {
       book: 'Red Queen - Victoria Aveyard',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Red Queen #1'
     },
     3: {
       book: 'A Court of Thorns and Roses - Sarah J. Maas',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'A Court of Thorns and Roses #1'
     },
     4: {
       book: 'Undivided - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Unwind Dystology #4'
     },
     5: {
       book: 'All the Light We Cannot See - Anthony Doerr',
@@ -22,7 +26,8 @@ module.exports = {
     },
     6: {
       book: 'A Shadow in the Ember - Jennifer L. Armentrout',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Flesh and Fire #1'
     },
     7: {
       book: "I'm Glad My Mom Died - Jennette McCurdy",
@@ -30,7 +35,8 @@ module.exports = {
     },
     8: {
       book: 'Six of Crows - Leigh Bardugo',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Six of Crows #1'
     },
     9: {
       book: "In Order to Live: A North Korean Girl's Journey to Freedom - Yeonmi Park",
@@ -38,7 +44,8 @@ module.exports = {
     },
     10: {
       book: 'Beartown - Fredrik Backman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Beartown #1'
     },
     11: {
       book: 'Book Lovers - Emily Henry',
@@ -46,23 +53,28 @@ module.exports = {
     },
     12: {
       book: 'Burned - P. C. Cast',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'House of Night #7'
     },
     13: {
       book: 'Daughter of the Pirate King - Tricia Levenseller',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Daughter of the Pirate King #1'
     },
     14: {
       book: 'Daughter of the Siren Queen - Tricia Levenseller',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Daughter of the Pirate King #2'
     },
     15: {
       book: 'Gild - Raven Kennedy',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Plated Prisoner #1'
     },
     16: {
       book: 'Glass Sword - Victoria Aveyard',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Red Queen #2'
     },
     17: {
       book: 'How We Became Wicked - Alexander Yates',
@@ -70,27 +82,33 @@ module.exports = {
     },
     18: {
       book: 'It Ends With Us - Colleen Hoover',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'It Ends with Us #1'
     },
     19: {
       book: 'It Starts With Us - Colleen Hoover',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'It Ends with Us #2'
     },
     20: {
       book: 'Legendborn - Tracy Deonn',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Legendborn #1'
     },
     21: {
       book: "King's Cage - Victoria Aveyard",
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Red Queen #3'
     },
     22: {
       book: 'Malice - Heather Walter',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Malice Duology #1'
     },
     23: {
       book: 'Relic and Ruin - Wendii Mclver',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Born from Chaos Saga #1'
     },
     24: {
       book: 'Reminders of Him - Colleen Hoover',
@@ -98,76 +116,94 @@ module.exports = {
     },
     25: {
       book: 'Scythe - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Arc of a Scythe #1'
     },
     26: {
       book: 'Children of Time - Adrian Tchaikovsky',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Children of Time #1'
     },
     28: {
       book: 'Unwind - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Unwind Dystology #1'
     },
     29: {
       book: 'UnWholly - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Unwind Dystology #2'
     },
     30: {
       book: 'UnSouled - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Unwind Dystology #3'
     },
     31: {
       book: "Ender's Game - Orson Scott Card",
       genres: ['fiction'],
+      series: "Ender's Saga #1",
       filetype: 'pdf'
     },
     32: {
       book: 'Kingdom of the Wicked - Kerri Maniscalco',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Kingdom of the Wicked #1'
     },
     33: {
       book: 'The Black Witch - Laurie Forest',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Black Witch Chronicles #1'
     },
     34: {
       book: 'The Iron Flower - Laurie Forest',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Black Witch Chronicles #2'
     },
     35: {
       book: 'The Demon Tide - Laurie Forest',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Black Witch Chronicles #4'
     },
     36: {
       book: 'The Prison Healer - Lynette Noni',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Prison Healer #1'
     },
     37: {
       book: 'The Ballad of Songbirds and Snakes - Suzanne Collins',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Hunger Games #0'
     },
     38: {
       book: 'The Cruel Prince - Holly Black',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Folk of the Air #1'
     },
     39: {
       book: 'The Inheritance Games - Jennifer Lynn Barnes',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Inheritance Games #1'
     },
     40: {
       book: 'The Shadow Wand - Laurie Forest',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Black Witch Chronicles #3'
     },
     41: {
       book: 'The Toll - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Arc of a Scythe #3'
     },
     42: {
       book: 'The Way of Kings - Brandon Sanderson',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Stormlight Archive #1'
     },
     43: {
       book: 'Thunderhead - Neal Shusterman',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Arc of a Scythe #2'
     },
     44: {
       book: 'Tomorrow, and Tomorrow, and Tomorrow - Gabrielle Zevin',
@@ -176,20 +212,24 @@ module.exports = {
     },
     45: {
       book: 'Wait Till Helen Comes - Mary Downing Hahn',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: ''
     },
     46: {
       book: 'Wandfasted - Laurie Forest',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Black Witch Chronicles #0.5'
     },
     47: {
       book: 'War Storm - Victoria Aveyard',
       genres: ['fiction'],
+      series: 'Red Queen #4',
       filetype: 'pdf'
     },
     48: {
       book: 'Warcross - Marie Lu',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Warcross #1'
     },
     49: {
       book: 'Where the Crawdads Sing - Delia Owens',
@@ -202,7 +242,8 @@ module.exports = {
     },
     51: {
       book: 'Matched - Ally Condie',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Matched #1'
     },
     52: {
       book: "I'm Thinking of Ending Things - Iain Reid",
@@ -211,7 +252,8 @@ module.exports = {
     },
     53: {
       book: 'Broken Bonds - J. Bree',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Bonds That Tie #1'
     },
     54: {
       book: 'Never Finished - David Goggins',
@@ -223,15 +265,18 @@ module.exports = {
     },
     56: {
       book: 'Lady Midnight - Cassandra Clare',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Dark Artifices #1'
     },
     57: {
       book: 'House of Earth and Blood - Sarah J. Maas',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Crescent City #1'
     },
     58: {
       book: 'Tithe - Holly Black',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Modern Faerie Tales #1'
     },
     59: {
       book: 'I Will Teach You to Be Rich - Ramit Sethi',
@@ -239,7 +284,8 @@ module.exports = {
     },
     60: {
       book: 'They Both Die at the End - Adam Silvera',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Death-Cast #1'
     },
     61: {
       book: 'Vespertine - Margaret Rogerson',
@@ -247,16 +293,19 @@ module.exports = {
     },
     62: {
       book: 'We Were Liars - E. Lockhart',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'We Were Liars #1'
     },
     63: {
       book: 'Twilight Complete Collection - Stephenie Meyer',
       genres: ['fiction'],
+      series: 'The Twilight Saga #1-4',
       filetype: 'pdf'
     },
     64: {
       book: 'Skyhunter - Marie Lu',
       genres: ['fiction'],
+      series: 'Skyhunter #1',
       filetype: 'pdf'
     },
     65: {
@@ -274,7 +323,8 @@ module.exports = {
     },
     68: {
       book: 'Reached - Ally Condie',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Matched #3'
     },
     69: {
       book: 'Brave New World - Aldous Huxley',
@@ -287,15 +337,18 @@ module.exports = {
     },
     71: {
       book: 'Little Girls Sleeping - Jennifer Chase',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Detective Katie Scott #1'
     },
     72: {
       book: 'Blade of Secrets - Tricia Levenseller',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Bladesmith #1'
     },
     73: {
       book: 'Kingdom of Ash - Sarah J. Maas',
       genres: ['fiction'],
+      series: 'Throne of Glass #7',
       filetype: 'pdf'
     },
     74: {
@@ -331,26 +384,31 @@ module.exports = {
     80: {
       book: 'Whisper Series - Lynette Noni',
       genres: ['fiction'],
+      series: 'Whisper #1-2',
       filetype: 'pdf'
     },
     81: {
       book: 'Iron Widow - Xiran Jay Zhao',
       genres: ['fiction'],
+      series: 'Iron Widow #1',
       filetype: 'pdf'
     },
     82: {
       book: 'The Amulet of Samarkand - Jonathan Stroud',
       genres: ['fiction'],
+      series: 'Bartimaeus #1',
       filetype: 'pdf'
     },
     83: {
       book: 'The House of the Scorpion - Nancy Farmer',
       genres: ['fiction'],
+      series: 'Matteo Alacran #1',
       filetype: 'pdf'
     },
     84: {
       book: 'Daughter of Smoke & Bone - Laini Taylor',
       genres: ['fiction'],
+      series: 'Daughter of Smoke & Bone #1',
       filetype: 'pdf'
     },
     85: {
@@ -360,7 +418,8 @@ module.exports = {
     },
     86: {
       book: 'The Red Sea, The Silver Thief, The Wound of The World (Cycle of Galand books 1-3 - Edward W. Robertson)',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'The Cycle of Galand #1-3'
     },
     87: {
       book: "Can't Hurt Me: Master Your Mind and Defy the Odds - David Goggins",
@@ -370,25 +429,30 @@ module.exports = {
     88: {
       book: "The Cuckoo's Calling - Robert Galbraith",
       genres: ['fiction'],
+      series: 'Cormoran Strike #1',
       filetype: 'pdf'
     },
     89: {
       book: 'Skyward - Brandon Sanderson',
       genres: ['fiction'],
+      series: 'Skyward #1',
       filetype: 'pdf'
     },
     90: {
       book: 'The Name of the Wind - Patrick Rothfuss',
       genres: ['fiction'],
+      series: 'The Kingkiller Chronicle #1',
       filetype: 'pdf'
     },
     91: {
       book: 'A Darker Shade of Magic - V.E. Schwab',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Shades of Magic #1'
     },
     92: {
       book: 'The Charm Offensive - Alison Cochrun',
       genres: ['fiction'],
+      series: 'The Charm Offensive #1',
       filetype: 'pdf'
     },
     93: {
@@ -398,15 +462,18 @@ module.exports = {
     94: {
       book: 'King of Scars - Leigh Bardugo',
       genres: ['fiction'],
+      series: 'King of Scars #1',
       filetype: 'pdf'
     },
     95: {
       book: 'Wildcard - Marie Lu',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Warcross #2'
     },
     96: {
       book: 'The Legend Trilogy - Marie Lu',
-      genres: ['fiction']
+      genres: ['fiction'],
+      series: 'Legend #1-3'
     }
   }
 }

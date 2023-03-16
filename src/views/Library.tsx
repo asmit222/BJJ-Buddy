@@ -135,7 +135,12 @@ const Library: React.FC = () => {
     )
 
     const newObj = booksArray.reduce((acc, book, i) => {
-      acc[i] = { template: book.template, book: book.book, genres: book.genres }
+      acc[i] = {
+        template: book.template,
+        book: book.book,
+        genres: book.genres,
+        series: book.series
+      }
       return acc
     }, {} as { [key: string]: any })
 

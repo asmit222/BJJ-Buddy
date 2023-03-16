@@ -155,6 +155,11 @@ const DownloadModal: React.FC<DownloadModalProps> = ({
       <Modal centered show={show} onHide={handleClose} className='my-modal123'>
         <Modal.Header>
           <Modal.Title className='downloadModalTitle'>
+            {books[currBookNumber]?.series && (
+              <div className='seriesAboveTitleText'>
+                {books[currBookNumber].series}
+              </div>
+            )}
             <div className='bookTitleText'>{`${books[currBookNumber]?.book
               .split('-')
               .slice(0, -1)
