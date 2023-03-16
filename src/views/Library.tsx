@@ -165,6 +165,7 @@ const Library: React.FC = () => {
   const [switchState3, setSwitchState3] = useState(true)
   const [switchState4, setSwitchState4] = useState(true)
   const [switchState5, setSwitchState5] = useState(true)
+  const [show, setShow] = useState(false)
 
   const handleClose = () => {
     setShow(false)
