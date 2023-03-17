@@ -32,6 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({ setClickedHomeIcon }) => {
           </span>
         </div>
       </Link>
+
       <Link style={{ textDecoration: 'none' }} to='/Account'>
         <div className='navBarIconAndTextDiv'>
           <span className='navbar-brand home-title-navbar'>
