@@ -62,6 +62,9 @@ const Home: React.FC = (props) => {
 
     const url = process.env.REQUEST_URL || 'http://localhost:3000'
 
+    console.log(
+      'requesting book at url: ' + `${url}/bookRequest/${bookRequestFormValue}`
+    )
     axios.get(`${url}/bookRequest/${bookRequestFormValue}`).then((res) => {
       console.log(res)
       if (res.status === 200) {
