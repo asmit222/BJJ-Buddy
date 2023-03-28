@@ -474,6 +474,21 @@ module.exports = {
       book: 'The Legend Trilogy - Marie Lu',
       genres: ['fiction'],
       series: 'Legend #1-3'
+    },
+    97: {
+      book: 'Starsight - Brandon Sanderson',
+      genres: ['fiction'],
+      series: 'Skyward #2'
+    },
+    98: {
+      book: 'Cytonic - Brandon Sanderson',
+      genres: ['fiction'],
+      series: 'Skyward #3'
+    },
+    99: {
+      book: 'Defiant - Brandon Sanderson',
+      genres: ['fiction'],
+      series: 'Skyward #4'
     }
   }
 }
