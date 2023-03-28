@@ -478,17 +478,19 @@ module.exports = {
     97: {
       book: 'Starsight - Brandon Sanderson',
       genres: ['fiction'],
-      series: 'Skyward #2'
+      series: 'Skyward #2',
+      filetype: 'pdf'
     },
     98: {
       book: 'Cytonic - Brandon Sanderson',
       genres: ['fiction'],
-      series: 'Skyward #3'
-    },
-    99: {
-      book: 'Defiant - Brandon Sanderson',
-      genres: ['fiction'],
-      series: 'Skyward #4'
+      series: 'Skyward #3',
+      filetype: 'pdf'
     }
+    // 99: {
+    //   book: 'Defiant - Brandon Sanderson',
+    //   genres: ['fiction'],
+    //   series: 'Skyward #4'
+    // }
   }
 }
