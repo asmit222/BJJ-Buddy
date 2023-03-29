@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="shortcut icon" type="image/x-icon" href="/bookIcon.ico" />
     <!-- <link rel="icon" type="image/png" href="http://s3.amazonaws.com/froobs-kindle-books/Froobs-Books-logo-yellow.png" /> -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,27 +44,27 @@
   <body>
     <!-- Service worker registration -->
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
           navigator.serviceWorker
             .getRegistrations()
             .then(function (registrations) {
               for (let registration of registrations) {
-                registration.unregister();
+                registration.unregister()
               }
               navigator.serviceWorker
-                .register("serviceWorker.js")
+                .register('serviceWorker.js')
                 .then(function (registration) {
                   console.log(
-                    "ServiceWorker registration successful with scope:",
+                    'ServiceWorker registration successful with scope:',
                     registration.scope
-                  );
+                  )
                 })
                 .catch(function (err) {
-                  console.error("ServiceWorker registration failed:", err);
-                });
-            });
-        });
+                  console.error('ServiceWorker registration failed:', err)
+                })
+            })
+        })
       }
     </script>
 
