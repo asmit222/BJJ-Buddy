@@ -510,6 +510,12 @@ module.exports = {
       genres: ['fiction'],
       series: 'The Hunger Games #3',
       filetype: 'pdf'
+    },
+    103: {
+      book: 'A Court of Mist and Fury - Sarah J. Maas',
+      genres: ['fiction'],
+      series: 'A Court of Thorns and Roses #2',
+      filetype: 'pdf'
     }
   }
 }
