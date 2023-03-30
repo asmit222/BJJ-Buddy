@@ -486,11 +486,30 @@ module.exports = {
       genres: ['fiction'],
       series: 'Skyward #3',
       filetype: 'pdf'
+    },
+    99: {
+      book: 'Harry Potter Series - J.K. Rowling',
+      genres: ['fiction'],
+      series: 'Harry Potter #1-7',
+      filetype: 'pdf'
+    },
+    100: {
+      book: 'The Hunger Games - Suzanne Collins',
+      genres: ['fiction'],
+      series: 'The Hunger Games #1',
+      filetype: 'pdf'
+    },
+    101: {
+      book: 'Catching Fire - Suzanne Collins',
+      genres: ['fiction'],
+      series: 'The Hunger Games #2',
+      filetype: 'pdf'
+    },
+    102: {
+      book: 'Mockingjay - Suzanne Collins',
+      genres: ['fiction'],
+      series: 'The Hunger Games #3',
+      filetype: 'pdf'
     }
-    // 99: {
-    //   book: 'Defiant - Brandon Sanderson',
-    //   genres: ['fiction'],
-    //   series: 'Skyward #4'
-    // }
   }
 }
