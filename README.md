@@ -2,7 +2,7 @@
 
 Welcome to FroobsBooks React PWA! This is a Progressive Web App built with React that serves as an online bookstore.
 
-## Hosted URLs
+## Hosting Services Used
 
 - Frontend hosted on Netlify: https://www.froobsbooks.com
 - Backend hosted on Fly.io
