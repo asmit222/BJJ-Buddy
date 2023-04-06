@@ -516,6 +516,11 @@ module.exports = {
       genres: ['fiction'],
       series: 'A Court of Thorns and Roses #2',
       filetype: 'pdf'
+    },
+    104: {
+      book: 'Clean Code: A Handbook of Agile Software Craftsmanship - Robert C. Martin',
+      genres: ['non-fiction'],
+      filetype: 'pdf'
     }
   }
 }
