@@ -521,6 +521,28 @@ module.exports = {
       book: 'Clean Code: A Handbook of Agile Software Craftsmanship - Robert C. Martin',
       genres: ['non-fiction'],
       filetype: 'pdf'
+    },
+    105: {
+      book: 'Love and Other Words - Christina Lauren',
+      genres: ['fiction']
+    },
+    106: {
+      book: 'Pack Up the Moon - Kristan Higgins',
+      genres: ['fiction']
+    },
+    107: {
+      book: 'The Love Hypothesis - Ali Hazelwood',
+      genres: ['fiction']
+    },
+    108: {
+      book: 'Ugly Love - Colleen Hoover',
+      genres: ['fiction'],
+      filetype: 'pdf'
+    },
+    109: {
+      book: 'The Unhoneymooners - Christina Lauren',
+      genres: ['fiction'],
+      filetype: 'pdf'
     }
   }
 }
