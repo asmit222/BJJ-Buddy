@@ -536,8 +536,7 @@ module.exports = {
     },
     108: {
       book: 'Ugly Love - Colleen Hoover',
-      genres: ['fiction'],
-      filetype: 'pdf'
+      genres: ['fiction']
     },
     109: {
       book: 'The Unhoneymooners - Christina Lauren',
