@@ -545,20 +545,20 @@ module.exports = {
     },
     110: {
       book: 'City of Bones - Cassandra Clare',
-      series: "The Mortal Instruments #1"
-      genres: ['fiction'],
+      series: 'The Mortal Instruments #1',
+      genres: ['fiction']
     },
     111: {
       book: 'The 5th Wave - Rick Yancey',
-      series: "The 5th Wave #1"
+      series: 'The 5th Wave #1',
       genres: ['fiction'],
       filetype: 'pdf'
     },
     112: {
       book: 'The Giver - Lois Lowry',
-      series: "The Giver #1"
+      series: 'The Giver #1',
       genres: ['fiction'],
       filetype: 'pdf'
-    },
+    }
   }
 }
