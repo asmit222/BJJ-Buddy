@@ -559,6 +559,11 @@ module.exports = {
       series: 'The Giver #1',
       genres: ['fiction'],
       filetype: 'pdf'
+    },
+    113: {
+      book: `Mastering Small Stakes No-Limit Hold'em: Strategies to consistently beat small stakes poker tournaments and cash games -  Jonathan Little`,
+      genres: ['non-fiction'],
+      filetype: 'pdf'
     }
   }
 }
