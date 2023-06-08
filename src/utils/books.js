@@ -560,9 +560,15 @@ module.exports = {
       genres: ['fiction'],
       filetype: 'pdf'
     },
-    113: {
-      book: "Mastering Small Stakes No-Limit Hold'em: Strategies to consistently beat small stakes poker tournaments and cash games -  Jonathan Little",
-      genres: ['non-fiction'],
+    // 113: {
+    //   book: "Mastering Small Stakes No-Limit Hold'em: Strategies to consistently beat small stakes poker tournaments and cash games -  Jonathan Little",
+    //   genres: ['non-fiction'],
+    //   filetype: 'pdf'
+    // }
+    114: {
+      book: 'Shatter City - Scott Westerfeld',
+      series: 'Impostors #2',
+      genres: ['fiction'],
       filetype: 'pdf'
     }
   }
