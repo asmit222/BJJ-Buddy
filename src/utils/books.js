@@ -193,7 +193,8 @@ module.exports = {
     41: {
       book: 'The Toll - Neal Shusterman',
       genres: ['fiction'],
-      series: 'Arc of a Scythe #3'
+      series: 'Arc of a Scythe #3',
+      filetype: 'pdf'
     },
     42: {
       book: 'The Way of Kings - Brandon Sanderson',
