@@ -6,7 +6,7 @@
   align-items: center;
   position: absolute;
   bottom: 0;
-  background-color: #f4f1ea;
+  background-color: #ffffff;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
@@ -53,7 +53,7 @@ body {
   justify-content: space-around;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white !important;
-  background-color: #f4f1ea !important;
+  background-color: #ffffff !important;
 }
 
 * {
@@ -98,7 +98,7 @@ body {
   padding: 2%;
   animation: fadeIn ease 500ms;
   background-color: rgb(245, 245, 245) !important;
-  background-color: #f4f1ea !important;
+  background-color: #ffffff !important;
   /* padding-bottom: 7em; */
   /* padding-top: 2em; */
   flex-wrap: wrap;
@@ -114,7 +114,7 @@ body {
   padding: 2%;
   animation: fadeIn ease 500ms;
   background-color: rgb(245, 245, 245) !important;
-  background-color: #f4f1ea !important;
+  background-color: #ffffff !important;
   padding-bottom: 6em;
   /* padding-top: 2em; */
   flex-wrap: wrap;
@@ -160,7 +160,7 @@ body {
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white;
-  background-color: #f4f1ea;
+  background-color: #ffffff;
 }
 
 .HomeTitleContainer {
@@ -181,7 +181,7 @@ body {
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white !important;
-  background-color: #f4f1ea !important;
+  background-color: #ffffff !important;
 }
 
 .AccountTitleContainer {
@@ -202,7 +202,7 @@ body {
   z-index: 15;
   /* background-color: rgb(245, 245, 245) !important; */
   background-color: white;
-  background-color: #f4f1ea;
+  background-color: #ffffff;
 }
 
 .searchBooksForm {
@@ -246,7 +246,7 @@ body {
   position: fixed;
   bottom: 55px;
   width: 100%;
-  background-color: #f4f1ea;
+  background-color: #ffffff;
   padding-top: 3%;
   border-top: solid 1px rgba(58, 58, 58, 0.103);
   display: flex;
@@ -666,7 +666,7 @@ body {
   z-index: 2;
 
   /* font-size: 1vw; */
-  background-color: #f4f1ea !important;
+  background-color: #ffffff !important;
 }
 
 .sideNavClosed {
@@ -856,7 +856,7 @@ body {
 
 .descriptionButton {
   /* margin-left: 2%; */
-  background-color: #f4f1ea;
+  background-color: #ffffff;
   color: black;
   border: solid #927f64 1px;
   padding: 5%;
@@ -876,10 +876,10 @@ body {
 } */
 
 .descriptionButton:active {
-  background-color: #f4f1ea !important;
+  background-color: #ffffff !important;
 }
 .downloadBookModalFooter {
-  background-color: #f4f1ea;
+  background-color: #ffffff;
   border-top: solid 1px #5353532a;
 }
 
