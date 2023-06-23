@@ -5,12 +5,12 @@
   "scope": ".",
   "icons": [
     {
-      "src": "http://s3.amazonaws.com/froobs-kindle-books/Froobs-Books-logo-yellow.png",
+      "src": "https://t4.ftcdn.net/jpg/04/43/34/03/360_F_443340374_QqpPwEqSCgChDSJFJNt2bTu2XTe4fISp.jpg",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
-  "background_color": "#ffde59",
+  "background_color": "#ffffff",
   "display": "standalone",
   "theme_color": "#ffffff"
 }
