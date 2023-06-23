@@ -10,6 +10,7 @@ const YouTubeVideo: React.FC<YouTubeVideoProps> = ({ id }) => {
 
   const opts: Options = {
     width: '100%',
+    height: '240px',
     playerVars: {
       // Add any additional player parameters here if needed
     }
@@ -22,6 +23,7 @@ const YouTubeVideo: React.FC<YouTubeVideoProps> = ({ id }) => {
   const onPlayerReady = (event: OnReadyEvent) => {
     const player = event.target
     const videoTitle = player.getVideoData().title
+    console.log('video Data: ' + JSON.stringify(player.getVideoData()))
     setVideoTitle(videoTitle)
   }
 
