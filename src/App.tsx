@@ -11,19 +11,15 @@ const LazyCss = lazy(() => import('./components/LazyCss'))
 
 const App: React.FC = () => {
   const { user } = useAuth0()
-  const [clickedHomeIcon, setClickedHomeIcon] = useState(false)
 
   return (
     <React.Fragment>
-      <NavBar setClickedHomeIcon={setClickedHomeIcon} />
+      <NavBar />
       <div id='appContainer'>
         <Switch>
           <Route path='/Library' component={() => <Library user={user} />} />
           <Route path='/Account' component={() => <Account user={user} />} />
-          <Route
-            path='/'
-            component={() => <Home clickedHomeIcon={clickedHomeIcon} />}
-          />
+          <Route path='/' component={() => <Home />} />
         </Switch>
       </div>
       <React.Suspense fallback={null}>

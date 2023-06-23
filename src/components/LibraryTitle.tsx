@@ -29,27 +29,29 @@ const LibraryTitle: React.FC<Props> = ({
       }}
     ></div>
     <h1 className='LibraryTitle' onClick={clearSearchBox}>
-      Library
+      Videos
     </h1>
-    <Form className='searchBooksForm'>
+
+    {/* <Form className='searchBooksForm'>
       <Form.Group className='mb-0'>
         <Form.Control
           onClick={() => setSideNavStatus('sideNavClosed')}
           type='text'
           value={bookSearchValue}
           onChange={handleSearchBooksChange}
-          placeholder='Search books'
+          placeholder='Search videos'
         />
       </Form.Group>
-    </Form>
-    <span
+    </Form> */}
+
+    {/* <span
       onClick={() =>
         setSideNavStatus(
           sideNavStatus === 'sideNavOpen' ? 'sideNavClosed' : 'sideNavOpen'
         )
       }
       className='filterButtonSpan'
-    ></span>
+    ></span> */}
   </div>
 )
 

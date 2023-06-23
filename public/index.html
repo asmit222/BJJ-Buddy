@@ -12,6 +12,11 @@
     <!-- Stylesheets -->
     <link
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/react-youtube/dist/YouTube.css"
+    />
+
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
       crossorigin="anonymous"
@@ -44,27 +49,27 @@
   <body>
     <!-- Service worker registration -->
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
           navigator.serviceWorker
             .getRegistrations()
             .then(function (registrations) {
               for (let registration of registrations) {
-                registration.unregister()
+                registration.unregister();
               }
               navigator.serviceWorker
-                .register('serviceWorker.js')
+                .register("serviceWorker.js")
                 .then(function (registration) {
                   console.log(
-                    'ServiceWorker registration successful with scope:',
+                    "ServiceWorker registration successful with scope:",
                     registration.scope
-                  )
+                  );
                 })
                 .catch(function (err) {
-                  console.error('ServiceWorker registration failed:', err)
-                })
-            })
-        })
+                  console.error("ServiceWorker registration failed:", err);
+                });
+            });
+        });
       }
     </script>
 
