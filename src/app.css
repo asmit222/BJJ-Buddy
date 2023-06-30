@@ -1246,3 +1246,9 @@ body {
 .dropDownTitle {
   font-size: 2em;
 }
+
+.youtubeChannelName {
+  color: rgb(4, 128, 12);
+  font-size: large;
+  margin-top: -8px;
+}

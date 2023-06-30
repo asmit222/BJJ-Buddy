@@ -47,12 +47,12 @@ const Library: React.FC = () => {
   }
 
   const sweepVideos = [
-    'qp5AXBHxQec',
-    'F0Qz-DcqxJw',
-    '6oo323AQ0JI',
-    'KXCdU94TRic'
+    { id: 'qp5AXBHxQec', channel: 'Knight Jiu-Jitsu' },
+    { id: 'F0Qz-DcqxJw', channel: 'Chewjitsu' },
+    { id: '6oo323AQ0JI', channel: 'Chewjitsu' },
+    { id: 'KXCdU94TRic', channel: 'Chewjitsu' }
   ]
-  const mountEscapeVideos = ['pw_9ZZLkkNI']
+  const mountEscapeVideos = [{ id: 'pw_9ZZLkkNI', channel: 'Knight Jiu-Jitsu' }]
 
   const containerStyle: React.CSSProperties = {
     height: '100%'
@@ -105,7 +105,7 @@ const Library: React.FC = () => {
             <i className='fa-solid fa-chevron-down fa-lg'></i>
             {sweepsOpen && (
               <div className='toReadContainer'>
-                {sweepVideos.map((id, i) => {
+                {sweepVideos.map((data, i) => {
                   return (
                     <div
                       className={
@@ -115,7 +115,7 @@ const Library: React.FC = () => {
                       }
                       style={containerStyle}
                     >
-                      <YouTubeVideo id={id} />
+                      <YouTubeVideo id={data.id} channel={data.channel} />
                     </div>
                   )
                 })}
@@ -135,7 +135,7 @@ const Library: React.FC = () => {
             <i className='fa-solid fa-chevron-down fa-lg'></i>
             {mountEscapesOpen && (
               <div className='toReadContainer'>
-                {mountEscapeVideos.map((id, i) => {
+                {mountEscapeVideos.map((data, i) => {
                   return (
                     <div
                       className={
@@ -145,7 +145,7 @@ const Library: React.FC = () => {
                       }
                       style={containerStyle}
                     >
-                      <YouTubeVideo id={id} />
+                      <YouTubeVideo id={data.id} channel={data.channel} />
                     </div>
                   )
                 })}
